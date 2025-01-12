@@ -1,0 +1,25 @@
+{
+  "base": "/bundles/storefront/administration/",
+  "entryPoints": {
+    "storefront": {
+      "css": [
+        "/bundles/storefront/administration/assets/storefront-CZJ0Shcs.css"
+      ],
+      "dynamic": [],
+      "js": [
+        "/bundles/storefront/administration/assets/storefront-Dj4oLgXa.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.0.4",
+    7,
+    0,
+    4
+  ],
+  "viteServer": null
+}

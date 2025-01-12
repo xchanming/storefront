@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "assets/storefront-Dj4oLgXa.js",
+    "name": "storefront",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "assets/storefront-CZJ0Shcs.css"
+    ]
+  }
+}
