@@ -1,0 +1,308 @@
+{
+  "name": "Cicada default theme",
+  "author": "cicada AG",
+  "description": {
+    "en-GB": "Default theme of Cicada 6",
+    "zh-CN": "Standard Theme von Cicada 6"
+  },
+  "previewMedia": "app/storefront/dist/assets/defaultThemePreview.jpg",
+  "style": [
+    {
+      "app/storefront/src/scss/base.scss": {
+        "resolve": {
+          "vendor": "app/storefront/vendor"
+        }
+      },
+      "app/storefront/src/scss/skin/cicada/_base.scss": {
+        "resolve": {
+          "vendor": "app/storefront/vendor"
+        }
+      }
+    },
+    "@Plugins"
+  ],
+  "script": [
+    "app/storefront/dist/storefront/storefront.js",
+    "@Plugins"
+  ],
+  "asset": [
+    "app/storefront/dist/assets"
+  ],
+  "config": {
+    "blocks": {
+      "themeColors": {
+        "label": {
+          "en-GB": "Theme colours",
+          "zh-CN": "Theme-Farben"
+        }
+      },
+      "typography": {
+        "label": {
+          "en-GB": "Typography",
+          "zh-CN": "Typografie"
+        }
+      },
+      "eCommerce": {
+        "label": {
+          "en-GB": "E-Commerce",
+          "zh-CN": "E-Commerce"
+        }
+      },
+      "statusColors": {
+        "label": {
+          "en-GB": "Status messages",
+          "zh-CN": "Status-Ausgaben"
+        }
+      },
+      "media": {
+        "label": {
+          "en-GB": "Media",
+          "zh-CN": "Medien"
+        }
+      },
+      "unordered": {
+        "label": {
+          "en-GB": "Misc",
+          "zh-CN": "Sonstige"
+        }
+      }
+    },
+    "fields": {
+      "sw-color-brand-primary": {
+        "label": {
+          "en-GB": "Primary colour",
+          "zh-CN": "主色"
+        },
+        "type": "color",
+        "value": "#0042a0",
+        "editable": true,
+        "block": "themeColors",
+        "order": 100
+      },
+      "sw-color-brand-secondary": {
+        "label": {
+          "en-GB": "Secondary colour",
+          "zh-CN": "辅色"
+        },
+        "type": "color",
+        "value": "#474a57",
+        "editable": true,
+        "block": "themeColors",
+        "order": 200
+      },
+      "sw-border-color": {
+        "label": {
+          "en-GB": "Border",
+          "zh-CN": "边框"
+        },
+        "type": "color",
+        "value": "#798490",
+        "editable": true,
+        "block": "themeColors",
+        "order": 300
+      },
+      "sw-background-color": {
+        "label": {
+          "en-GB": "Background",
+          "zh-CN": "背景"
+        },
+        "type": "color",
+        "value": "#fff",
+        "editable": true,
+        "block": "themeColors",
+        "order": 400
+      },
+      "sw-color-success": {
+        "label": {
+          "en-GB": "Success",
+          "zh-CN": "成功"
+        },
+        "type": "color",
+        "value": "#007e4e",
+        "editable": true,
+        "block": "statusColors",
+        "order": 100
+      },
+      "sw-color-info": {
+        "label": {
+          "en-GB": "Information",
+          "zh-CN": "提示信息"
+        },
+        "type": "color",
+        "value": "#005b99",
+        "editable": true,
+        "block": "statusColors",
+        "order": 200
+      },
+      "sw-color-warning": {
+        "label": {
+          "en-GB": "Notice",
+          "zh-CN": "通知"
+        },
+        "type": "color",
+        "value": "#974200",
+        "editable": true,
+        "block": "statusColors",
+        "order": 300
+      },
+      "sw-color-danger": {
+        "label": {
+          "en-GB": "Error",
+          "zh-CN": "错误"
+        },
+        "type": "color",
+        "value": "#c20017",
+        "editable": true,
+        "block": "statusColors",
+        "order": 400
+      },
+      "sw-font-family-base": {
+        "label": {
+          "en-GB": "Fonttype text",
+          "zh-CN": "字体类型"
+        },
+        "type": "fontFamily",
+        "value": "'Inter', sans-serif",
+        "editable": true,
+        "block": "typography",
+        "order": 100
+      },
+      "sw-text-color": {
+        "label": {
+          "en-GB": "Text colour",
+          "zh-CN": "文本颜色"
+        },
+        "type": "color",
+        "value": "#2b3136",
+        "editable": true,
+        "block": "typography",
+        "order": 200
+      },
+      "sw-font-family-headline": {
+        "label": {
+          "en-GB": "Fonttype headline",
+          "zh-CN": "标题字体类型"
+        },
+        "type": "fontFamily",
+        "value": "'Inter', sans-serif",
+        "editable": true,
+        "block": "typography",
+        "order": 300
+      },
+      "sw-headline-color": {
+        "label": {
+          "en-GB": "Headline colour",
+          "zh-CN": "标题颜色"
+        },
+        "type": "color",
+        "value": "#2b3136",
+        "editable": true,
+        "block": "typography",
+        "order": 400
+      },
+      "sw-color-price": {
+        "label": {
+          "en-GB": "Price",
+          "zh-CN": "价格"
+        },
+        "type": "color",
+        "value": "#2b3136",
+        "editable": true,
+        "block": "eCommerce",
+        "order": 100
+      },
+      "sw-color-buy-button": {
+        "label": {
+          "en-GB": "Buy button",
+          "zh-CN": "购买按钮"
+        },
+        "type": "color",
+        "value": "#0042a0",
+        "editable": true,
+        "block": "eCommerce",
+        "order": 200
+      },
+      "sw-color-buy-button-text": {
+        "label": {
+          "en-GB": "Buy button text",
+          "zh-CN": "购买按钮文本"
+        },
+        "type": "color",
+        "value": "#fff",
+        "editable": true,
+        "block": "eCommerce",
+        "order": 300
+      },
+      "sw-logo-desktop": {
+        "label": {
+          "en-GB": "Desktop",
+          "zh-CN": "电脑"
+        },
+        "helpText": {
+          "en-GB": "Displayed on viewport sizes above 991px and as a fallback on smaller viewports, if no other logo is set.",
+          "zh-CN": "在大于 991px 的视口尺寸上显示，如果没有设置其他 logo，则作为小视口尺寸的备用 logo 显示。"
+        },
+        "type": "media",
+        "value": "app/storefront/dist/assets/logo/demostore-logo.png",
+        "editable": true,
+        "block": "media",
+        "order": 100,
+        "fullWidth": true
+      },
+      "sw-logo-tablet": {
+        "label": {
+          "en-GB": "Tablet",
+          "zh-CN": "平板"
+        },
+        "helpText": {
+          "en-GB": "Displayed between a viewport of 767px to 991px",
+          "zh-CN": "在 767px 到 991px 的视口尺寸之间显示"
+        },
+        "type": "media",
+        "value": "app/storefront/dist/assets/logo/demostore-logo.png",
+        "editable": true,
+        "block": "media",
+        "order": 200,
+        "fullWidth": true
+      },
+      "sw-logo-mobile": {
+        "label": {
+          "en-GB": "Mobile",
+          "zh-CN": "手机"
+        },
+        "helpText": {
+          "en-GB": "Displayed up to a viewport of 767px",
+          "zh-CN": "在最多 767px 的视口尺寸下显示"
+        },
+        "type": "media",
+        "value": "app/storefront/dist/assets/logo/demostore-logo.png",
+        "editable": true,
+        "block": "media",
+        "order": 300,
+        "fullWidth": true
+      },
+      "sw-logo-share": {
+        "label": {
+          "en-GB": "App & share icon",
+          "zh-CN": "应用图标和分享图标"
+        },
+        "type": "media",
+        "value": "",
+        "editable": true,
+        "block": "media",
+        "order": 400
+      },
+      "sw-logo-favicon": {
+        "label": {
+          "en-GB": "Favicon",
+          "zh-CN": "网站图标"
+        },
+        "type": "media",
+        "value": "app/storefront/dist/assets/logo/favicon.png",
+        "editable": true,
+        "block": "media",
+        "order": 500
+      }
+    }
+  }
+}
