@@ -9,11 +9,12 @@ export default class CountryStateSelectPlugin extends Plugin {
 
     static options = {
         countrySelectSelector: '.country-select',
+        initialCountryAttribute: 'initial-country-id',
         countryStateSelectSelector: '.country-state-select',
         countryStateCitySelectSelector: '.country-state-city-select',
         countryStateCityDistrictSelectSelector: '.country-state-city-district-select',
 
-        initialCountryAttribute: 'initial-country-id',
+
         initialCountryStateAttribute: 'initial-country-state-id',
         initialCityAttribute: 'initial-city-id',
         initialDistrictAttribute: 'initial-district-id',
@@ -35,7 +36,7 @@ export default class CountryStateSelectPlugin extends Plugin {
         this.initSelects();
 
         this._getFormFieldToggleInstance();
-        this._country = {};
+
         if (this._formFieldToggleInstance) {
             this._formFieldToggleInstance.$emitter.subscribe('onChange', this._onFormFieldToggleChange.bind(this));
         }
@@ -53,74 +54,42 @@ export default class CountryStateSelectPlugin extends Plugin {
         }
 
         const {
-            countrySelectSelector,
-            countryStateSelectSelector,
-            countryStateCitySelectSelector,
-            countryStateCityDistrictSelectSelector,
-            initialCountryAttribute,
-            initialCountryStateAttribute,
-            initialCityAttribute,
-            initialDistrictAttribute,
+            countrySelectSelector, countryStateSelectSelector,
+            initialCountryAttribute, initialCountryStateAttribute
+            , countryStateCitySelectSelector,countryStateCityDistrictSelectSelector,initialCityAttribute,initialDistrictAttribute,
         } = CountryStateSelectPlugin.options;
+        const countrySelect = DomAccess.querySelector(this.scopeElement, countrySelectSelector);
+        const countryStateSelect = DomAccess.querySelector(this.scopeElement, countryStateSelectSelector);
+        const countryStateCitySelect = DomAccess.querySelector(this.scopeElement, countryStateCitySelectSelector);
+        const countryStateCityDistrictSelect = DomAccess.querySelector(this.scopeElement, countryStateCityDistrictSelectSelector);
 
-        const selectsConfig = [
-            {
-                selector: countrySelectSelector,
-                initialAttribute: initialCountryAttribute,
-                changeHandler: this.onChangeCountry.bind(this),
-            },
-            {
-                selector: countryStateSelectSelector,
-                initialAttribute: initialCountryStateAttribute,
-                changeHandler: this.onChangeCountryState.bind(this),
-            },
-            {
-                selector: countryStateCitySelectSelector,
-                initialAttribute: initialCityAttribute,
-                changeHandler: this.onChangeCountryStateCity.bind(this),
-            },
-            {
-                selector: countryStateCityDistrictSelectSelector,
-                initialAttribute: initialDistrictAttribute,
-            },
-        ];
+        const initialCountryId = DomAccess.getDataAttribute(countrySelect, initialCountryAttribute);
+        const initialCountryStateId = DomAccess.getDataAttribute(countryStateSelect, initialCountryStateAttribute);
+        const initialCityId = DomAccess.getDataAttribute(countryStateCitySelect, initialCityAttribute);
+        const initialDistrictId = DomAccess.getDataAttribute(countryStateCityDistrictSelect, initialDistrictAttribute);
 
-        this.selectElements = {};
-        selectsConfig.forEach(({selector, initialAttribute, changeHandler}) => {
-            const selectElement = DomAccess.querySelector(this.scopeElement, selector);
-            this.selectElements[selector] = {
-                element: selectElement,
-                initialValue: DomAccess.getDataAttribute(selectElement, initialAttribute),
-            };
 
-            if (changeHandler) {
-                selectElement.addEventListener('change', changeHandler);
-            }
-        });
+        const countrySelectCurrentOption = countrySelect.options[countrySelect.selectedIndex];
+        const vatIdRequired = !!DomAccess.getDataAttribute(countrySelectCurrentOption, this.options.vatIdRequired, false);
+        const vatIdInput = document.querySelector(this.options.vatIdFieldInput);
+        const stateRequired = !!DomAccess.getDataAttribute(countrySelectCurrentOption, this.options.stateRequired, false);
+        const zipcodeLabels = DomAccess.querySelectorAll(document, this.options.zipcodeLabel, false);
+        const zipcodeInputs = DomAccess.querySelectorAll(document, this.options.zipcodeFieldInput, false);
+        const zipcodeRequired = !!DomAccess.getDataAttribute(countrySelectCurrentOption, this.options.zipcodeRequired, false);
 
-        const {initialValue: initialCountryId} = this.selectElements[countrySelectSelector];
-        const {initialValue: initialCountryStateId} = this.selectElements[countryStateSelectSelector];
-        const {initialValue: initialCityId} = this.selectElements[countryStateCitySelectSelector];
-        const {initialValue: initialDistrictId} = this.selectElements[countryStateCityDistrictSelectSelector];
+        countrySelect.addEventListener('change', this.onChangeCountry.bind(this));
+        countryStateSelect.addEventListener('change', this.onChangeCountryState.bind(this));
+        countryStateCitySelect.addEventListener('change', this.onChangeCountryStateCity.bind(this));
 
         if (!initialCountryId) {
             return;
         }
 
         this._countryId = initialCountryId;
-        this._stateId = initialCountryStateId;
-        const countrySelect = DomAccess.querySelector(this.scopeElement, countrySelectSelector);
 
-        const countrySelectCurrentOption = countrySelect.options[countrySelect.selectedIndex];
-        const stateRequired = !!DomAccess.getDataAttribute(countrySelectCurrentOption, this.options.stateRequired, false);
-
-        this.requestStateData(initialCountryId, initialCountryStateId, stateRequired, initialCityId, initialDistrictId);
-
-        const vatIdRequired = !!DomAccess.getDataAttribute(countrySelectCurrentOption, this.options.vatIdRequired, false);
-        const vatIdInput = document.querySelector(this.options.vatIdFieldInput);
-        const zipcodeLabels = DomAccess.querySelectorAll(document, this.options.zipcodeLabel, false);
-        const zipcodeInputs = DomAccess.querySelectorAll(document, this.options.zipcodeFieldInput, false);
-        const zipcodeRequired = !!DomAccess.getDataAttribute(countrySelectCurrentOption, this.options.zipcodeRequired, false);
+        this.requestStateData(initialCountryId, initialCountryStateId, stateRequired);
+        this.requestStateCityData(initialCountryId, initialCountryStateId, initialCityId);
+        this.requestStateCityDistrictData(initialCountryId, initialCityId, initialDistrictId);
 
         if (zipcodeRequired) {
             this._updateZipcodeRequired(zipcodeLabels, zipcodeInputs, zipcodeRequired);
@@ -133,46 +102,42 @@ export default class CountryStateSelectPlugin extends Plugin {
     }
 
     onChangeCountryState(event) {
-        this._stateId = event.target.value;
+        const stateId = event.target.value;
+        this.requestStateCityData(this._countryId, stateId);
+    }
 
-        const {
-            countryStateCitySelectSelector,
-            countryStateCityPlaceholderSelector,
-        } = CountryStateSelectPlugin.options;
+    requestStateCityData(countryId, countryStateId = null,initCityId = null) {
+        const payload = JSON.stringify({countryId, parentId: countryStateId});
 
-        updateStateSelect(
-            {
-                stateRequired: false,
-                states: Object.values(this._country[this._countryId][this._stateId].children),
-            },
-            null,
-            this.el,
-            countryStateCitySelectSelector,
-            countryStateCityPlaceholderSelector
+
+        this._client.post(
+            window.router['frontend.country.country-data'],
+            payload,
+            (response) => {
+                let responseData = JSON.parse(response);
+                responseData = {...responseData};
+                updateStateCitySelect(responseData, initCityId, this.el, CountryStateSelectPlugin.options);
+            }
         );
-        this.onChangeCountryStateCity({target: {value: null}});
+    }
+
+    requestStateCityDistrictData(countryId, countryStateId = null,initialDistrictId = null) {
+        const payload = JSON.stringify({countryId, parentId: countryStateId});
+
+        this._client.post(
+            window.router['frontend.country.country-data'],
+            payload,
+            (response) => {
+                let responseData = JSON.parse(response);
+                responseData = {...responseData};
+                updateStateCityDistrictSelect(responseData, initialDistrictId, this.el, CountryStateSelectPlugin.options);
+            }
+        );
     }
 
     onChangeCountryStateCity(event) {
         const cityId = event.target.value;
-
-        const {
-            countryStateCityDistrictSelectSelector,
-            countryStateCityDistrictPlaceholderSelector,
-        } = CountryStateSelectPlugin.options;
-        const children = cityId
-            ? Object.values(this._country[this._countryId][this._stateId].children[cityId]?.children || [])
-            : [];
-        updateStateSelect(
-            {
-                stateRequired: false,
-                states: children,
-            },
-            null,
-            this.el,
-            countryStateCityDistrictSelectSelector,
-            countryStateCityDistrictPlaceholderSelector
-        );
+        this.requestStateCityDistrictData(this._countryId, cityId);
     }
 
     onChangeCountry(event) {
@@ -181,7 +146,6 @@ export default class CountryStateSelectPlugin extends Plugin {
         const countrySelect = event.target.options[event.target.selectedIndex];
         const stateRequired = !!DomAccess.getDataAttribute(countrySelect, this.options.stateRequired);
         this.requestStateData(countryId, null, stateRequired);
-
         const vatIdRequired = DomAccess.getDataAttribute(countrySelect, this.options.vatIdRequired);
         const vatIdInput = document.querySelector(this.options.vatIdFieldInput);
 
@@ -196,49 +160,18 @@ export default class CountryStateSelectPlugin extends Plugin {
         }
     }
 
-    requestStateData(countryId, countryStateId, stateRequired, cityId, districtId) {
+    requestStateData(countryId, countryStateId = null, stateRequired = false) {
         const payload = JSON.stringify({countryId});
-
         this._client.post(
             window.router['frontend.country.country-data'],
             payload,
             (response) => {
-                const responseData = JSON.parse(response);
-                responseData.stateRequired = stateRequired;
-
-                this._country[countryId] = preprocessStateData(responseData.states);
-
-                const {countryStateSelectSelector, countryStatePlaceholderSelector} = CountryStateSelectPlugin.options;
-
-                updateStateSelect(
-                    responseData,
-                    countryStateId,
-                    this.el,
-                    countryStateSelectSelector,
-                    countryStatePlaceholderSelector
-                );
-                const {
-                    countryStateCitySelectSelector,
-                    countryStateCityDistrictSelectSelector,
-                } = CountryStateSelectPlugin.options;
-
-                if (countryStateId) {
-                    this.selectElements[countryStateSelectSelector].element.value = countryStateId;
-                    this.onChangeCountryState({target: {value: countryStateId}});
-                }
-
-                if (cityId) {
-                    this.selectElements[countryStateCitySelectSelector].element.value = cityId;
-                    this.onChangeCountryStateCity({target: {value: cityId}});
-                }
-
-                if (districtId) {
-                    this.selectElements[countryStateCityDistrictSelectSelector].element.value = districtId;
-                }
+                let responseData = JSON.parse(response);
+                responseData = {...responseData, ...{stateRequired}};
+                updateStateSelect(responseData, countryStateId, this.el, CountryStateSelectPlugin.options);
             }
         );
     }
-
 
     _updateRequiredVatId(vatIdFieldInput, vatIdRequired) {
         if (this._differentShippingCheckbox && this.options.prefix === 'billingAddress') {
@@ -311,14 +244,41 @@ export default class CountryStateSelectPlugin extends Plugin {
     }
 }
 
-function updateStateSelect({stateRequired, states}, countryStateId,
-    rootElement, selector, placeholderSelector) {
+function updateStateCitySelect({states}, countryStateId, rootElement, options) {
 
-    const countryStateSelect = DomAccess.querySelector(rootElement, selector);
+    const {
+        countryStateCitySelectSelector,
+        countryStateCityPlaceholderSelector,
+        countryStateCityDistrictSelectSelector,
+        countryStateCityDistrictPlaceholderSelector,
+    } = options;
+    const countryStateCitySelect = DomAccess.querySelector(rootElement, countryStateCitySelectSelector);
+    const countryStateCityDistrictSelect = DomAccess.querySelector(rootElement, countryStateCityDistrictSelectSelector);
+    removeOldOptions(countryStateCityDistrictSelect, `option:not(${countryStateCityDistrictPlaceholderSelector})`);
+    removeOldOptions(countryStateCitySelect, `option:not(${countryStateCityPlaceholderSelector})`);
+    addNewStates(countryStateCitySelect, states, countryStateId);
+    updateRequiredState(countryStateCitySelect, `option${countryStateCityPlaceholderSelector}`);
+}
 
-    removeOldOptions(countryStateSelect, `option:not(${placeholderSelector})`);
+function updateStateCityDistrictSelect({states}, countryStateId, rootElement, options) {
+
+    const {countryStateCityDistrictSelectSelector, countryStateCityDistrictPlaceholderSelector} = options;
+    const countryStateCityDistrictSelect = DomAccess.querySelector(rootElement, countryStateCityDistrictSelectSelector);
+
+    removeOldOptions(countryStateCityDistrictSelect, `option:not(${countryStateCityDistrictPlaceholderSelector})`);
+    addNewStates(countryStateCityDistrictSelect, states, countryStateId);
+    updateRequiredState(countryStateCityDistrictSelect, `option${countryStateCityDistrictPlaceholderSelector}`);
+}
+
+
+
+function updateStateSelect({stateRequired, states}, countryStateId, rootElement, options) {
+    const {countryStateSelectSelector, countryStatePlaceholderSelector} = options;
+    const countryStateSelect = DomAccess.querySelector(rootElement, countryStateSelectSelector);
+
+    removeOldOptions(countryStateSelect, `option:not(${countryStatePlaceholderSelector})`);
     addNewStates(countryStateSelect, states, countryStateId);
-    updateRequiredState(countryStateSelect, stateRequired, `option${placeholderSelector}`);
+    updateRequiredState(countryStateSelect, stateRequired, `option${countryStatePlaceholderSelector}`);
 }
 
 function removeOldOptions(el, optionQuery) {
@@ -330,6 +290,7 @@ function addNewStates(selectEl, states, selectedStateId) {
         return;
     }
     if (states.length === 0) {
+        selectEl.parentNode.classList.add('d-none');
         selectEl.setAttribute('disabled', 'disabled');
         return;
     }
@@ -356,7 +317,7 @@ function createOptionFromState(state, selectedStateId) {
 
 function updateRequiredState(countryStateSelect, stateRequired, placeholderQuery) {
     const placeholder = countryStateSelect.querySelector(placeholderQuery);
-    if (!placeholder) {
+    if (!placeholder){
         return;
     }
     const label = countryStateSelect.parentNode.querySelector('label');
@@ -378,21 +339,4 @@ function updateRequiredState(countryStateSelect, stateRequired, placeholderQuery
 
     placeholder.removeAttribute('disabled');
     countryStateSelect.removeAttribute('required');
-}
-
-
-function preprocessStateData(data) {
-    return data.reduce((index, province) => {
-        index[province.id] = {id: province.id, name: province.name, translated: province.translated, children: {}};
-
-        province.children?.forEach(city => {
-            const cityData = {id: city.id, name: city.name, translated: city.translated, children: {}};
-            index[province.id].children[city.id] = cityData;
-            city.children?.forEach(area => {
-                cityData.children[area.id] = {id: area.id, name: area.name, translated: area.translated};
-            });
-        });
-
-        return index;
-    }, {});
 }

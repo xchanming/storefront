@@ -19,10 +19,10 @@ describe('Form country state select plugin', () => {
             <select class="country-state-select" data-initial-country-state-id="">
                 <option>Select state..</option>
             </select>
-           <select class="country-state-city-select" data-initial-city-id="">
+              <select class="country-state-city-select" data-initial-city-id="">
                 <option>Select city..</option>
             </select>
-            <select class="country-state-city-district-select" data-initial-district-id="">
+              <select class="country-state-city-district-select" data-initial-district-id="">
                 <option>Select state..</option>
             </select>
         </form>
@@ -72,12 +72,6 @@ describe('Form country state select plugin', () => {
                 <select class="country-state-select" data-initial-country-state-id="">
                     <option>Select state..</option>
                 </select>
-               <select class="country-state-city-select" data-initial-city-id="">
-                    <option>Select city..</option>
-                </select>
-                   <select class="country-state-city-district-select" data-initial-district-id="">
-                    <option>Select country-state-city-district-select..</option>
-                </select>
             </form>
         `;
 
@@ -108,12 +102,6 @@ describe('Form country state select plugin', () => {
                 </select>
                 <select class="country-state-select" data-initial-country-state-id="">
                     <option>Select state..</option>
-                </select>
-                 <select class="country-state-city-select" data-initial-city-id="">
-                    <option>Select city..</option>
-                </select>
-                   <select class="country-state-city-district-select" data-initial-district-id="">
-                    <option>Select country-state-city-district-select..</option>
                 </select>
             </form>
         `;
@@ -156,12 +144,6 @@ describe('Form country state select plugin', () => {
 
                 <select class="country-state-select" data-initial-country-state-id="">
                     <option>Select state..</option>
-                </select>
-                           <select class="country-state-city-select" data-initial-city-id="">
-                    <option>Select city..</option>
-                </select>
-                   <select class="country-state-city-district-select" data-initial-district-id="">
-                    <option>Select country-state-city-district-select..</option>
                 </select>
             </form>
         `;
@@ -212,12 +194,6 @@ describe('Form country state select plugin', () => {
                                 <option value="0490081418be4255b87731afc953e901">Hamburg</option>
                             </select>
                         </div>
-                                   <select class="country-state-city-select" data-initial-city-id="">
-                    <option>Select city..</option>
-                </select>
-                   <select class="country-state-city-district-select" data-initial-district-id="">
-                    <option>Select country-state-city-district-select..</option>
-                </select>
                     </div>
                 </div>
             </form>
@@ -264,12 +240,6 @@ describe('Form country state select plugin', () => {
                                 <option value="0490081418be4255b87731afc953e901">Hamburg</option>
                             </select>
                         </div>
-                                   <select class="country-state-city-select" data-initial-city-id="">
-                    <option>Select city..</option>
-                </select>
-                   <select class="country-state-city-district-select" data-initial-district-id="">
-                    <option>Select country-state-city-district-select..</option>
-                </select>
                     </div>
                 </div>
             </form>
@@ -310,12 +280,6 @@ describe('Form country state select plugin', () => {
                                 <option value="0490081418be4255b87731afc953e901">Hamburg</option>
                             </select>
                         </div>
-                                   <select class="country-state-city-select" data-initial-city-id="">
-                    <option>Select city..</option>
-                </select>
-                   <select class="country-state-city-district-select" data-initial-district-id="">
-                    <option>Select country-state-city-district-select..</option>
-                </select>
                     </div>
                 </div>
             </form>
@@ -332,7 +296,7 @@ describe('Form country state select plugin', () => {
         plugin._client.post = jest.fn((url, _, callback) => {
             const response = {
                 countryId: '31e1ac8809c744c38c4d99bfe9a50aa8',
-                states: [{id: '0490081418be4255b87731afc953e901', translated: {name: 'Hamburg'}}],
+                states: [{ id: '0490081418be4255b87731afc953e901', translated: { name: 'Hamburg' }}],
             };
 
             callback(JSON.stringify(response));
@@ -360,19 +324,13 @@ describe('Form country state select plugin', () => {
                 <select class="country-state-select" data-initial-country-state-id="">
                     <option>Select state..</option>
                 </select>
-                           <select class="country-state-city-select" data-initial-city-id="">
-                    <option>Select city..</option>
-                </select>
-                   <select class="country-state-city-district-select" data-initial-district-id="">
-                    <option>Select country-state-city-district-select..</option>
-                </select>
             </form>
         `;
 
         document.body.innerHTML = template;
 
         const plugin = createPlugin();
-        const event = {target: {checked: true}};
+        const event = { target: { checked: true } };
 
         plugin._onFormFieldToggleChange(event);
 
@@ -398,19 +356,13 @@ describe('Form country state select plugin', () => {
                 <select class="country-state-select" data-initial-country-state-id="">
                     <option>Select state..</option>
                 </select>
-                           <select class="country-state-city-select" data-initial-city-id="">
-                    <option>Select city..</option>
-                </select>
-                   <select class="country-state-city-district-select" data-initial-district-id="">
-                    <option>Select country-state-city-district-select..</option>
-                </select>
             </form>
         `;
 
         document.body.innerHTML = template;
 
         const plugin = createPlugin();
-        const event = {target: {checked: false}};
+        const event = { target: { checked: false } };
 
         plugin._onFormFieldToggleChange(event);
 
@@ -436,19 +388,13 @@ describe('Form country state select plugin', () => {
                 <select class="country-state-select" data-initial-country-state-id="">
                     <option>Select state..</option>
                 </select>
-               <select class="country-state-city-select" data-initial-city-id="">
-                    <option>Select city..</option>
-                </select>
-               <select class="country-state-city-district-select" data-initial-district-id="">
-                    <option>Select country-state-city-district-select..</option>
-                </select>
             </form>
         `;
 
         document.body.innerHTML = template;
 
-        const plugin = createPlugin({prefix: 'billingAddress'});
-        const event = {target: {checked: true}};
+        const plugin = createPlugin({ prefix: 'billingAddress' });
+        const event = { target: { checked: true } };
 
         plugin._differentShippingCheckbox = true;
         plugin._onFormFieldToggleChange(event);
