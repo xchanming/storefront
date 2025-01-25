@@ -1,0 +1,55 @@
+{# Provides customer
+    type,
+    salutation,
+    title,
+    name,
+    and birthday fields for address forms (e.g. registering a user, creating or updating an address)
+#}{% block component_address_personal_fields %}
+    {% block component_address_personal_fields_salutation_title %}
+        <div class="row g-2">
+            {% block component_address_personal_fields_salutation %}
+                {% set salutationOptions %}
+                    {% for salutation in page.salutations %}
+                        <option {% if salutation.id == data.get('salutationId') %}
+                            selected="selected"
+                        {% endif %}
+                            value="{{ salutation.id }}">
+                            {{ salutation.translated.displayName }}
+                        </option>
+                    {% endfor %}
+                {% endset %}
+
+                {% sw_include '@Storefront/storefront/component/form/form-select.html.twig' with {
+                    label: 'account.personalSalutationLabel'|trans|sw_sanitize,
+                    id: idPrefix ~ prefix ~ 'personalSalutation',
+                    name: prefix ? prefix ~ '[salutationId]' : 'salutationId',
+                    options: salutationOptions,
+                    violationPath: '/salutationId',
+                    additionalClass: 'col-md-3 col-sm-6',
+                } %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+    {% block component_address_personal_fields_name %}
+        <div class="row g-2">
+            {% if formViolations.getViolations("/#{prefix}/name") is not empty %}
+                {% set violationPath = "/#{prefix}/name" %}
+            {% elseif formViolations.getViolations("/name") is not empty and not prefix %}
+                {% set violationPath = "/name" %}
+            {% else %}
+                {% set requiredMessage = "error.VIOLATION::IS_BLANK_ERROR"|trans({ '%field%': "account.personalNameLabel"|trans|sw_sanitize }) %}
+            {% endif %}
+            {% sw_include '@Storefront/storefront/component/form/form-input.html.twig' with {
+                label: 'account.personalNameLabel'|trans|sw_sanitize,
+                id: idPrefix ~ prefix ~ '-personalName',
+                name: prefix ? prefix ~ '[name]' : 'name',
+                value: (prefix and data.has(prefix)) ? data.get(prefix).get('name') : data.get('name'),
+                autocomplete: 'section-personal given-name',
+                violationPath: violationPath,
+                validationRules: 'required',
+                additionalClass: 'col-sm-6',
+            } %}
+        </div>
+    {% endblock %}
+{% endblock %}
