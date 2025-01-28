@@ -11,7 +11,7 @@ use Cicada\Core\Framework\Log\Package;
 use Cicada\Core\System\SalesChannel\SalesChannelCollection;
 use Cicada\Core\System\SalesChannel\SalesChannelEntity;
 use Cicada\Storefront\Theme\StorefrontPluginRegistryInterface;
-use Cicada\Storefront\Theme\ThemeEntity;
+use Cicada\Storefront\Theme\ThemeCollection;
 use Cicada\Storefront\Theme\ThemeService;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -35,6 +35,9 @@ class ThemeChangeCommand extends Command
 
     /**
      * @internal
+     *
+     * @param EntityRepository<SalesChannelCollection> $salesChannelRepository
+     * @param EntityRepository<ThemeCollection> $themeRepository
      */
     public function __construct(
         private readonly ThemeService $themeService,
@@ -75,8 +78,10 @@ class ThemeChangeCommand extends Command
         }
         \assert(\is_string($themeName));
 
-        /** @var SalesChannelCollection $salesChannels */
-        $salesChannels = $this->salesChannelRepository->search((new Criteria())->addFilter(new EqualsFilter('typeId', Defaults::SALES_CHANNEL_TYPE_STOREFRONT)), $this->context)->getEntities();
+        $criteria = (new Criteria())
+            ->addFilter(new EqualsFilter('typeId', Defaults::SALES_CHANNEL_TYPE_STOREFRONT));
+
+        $salesChannels = $this->salesChannelRepository->search($criteria, $this->context)->getEntities();
 
         if ($input->getOption('all')) {
             $selectedSalesChannel = $salesChannels;
@@ -99,13 +104,11 @@ class ThemeChangeCommand extends Command
             $selectedSalesChannel = [$salesChannels->get($salesChannelOption)];
         }
 
-        $criteria = new Criteria();
-        $criteria->addFilter(new EqualsFilter('technicalName', $themeName));
+        $criteria = (new Criteria())
+            ->addFilter(new EqualsFilter('technicalName', $themeName));
 
-        /** @var ThemeEntity|null $theme */
-        $theme = $this->themeRepository->search($criteria, $this->context)->first();
-
-        if ($theme === null) {
+        $theme = $this->themeRepository->search($criteria, $this->context)->getEntities()->first();
+        if (!$theme) {
             $this->io->error('Invalid theme name');
 
             return self::INVALID;

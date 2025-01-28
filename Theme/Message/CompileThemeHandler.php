@@ -8,7 +8,7 @@ use Cicada\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Cicada\Core\Framework\Log\Package;
 use Cicada\Core\Framework\Uuid\Uuid;
-use Cicada\Core\System\SalesChannel\SalesChannelEntity;
+use Cicada\Core\System\SalesChannel\SalesChannelCollection;
 use Cicada\Storefront\Theme\ConfigLoader\AbstractConfigLoader;
 use Cicada\Storefront\Theme\Exception\ThemeException;
 use Cicada\Storefront\Theme\StorefrontPluginRegistryInterface;
@@ -23,6 +23,9 @@ use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 #[Package('framework')]
 final class CompileThemeHandler
 {
+    /**
+     * @param EntityRepository<SalesChannelCollection> $saleschannelRepository
+     */
     public function __construct(
         private readonly ThemeCompilerInterface $themeCompiler,
         private readonly AbstractConfigLoader $configLoader,
@@ -47,13 +50,11 @@ final class CompileThemeHandler
         if ($message->getContext()->getScope() !== Context::USER_SCOPE) {
             return;
         }
-        /** @var SalesChannelEntity|null $salesChannel */
         $salesChannel = $this->saleschannelRepository->search(
             new Criteria([$message->getSalesChannelId()]),
             $message->getContext()
-        )->first();
-
-        if ($salesChannel === null) {
+        )->getEntities()->first();
+        if (!$salesChannel) {
             throw ThemeException::salesChannelNotFound($message->getSalesChannelId());
         }
 

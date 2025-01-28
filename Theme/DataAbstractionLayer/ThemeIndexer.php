@@ -13,6 +13,7 @@ use Cicada\Core\Framework\Log\Package;
 use Cicada\Core\Framework\Plugin\Exception\DecorationPatternException;
 use Cicada\Core\Framework\Uuid\Uuid;
 use Cicada\Storefront\Theme\Event\ThemeIndexerEvent;
+use Cicada\Storefront\Theme\ThemeCollection;
 use Cicada\Storefront\Theme\ThemeDefinition;
 use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
@@ -23,6 +24,8 @@ class ThemeIndexer extends EntityIndexer
 {
     /**
      * @internal
+     *
+     * @param EntityRepository<ThemeCollection> $repository
      */
     public function __construct(
         private readonly IteratorFactory $iteratorFactory,

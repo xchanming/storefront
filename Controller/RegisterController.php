@@ -3,6 +3,7 @@
 namespace Cicada\Storefront\Controller;
 
 use Cicada\Core\Checkout\Cart\SalesChannel\CartService;
+use Cicada\Core\Checkout\Customer\CustomerCollection;
 use Cicada\Core\Checkout\Customer\CustomerEntity;
 use Cicada\Core\Checkout\Customer\Exception\CustomerAlreadyConfirmedException;
 use Cicada\Core\Checkout\Customer\Exception\CustomerNotFoundByHashException;
@@ -19,7 +20,7 @@ use Cicada\Core\Framework\Validation\DataBag\QueryDataBag;
 use Cicada\Core\Framework\Validation\DataBag\RequestDataBag;
 use Cicada\Core\Framework\Validation\DataValidationDefinition;
 use Cicada\Core\Framework\Validation\Exception\ConstraintViolationException;
-use Cicada\Core\System\SalesChannel\Aggregate\SalesChannelDomain\SalesChannelDomainEntity;
+use Cicada\Core\System\SalesChannel\Aggregate\SalesChannelDomain\SalesChannelDomainCollection;
 use Cicada\Core\System\SalesChannel\SalesChannelContext;
 use Cicada\Core\System\SystemConfig\SystemConfigService;
 use Cicada\Storefront\Framework\AffiliateTracking\AffiliateTrackingListener;
@@ -47,6 +48,9 @@ class RegisterController extends StorefrontController
 {
     /**
      * @internal
+     *
+     * @param EntityRepository<CustomerCollection> $customerRepository
+     * @param EntityRepository<SalesChannelDomainCollection> $domainRepository
      */
     public function __construct(
         private readonly AccountLoginPageLoader $loginPageLoader,
@@ -202,8 +206,8 @@ class RegisterController extends StorefrontController
             return $this->redirectToRoute('frontend.account.register.page');
         }
 
-        /** @var CustomerEntity $customer */
-        $customer = $this->customerRepository->search(new Criteria([$customerId]), $context->getContext())->first();
+        $customer = $this->customerRepository->search(new Criteria([$customerId]), $context->getContext())->getEntities()->first();
+        \assert($customer !== null);
 
         if ($customer->getGuest()) {
             $this->addFlash(self::SUCCESS, $this->trans('account.doubleOptInMailConfirmationSuccessfully'));
@@ -305,15 +309,11 @@ class RegisterController extends StorefrontController
             return $domainUrl;
         }
 
-        $criteria = new Criteria();
-        $criteria->addFilter(new EqualsFilter('salesChannelId', $context->getSalesChannelId()));
-        $criteria->setLimit(1);
+        $criteria = (new Criteria())
+            ->addFilter(new EqualsFilter('salesChannelId', $context->getSalesChannelId()))
+            ->setLimit(1);
 
-        /** @var SalesChannelDomainEntity|null $domain */
-        $domain = $this->domainRepository
-            ->search($criteria, $context->getContext())
-            ->first();
-
+        $domain = $this->domainRepository->search($criteria, $context->getContext())->getEntities()->first();
         if (!$domain) {
             throw new SalesChannelDomainNotFoundException($context->getSalesChannel());
         }

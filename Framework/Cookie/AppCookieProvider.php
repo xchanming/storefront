@@ -10,7 +10,7 @@ use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\NotFilter;
 use Cicada\Core\Framework\Log\Package;
 
-#[Package('framework')]
+#[Package('discovery')]
 class AppCookieProvider implements CookieProviderInterface
 {
     /**
@@ -40,14 +40,11 @@ class AppCookieProvider implements CookieProviderInterface
             )
         );
 
-        $result = $this->appRepository->search(
-            $criteria,
-            Context::createDefaultContext()
-        )->getEntities();
+        $result = $this->appRepository->search($criteria, Context::createDefaultContext())->getEntities();
 
         $cookies = array_values($this->inner->getCookieGroups());
 
-        if ($result->count() < 1) {
+        if ($result->count() === 0) {
             return $cookies;
         }
 

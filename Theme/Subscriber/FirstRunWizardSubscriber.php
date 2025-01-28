@@ -3,12 +3,15 @@
 namespace Cicada\Storefront\Theme\Subscriber;
 
 use Cicada\Core\Defaults;
+use Cicada\Core\Framework\DataAbstractionLayer\Entity;
+use Cicada\Core\Framework\DataAbstractionLayer\EntityCollection;
 use Cicada\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Cicada\Core\Framework\Log\Package;
 use Cicada\Core\Framework\Store\Event\FirstRunWizardFinishedEvent;
-use Cicada\Storefront\Theme\ThemeEntity;
+use Cicada\Core\System\SalesChannel\SalesChannelCollection;
+use Cicada\Storefront\Theme\ThemeCollection;
 use Cicada\Storefront\Theme\ThemeLifecycleService;
 use Cicada\Storefront\Theme\ThemeService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -21,6 +24,10 @@ class FirstRunWizardSubscriber implements EventSubscriberInterface
 {
     /**
      * @internal
+     *
+     * @param EntityRepository<ThemeCollection> $themeRepository
+     * @param EntityRepository<EntityCollection<Entity>> $themeSalesChannelRepository
+     * @param EntityRepository<SalesChannelCollection> $salesChannelRepository
      */
     public function __construct(
         private readonly ThemeService $themeService,
@@ -55,8 +62,7 @@ class FirstRunWizardSubscriber implements EventSubscriberInterface
         $themeCriteria = new Criteria();
         $themeCriteria->addAssociation('salesChannels');
         $themeCriteria->addFilter(new EqualsFilter('technicalName', 'Storefront'));
-        /** @var ThemeEntity|null $theme */
-        $theme = $this->themeRepository->search($themeCriteria, $context)->first();
+        $theme = $this->themeRepository->search($themeCriteria, $context)->getEntities()->first();
         if (!$theme) {
             throw new \RuntimeException('Default theme not found');
         }
@@ -67,9 +73,11 @@ class FirstRunWizardSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $salesChannelCriteria = new Criteria();
-        $salesChannelCriteria->addFilter(new EqualsFilter('typeId', Defaults::SALES_CHANNEL_TYPE_STOREFRONT));
+        $salesChannelCriteria = (new Criteria())
+            ->addFilter(new EqualsFilter('typeId', Defaults::SALES_CHANNEL_TYPE_STOREFRONT));
+
         $salesChannelIds = $this->salesChannelRepository->search($salesChannelCriteria, $context)->getIds();
+
         foreach ($salesChannelIds as $id) {
             $this->themeService->compileTheme($id, $theme->getId(), $context);
             $this->themeSalesChannelRepository->upsert([[

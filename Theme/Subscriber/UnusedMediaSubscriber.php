@@ -8,6 +8,7 @@ use Cicada\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Cicada\Core\Framework\Log\Package;
 use Cicada\Core\Framework\Uuid\Uuid;
+use Cicada\Storefront\Theme\ThemeCollection;
 use Cicada\Storefront\Theme\ThemeService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -17,6 +18,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 #[Package('framework')]
 class UnusedMediaSubscriber implements EventSubscriberInterface
 {
+    /**
+     * @param EntityRepository<ThemeCollection> $themeRepository
+     */
     public function __construct(
         private readonly EntityRepository $themeRepository,
         private readonly ThemeService $themeService

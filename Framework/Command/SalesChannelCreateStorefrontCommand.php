@@ -10,6 +10,7 @@ use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Cicada\Core\Framework\Log\Package;
 use Cicada\Core\Maintenance\SalesChannel\Command\SalesChannelCreateCommand;
 use Cicada\Core\Maintenance\SalesChannel\Service\SalesChannelCreator;
+use Cicada\Core\System\Snippet\Aggregate\SnippetSet\SnippetSetCollection;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -27,6 +28,8 @@ class SalesChannelCreateStorefrontCommand extends SalesChannelCreateCommand
 {
     /**
      * @internal
+     *
+     * @param EntityRepository<SnippetSetCollection> $snippetSetRepository
      */
     public function __construct(
         private readonly EntityRepository $snippetSetRepository,

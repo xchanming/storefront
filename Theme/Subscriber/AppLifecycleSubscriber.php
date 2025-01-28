@@ -2,6 +2,7 @@
 
 namespace Cicada\Storefront\Theme\Subscriber;
 
+use Cicada\Core\Framework\App\AppCollection;
 use Cicada\Core\Framework\App\Event\AppDeletedEvent;
 use Cicada\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
@@ -17,6 +18,8 @@ class AppLifecycleSubscriber implements EventSubscriberInterface
 {
     /**
      * @internal
+     *
+     * @param EntityRepository<AppCollection> $appRepository
      */
     public function __construct(
         private readonly ThemeLifecycleService $themeLifecycleService,
@@ -40,9 +43,8 @@ class AppLifecycleSubscriber implements EventSubscriberInterface
             return;
         }
 
-        $app = $this->appRepository->search(new Criteria([$event->getAppId()]), $event->getContext())->first();
-
-        if ($app === null) {
+        $app = $this->appRepository->search(new Criteria([$event->getAppId()]), $event->getContext())->getEntities()->first();
+        if (!$app) {
             return;
         }
 

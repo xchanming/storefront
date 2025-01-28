@@ -2,6 +2,7 @@
 
 namespace Cicada\Storefront\Theme;
 
+use Cicada\Core\Content\Media\Aggregate\MediaFolder\MediaFolderCollection;
 use Cicada\Core\Content\Media\File\FileNameProvider;
 use Cicada\Core\Content\Media\File\FileSaver;
 use Cicada\Core\Content\Media\File\MediaFile;
@@ -9,14 +10,15 @@ use Cicada\Core\Content\Media\MediaCollection;
 use Cicada\Core\Content\Media\MediaException;
 use Cicada\Core\Defaults;
 use Cicada\Core\Framework\Context;
+use Cicada\Core\Framework\DataAbstractionLayer\Entity;
+use Cicada\Core\Framework\DataAbstractionLayer\EntityCollection;
 use Cicada\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 use Cicada\Core\Framework\DataAbstractionLayer\Write\Validation\RestrictDeleteViolationException;
 use Cicada\Core\Framework\Log\Package;
 use Cicada\Core\Framework\Uuid\Uuid;
-use Cicada\Core\System\Language\LanguageEntity;
-use Cicada\Core\System\Locale\LocaleEntity;
+use Cicada\Core\System\Language\LanguageCollection;
 use Cicada\Storefront\Theme\StorefrontPluginConfiguration\AbstractStorefrontPluginConfigurationFactory;
 use Cicada\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfiguration;
 use Cicada\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfigurationCollection;
@@ -27,7 +29,12 @@ use GuzzleHttp\Psr7\MimeType;
 class ThemeLifecycleService
 {
     /**
+     * @param EntityRepository<ThemeCollection> $themeRepository
      * @param EntityRepository<MediaCollection> $mediaRepository
+     * @param EntityRepository<MediaFolderCollection> $mediaFolderRepository
+     * @param EntityRepository<EntityCollection<Entity>> $themeMediaRepository
+     * @param EntityRepository<LanguageCollection> $languageRepository
+     * @param EntityRepository<EntityCollection<Entity>> $themeChildRepository
      *
      * @internal
      */
@@ -116,10 +123,8 @@ class ThemeLifecycleService
         $criteria->addAssociation('dependentThemes');
         $criteria->addFilter(new EqualsFilter('technicalName', $technicalName));
 
-        /** @var ThemeEntity|null $theme */
-        $theme = $this->themeRepository->search($criteria, $context)->first();
-
-        if ($theme === null) {
+        $theme = $this->themeRepository->search($criteria, $context)->getEntities()->first();
+        if (!$theme) {
             return;
         }
 
@@ -136,9 +141,7 @@ class ThemeLifecycleService
         $criteria->addFilter(new EqualsFilter('technicalName', $technicalName));
         $criteria->addAssociation('previewMedia');
 
-        $theme = $this->themeRepository->search($criteria, $context)->first();
-
-        return $theme instanceof ThemeEntity ? $theme : null;
+        return $this->themeRepository->search($criteria, $context)->getEntities()->first();
     }
 
     /**
@@ -390,7 +393,7 @@ class ThemeLifecycleService
             }
 
             if (!empty($currentMediaIds)) {
-                $currentThemeMedia = $this->mediaRepository->search(new Criteria($currentMediaIds), $context);
+                $currentThemeMedia = $this->mediaRepository->search(new Criteria($currentMediaIds), $context)->getEntities();
             }
         }
 
@@ -413,10 +416,10 @@ class ThemeLifecycleService
 
                 if (!\array_key_exists($path, $media)) {
                     if (
-                        $currentThemeMedia !== null
+                        $currentThemeMedia
                         && !empty($currentMediaIds)
                         && isset($currentMediaIds[$key])
-                        && $currentThemeMedia->getEntities()->get($currentMediaIds[$key])?->getFileNameIncludingExtension() === basename($path)) {
+                        && $currentThemeMedia->get($currentMediaIds[$key])?->getFileNameIncludingExtension() === basename($path)) {
                         continue;
                     }
 
@@ -496,14 +499,14 @@ class ThemeLifecycleService
 
     private function getSystemLanguageLocale(Context $context): string
     {
-        $criteria = new Criteria();
-        $criteria->addAssociation('translationCode');
-        $criteria->addFilter(new EqualsFilter('id', Defaults::LANGUAGE_SYSTEM));
+        $criteria = (new Criteria([Defaults::LANGUAGE_SYSTEM]))
+            ->addAssociation('translationCode');
 
-        /** @var LanguageEntity $language */
-        $language = $this->languageRepository->search($criteria, $context)->first();
-        /** @var LocaleEntity $locale */
+        $language = $this->languageRepository->search($criteria, $context)->getEntities()->first();
+        \assert($language !== null);
+
         $locale = $language->getTranslationCode();
+        \assert($locale !== null);
 
         return $locale->getCode();
     }
