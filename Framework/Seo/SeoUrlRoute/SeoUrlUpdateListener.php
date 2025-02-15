@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Seo\SeoUrlRoute;
+namespace Shopware\Storefront\Framework\Seo\SeoUrlRoute;
 
-use Cicada\Core\Content\Category\CategoryDefinition;
-use Cicada\Core\Content\Category\CategoryEvents;
-use Cicada\Core\Content\Category\Event\CategoryIndexerEvent;
-use Cicada\Core\Content\LandingPage\Event\LandingPageIndexerEvent;
-use Cicada\Core\Content\LandingPage\LandingPageEvents;
-use Cicada\Core\Content\Product\Events\ProductIndexerEvent;
-use Cicada\Core\Content\Product\ProductEvents;
-use Cicada\Core\Content\Seo\SeoUrlUpdater;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Uuid\Uuid;
 use Doctrine\DBAL\Connection;
+use Shopware\Core\Content\Category\CategoryDefinition;
+use Shopware\Core\Content\Category\CategoryEvents;
+use Shopware\Core\Content\Category\Event\CategoryIndexerEvent;
+use Shopware\Core\Content\LandingPage\Event\LandingPageIndexerEvent;
+use Shopware\Core\Content\LandingPage\LandingPageEvents;
+use Shopware\Core\Content\Product\Events\ProductIndexerEvent;
+use Shopware\Core\Content\Product\ProductEvents;
+use Shopware\Core\Content\Seo\SeoUrlUpdater;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Uuid\Uuid;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**

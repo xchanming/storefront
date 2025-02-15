@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Product\QuickView;
+namespace Shopware\Storefront\Page\Product\QuickView;
 
-use Cicada\Core\Content\Product\ProductEntity;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Struct\Struct;
+use Shopware\Core\Content\Product\ProductEntity;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Struct\Struct;
 
 #[Package('framework')]
 class MinimalQuickViewPage extends Struct

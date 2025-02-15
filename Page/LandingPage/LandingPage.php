@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\LandingPage;
+namespace Shopware\Storefront\Page\LandingPage;
 
-use Cicada\Core\Content\LandingPage\LandingPageDefinition;
-use Cicada\Core\Content\LandingPage\LandingPageEntity;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Page\Page;
+use Shopware\Core\Content\LandingPage\LandingPageDefinition;
+use Shopware\Core\Content\LandingPage\LandingPageEntity;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Page\Page;
 
 #[Package('discovery')]
 class LandingPage extends Page

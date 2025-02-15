@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Subscriber;
+namespace Shopware\Storefront\Theme\Subscriber;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SystemConfig\Service\ConfigurationService;
-use Cicada\Storefront\Theme\Event\ThemeCompilerEnrichScssVariablesEvent;
-use Cicada\Storefront\Theme\StorefrontPluginRegistryInterface;
 use Doctrine\DBAL\Exception as DBALException;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SystemConfig\Service\ConfigurationService;
+use Shopware\Storefront\Theme\Event\ThemeCompilerEnrichScssVariablesEvent;
+use Shopware\Storefront\Theme\StorefrontPluginRegistryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**

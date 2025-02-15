@@ -1,15 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme;
+namespace Shopware\Storefront\Theme;
 
-use Cicada\Core\Framework\Adapter\Cache\CacheInvalidator;
-use Cicada\Core\Framework\Adapter\Translation\Translator;
-use Cicada\Core\Framework\Feature;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Framework\Routing\CachedDomainLoader;
-use Cicada\Storefront\Theme\Event\ThemeAssignedEvent;
-use Cicada\Storefront\Theme\Event\ThemeConfigChangedEvent;
-use Cicada\Storefront\Theme\Event\ThemeConfigResetEvent;
+use Shopware\Core\Framework\Adapter\Cache\CacheInvalidator;
+use Shopware\Core\Framework\Adapter\Translation\Translator;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Framework\Routing\CachedDomainLoader;
+use Shopware\Storefront\Theme\Event\ThemeAssignedEvent;
+use Shopware\Storefront\Theme\Event\ThemeConfigChangedEvent;
+use Shopware\Storefront\Theme\Event\ThemeConfigResetEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -23,7 +22,6 @@ class CachedResolvedConfigLoaderInvalidator implements EventSubscriberInterface
      */
     public function __construct(
         private readonly CacheInvalidator $cacheInvalidator,
-        private readonly bool $fineGrainedCache
     ) {
     }
 
@@ -43,24 +41,6 @@ class CachedResolvedConfigLoaderInvalidator implements EventSubscriberInterface
     {
         $tags = [CachedResolvedConfigLoader::buildName($event->getThemeId())];
 
-        if (Feature::isActive('cache_rework')) {
-            $this->cacheInvalidator->invalidate($tags);
-
-            return;
-        }
-
-        if (!$this->fineGrainedCache) {
-            $this->cacheInvalidator->invalidate($tags);
-
-            return;
-        }
-
-        $keys = array_keys($event->getConfig());
-
-        foreach ($keys as $key) {
-            $tags[] = ThemeConfigValueAccessor::buildName($key);
-        }
-
         $this->cacheInvalidator->invalidate($tags);
     }
 
@@ -68,20 +48,10 @@ class CachedResolvedConfigLoaderInvalidator implements EventSubscriberInterface
     {
         $salesChannelId = $event->getSalesChannelId();
 
-        if (Feature::isActive('cache_rework')) {
-            $this->cacheInvalidator->invalidate([
-                CachedResolvedConfigLoader::buildName($event->getThemeId()),
-                CachedDomainLoader::CACHE_KEY,
-                Translator::tag($salesChannelId),
-            ]);
-
-            return;
-        }
-
         $this->cacheInvalidator->invalidate([
             CachedResolvedConfigLoader::buildName($event->getThemeId()),
             CachedDomainLoader::CACHE_KEY,
-            'translation.catalog.' . $salesChannelId,
+            Translator::tag($salesChannelId),
         ]);
     }
 

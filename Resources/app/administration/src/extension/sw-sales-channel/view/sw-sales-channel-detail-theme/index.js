@@ -5,8 +5,8 @@ import './sw-sales-channel-detail-theme.scss';
  * @package discovery
  */
 
-const { Component, Mixin } = Cicada;
-const Criteria = Cicada.Data.Criteria;
+const { Component, Mixin } = Shopware;
+const Criteria = Shopware.Data.Criteria;
 
 Component.register('sw-sales-channel-detail-theme', {
     template,
@@ -83,7 +83,7 @@ Component.register('sw-sales-channel-detail-theme', {
             const criteria = new Criteria();
             criteria.addAssociation('previewMedia');
 
-            this.theme = await this.themeRepository.get(themeId, Cicada.Context.api, criteria);
+            this.theme = await this.themeRepository.get(themeId, Shopware.Context.api, criteria);
         },
 
         openThemeModal() {

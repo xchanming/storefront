@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\ConfigLoader;
+namespace Shopware\Storefront\Theme\ConfigLoader;
 
-use Cicada\Core\Defaults;
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Plugin\Exception\DecorationPatternException;
-use Cicada\Core\Framework\Uuid\Uuid;
 use Doctrine\DBAL\Connection;
+use Shopware\Core\Defaults;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
+use Shopware\Core\Framework\Uuid\Uuid;
 
 #[Package('framework')]
 class DatabaseAvailableThemeProvider extends AbstractAvailableThemeProvider
@@ -29,7 +29,7 @@ class DatabaseAvailableThemeProvider extends AbstractAvailableThemeProvider
     {
         $qb = $this->connection->createQueryBuilder()
             ->from('theme_sales_channel')
-            ->select(['LOWER(HEX(sales_channel_id))', 'LOWER(HEX(theme_id))'])
+            ->select('LOWER(HEX(sales_channel_id))', 'LOWER(HEX(theme_id))')
             ->leftJoin('theme_sales_channel', 'sales_channel', 'sales_channel', 'sales_channel.id = theme_sales_channel.sales_channel_id')
             ->where('sales_channel.type_id = :typeId')
             ->setParameter('typeId', Uuid::fromHexToBytes(Defaults::SALES_CHANNEL_TYPE_STOREFRONT));

@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Pagelet\Captcha;
+namespace Shopware\Storefront\Pagelet\Captcha;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Framework\Captcha\BasicCaptcha\AbstractBasicCaptchaGenerator;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Framework\Captcha\BasicCaptcha\AbstractBasicCaptchaGenerator;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 

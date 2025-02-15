@@ -72,7 +72,7 @@ module.exports = {
     reporters: [
         'default',
         ['jest-junit', {
-            suiteName: 'Cicada 6 Storefront Unit Tests',
+            suiteName: 'Shopware 6 Storefront Unit Tests',
             outputDirectory: artifactsPath,
             outputName: 'storefront.junit.xml',
         }],

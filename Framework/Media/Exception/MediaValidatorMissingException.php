@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Media\Exception;
+namespace Shopware\Storefront\Framework\Media\Exception;
 
-use Cicada\Core\Framework\CicadaHttpException;
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\ShopwareHttpException;
 
-#[Package('buyers-experience')]
-class MediaValidatorMissingException extends CicadaHttpException
+#[Package('discovery')]
+class MediaValidatorMissingException extends ShopwareHttpException
 {
     public function __construct(string $type)
     {

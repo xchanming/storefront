@@ -3,7 +3,7 @@ import CmsGdprVideoElement, { CMS_GDPR_VIDEO_ELEMENT_REPLACE_ELEMENT_WITH_VIDEO 
 import { COOKIE_CONFIGURATION_CLOSE_OFF_CANVAS } from 'src/plugin/cookie/cookie-configuration.plugin';
 
 /**
- * @sw-package framework
+ * @sw-package discovery
  */
 describe('src/plugin/cms-gdpr-video-element/cms-gdpr-video-element.plugin', () => {
     let cmsGdprVideoElement;

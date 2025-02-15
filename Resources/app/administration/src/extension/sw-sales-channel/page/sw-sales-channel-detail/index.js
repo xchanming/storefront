@@ -1,6 +1,6 @@
 import template from './sw-sales-channel-detail.html.twig';
 
-const { Component } = Cicada;
+const { Component } = Shopware;
 
 /**
  * @package discovery

@@ -38,7 +38,7 @@
                     {% if referencePrice is not null %}
                         <span class="price-unit-reference">
                             {# @deprecated tag:v6.7.0 - Showing asterisk next to every price is deprecated. Tax and shipping info is displayed as text instead if `allowBuyInListing` is true. #}
-                            ({{ referencePrice.price|currency }} / {{ referencePrice.referenceUnit }} {{ referencePrice.unitName }})
+                            ({{ referencePrice.price|currency }}{% if not feature('ACCESSIBILITY_TWEAKS') %}{{ 'general.star'|trans|sw_sanitize }}{% endif %} / {{ referencePrice.referenceUnit }} {{ referencePrice.unitName }})
                         </span>
                     {% endif %}
                 {% endblock %}
@@ -53,7 +53,8 @@
 
                 <div class="product-cheapest-price{% if isListPrice and isRegulationPrice and not displayFrom and not displayFromVariants %} with-list-price{% endif %}{% if isRegulationPrice and not displayFrom and displayFromVariants %} with-regulation-price{% endif %}{% if displayFrom and isRegulationPrice %} with-from-price{% endif %}">
                     {% if cheapest.unitPrice != real.unitPrice and cheapest.variantId != product.id %}
-                        <div>{{ 'listing.cheapestPriceLabel'|trans|sw_sanitize }}<span class="product-cheapest-price-price"> {{ cheapest.unitPrice|currency }}</span></div>
+                        {# @deprecated tag:v6.7.0 - Showing asterisk next to every price is deprecated. Tax and shipping info is displayed as text instead if `allowBuyInListing` is true. #}
+                        <div>{{ 'listing.cheapestPriceLabel'|trans|sw_sanitize }}<span class="product-cheapest-price-price"> {{ cheapest.unitPrice|currency }}{% if not feature('ACCESSIBILITY_TWEAKS') %}{{ 'general.star'|trans|sw_sanitize }}{% endif %}</span></div>
                     {% endif %}
                 </div>
 
@@ -62,7 +63,8 @@
                 {% endif %}
 
                 <span class="product-price{% if isListPrice and not displayFrom and not displayFromVariants %} with-list-price{% endif %}">
-                    {{ price.unitPrice|currency }}
+                    {# @deprecated tag:v6.7.0 - Showing asterisk next to every price is deprecated. Tax and shipping info is displayed as text instead if `allowBuyInListing` is true. #}
+                    {{ price.unitPrice|currency }}{% if not feature('ACCESSIBILITY_TWEAKS') %}{{ 'general.star'|trans|sw_sanitize }}{% endif %}
 
                     {% if isListPrice and not displayFrom and not displayFromVariants %}
                         {% set afterListPriceSnippetExists = 'listing.afterListPrice'|trans|length > 0 %}
@@ -72,7 +74,8 @@
                         <span class="list-price{% if hideStrikeTrough %} list-price-no-line-through{% endif %}">
                             {% if beforeListPriceSnippetExists %}{{ 'listing.beforeListPrice'|trans|trim|sw_sanitize }}{% endif %}
 
-                            <span class="list-price-price">{{ price.listPrice.price|currency }}</span>
+                            {# @deprecated tag:v6.7.0 - Showing asterisk next to every price is deprecated. Tax and shipping info is displayed as text instead if `allowBuyInListing` is true. #}
+                            <span class="list-price-price">{{ price.listPrice.price|currency }}{% if not feature('ACCESSIBILITY_TWEAKS') %}{{ 'general.star'|trans|sw_sanitize }}{% endif %}</span>
 
                             {% if afterListPriceSnippetExists %}{{ 'listing.afterListPrice'|trans|trim|sw_sanitize }}{% endif %}
 
@@ -83,28 +86,30 @@
                 {% if isRegulationPrice %}
                     <span class="product-price with-regulation-price">
                         {# @deprecated tag:v6.7.0 - Showing asterisk next to every price is deprecated. Tax and shipping info is displayed as text instead if `allowBuyInListing` is true. #}
-                        {% if isListPrice %}<br>{% endif %}<span class="regulation-price">{{ 'general.listPricePreviously'|trans({'%price%': price.regulationPrice.price|currency }) }}</span>
+                        {% if isListPrice %}<br>{% endif %}<span class="regulation-price">{{ 'general.listPricePreviously'|trans({'%price%': price.regulationPrice.price|currency }) }}{% if not feature('ACCESSIBILITY_TWEAKS') %}{{ 'general.star'|trans|sw_sanitize }}{% endif %}</span>
                     </span>
                 {% endif %}
             </div>
         {% endblock %}
 
         {#
-        If a product can be added to the shipping directly from the listing,
-        we need to display information about taxes and shipping.
+            If a product can be added to the shipping directly from the listing,
+            we need to display information about taxes and shipping.
         #}
-        {% if config('core.listing.allowBuyInListing') %}
+        {% if feature('ACCESSIBILITY_TWEAKS') and config('core.listing.allowBuyInListing') %}
             {% block component_product_box_price_tax_info %}
-                {% set cmsPath ='frontend.cms.page.full'  %}
+                {% set cmsPath = 'frontend.cms.page' %}
 
-                <a class="product-price-tax-link fw-normal p-0 fs-6 lh-base"
-                   href="{{ path(cmsPath, { id: config('core.basicInformation.shippingPaymentInfoPage') }) }}">
+                <button class="product-price-tax-link btn btn-link-inline fs-6"
+                        type="button"
+                        data-ajax-modal="true"
+                        data-url="{{ path(cmsPath, { id: config('core.basicInformation.shippingPaymentInfoPage') }) }}">
                     {% if context.taxState == 'gross' %}
                         {{ 'general.grossTaxInformation'|trans|sw_sanitize }}
                     {% else %}
                         {{ 'general.netTaxInformation'|trans|sw_sanitize }}
                     {% endif %}
-                </a>
+                </button>
             {% endblock %}
         {% endif %}
     </div>

@@ -36,7 +36,7 @@
 {% endblock %}
 
 {% block page_checkout_confirm_revocation_control %}
-    {% set DOWNLOAD_STATE = constant('Cicada\\Core\\Content\\Product\\State::IS_DOWNLOAD') %}
+    {% set DOWNLOAD_STATE = constant('Shopware\\Core\\Content\\Product\\State::IS_DOWNLOAD') %}
     {% if page.order.lineItems.hasLineItemWithState(DOWNLOAD_STATE) %}
         <br>{{ 'checkout.confirmRevocationReminder'|trans() }}
     {% endif %}
@@ -55,7 +55,7 @@
 {% endblock %}
 
 {% block page_checkout_confirm_shipping %}
-    {% set PHYSICAL_STATE = constant('Cicada\\Core\\Content\\Product\\State::IS_PHYSICAL') %}
+    {% set PHYSICAL_STATE = constant('Shopware\\Core\\Content\\Product\\State::IS_PHYSICAL') %}
     {% if page.order.lineItems.hasLineItemWithState(PHYSICAL_STATE) %}
         <div class="col-sm-6 confirm-shipping">
             {% sw_include '@Storefront/storefront/page/account/order/confirm-shipping.html.twig' %}

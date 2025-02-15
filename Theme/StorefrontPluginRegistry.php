@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme;
+namespace Shopware\Storefront\Theme;
 
-use Cicada\Core\Framework\App\ActiveAppsLoader;
-use Cicada\Core\Framework\Bundle;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\AbstractStorefrontPluginConfigurationFactory;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfiguration;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfigurationCollection;
+use Shopware\Core\Framework\App\ActiveAppsLoader;
+use Shopware\Core\Framework\Bundle;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\AbstractStorefrontPluginConfigurationFactory;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfiguration;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfigurationCollection;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Contracts\Service\ResetInterface;
 

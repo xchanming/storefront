@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Pagelet\Country;
+namespace Shopware\Storefront\Pagelet\Country;
 
-use Cicada\Core\Framework\Feature;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Script\Execution\Awareness\SalesChannelContextAwareTrait;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Page\PageLoadedHook;
+use Shopware\Core\Framework\Feature;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Script\Execution\Awareness\SalesChannelContextAwareTrait;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Page\PageLoadedHook;
 
 /**
  * Deprecated class with the typo in the HOOK_NAME constant.

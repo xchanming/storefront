@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\App\Template;
+namespace Shopware\Storefront\Framework\App\Template;
 
-use Cicada\Core\Framework\App\Manifest\Manifest;
-use Cicada\Core\Framework\App\Source\SourceResolver;
-use Cicada\Core\Framework\App\Template\AbstractTemplateLoader;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Framework\StorefrontFrameworkException;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\AbstractStorefrontPluginConfigurationFactory;
+use Shopware\Core\Framework\App\Manifest\Manifest;
+use Shopware\Core\Framework\App\Source\SourceResolver;
+use Shopware\Core\Framework\App\Template\AbstractTemplateLoader;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Framework\StorefrontFrameworkException;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\AbstractStorefrontPluginConfigurationFactory;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 

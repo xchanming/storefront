@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Captcha;
+namespace Shopware\Storefront\Framework\Captcha;
 
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Log\Package;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\Blank;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class HoneypotCaptcha extends AbstractCaptcha
 {
     final public const CAPTCHA_NAME = 'honeypot';
-    final public const CAPTCHA_REQUEST_PARAMETER = 'cicada_surname_confirm';
+    final public const CAPTCHA_REQUEST_PARAMETER = 'shopware_surname_confirm';
 
     protected ?string $honeypotValue = null;
 

@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Subscriber;
+namespace Shopware\Storefront\Theme\Subscriber;
 
-use Cicada\Core\Framework\DataAbstractionLayer\EntityRepository;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Plugin\PluginLifecycleService;
-use Cicada\Core\Framework\Update\Event\UpdatePostFinishEvent;
-use Cicada\Core\System\SalesChannel\SalesChannelCollection;
-use Cicada\Storefront\Theme\Exception\ThemeCompileException;
-use Cicada\Storefront\Theme\ThemeCollection;
-use Cicada\Storefront\Theme\ThemeLifecycleService;
-use Cicada\Storefront\Theme\ThemeService;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Plugin\PluginLifecycleService;
+use Shopware\Core\Framework\Update\Event\UpdatePostFinishEvent;
+use Shopware\Core\System\SalesChannel\SalesChannelCollection;
+use Shopware\Storefront\Theme\Exception\ThemeCompileException;
+use Shopware\Storefront\Theme\ThemeCollection;
+use Shopware\Storefront\Theme\ThemeLifecycleService;
+use Shopware\Storefront\Theme\ThemeService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**

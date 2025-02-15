@@ -1,29 +1,29 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Address\Detail;
+namespace Shopware\Storefront\Page\Address\Detail;
 
-use Cicada\Core\Checkout\Customer\Aggregate\CustomerAddress\CustomerAddressEntity;
-use Cicada\Core\Checkout\Customer\CustomerEntity;
-use Cicada\Core\Checkout\Customer\CustomerException;
-use Cicada\Core\Checkout\Customer\Exception\AddressNotFoundException;
-use Cicada\Core\Checkout\Customer\SalesChannel\AbstractListAddressRoute;
-use Cicada\Core\Content\Category\Exception\CategoryNotFoundException;
-use Cicada\Core\Framework\Adapter\Translation\AbstractTranslator;
-use Cicada\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\Framework\Uuid\Exception\InvalidUuidException;
-use Cicada\Core\Framework\Uuid\Uuid;
-use Cicada\Core\System\Country\CountryCollection;
-use Cicada\Core\System\Country\SalesChannel\AbstractCountryRoute;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Core\System\Salutation\AbstractSalutationsSorter;
-use Cicada\Core\System\Salutation\SalesChannel\AbstractSalutationRoute;
-use Cicada\Core\System\Salutation\SalutationCollection;
-use Cicada\Storefront\Page\GenericPageLoaderInterface;
-use Cicada\Storefront\Page\MetaInformation;
+use Shopware\Core\Checkout\Customer\Aggregate\CustomerAddress\CustomerAddressEntity;
+use Shopware\Core\Checkout\Customer\CustomerEntity;
+use Shopware\Core\Checkout\Customer\CustomerException;
+use Shopware\Core\Checkout\Customer\Exception\AddressNotFoundException;
+use Shopware\Core\Checkout\Customer\SalesChannel\AbstractListAddressRoute;
+use Shopware\Core\Content\Category\Exception\CategoryNotFoundException;
+use Shopware\Core\Framework\Adapter\Translation\AbstractTranslator;
+use Shopware\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\Framework\Uuid\Exception\InvalidUuidException;
+use Shopware\Core\Framework\Uuid\Uuid;
+use Shopware\Core\System\Country\CountryCollection;
+use Shopware\Core\System\Country\SalesChannel\AbstractCountryRoute;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\System\Salutation\AbstractSalutationsSorter;
+use Shopware\Core\System\Salutation\SalesChannel\AbstractSalutationRoute;
+use Shopware\Core\System\Salutation\SalutationCollection;
+use Shopware\Storefront\Page\GenericPageLoaderInterface;
+use Shopware\Storefront\Page\MetaInformation;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -114,8 +114,7 @@ class AddressDetailPageLoader
     {
         $criteria = (new Criteria())
             ->addFilter(new EqualsFilter('country.active', true))
-            ->addAssociation('states.children.children');
-        $criteria->getAssociation('states')->addFilter(new EqualsFilter('parentId', null));
+            ->addAssociation('states');
 
         $countries = $this->countryRoute->load(new Request(), $criteria, $salesChannelContext)->getCountries();
 

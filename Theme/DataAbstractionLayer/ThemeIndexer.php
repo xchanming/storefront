@@ -1,22 +1,22 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\DataAbstractionLayer;
+namespace Shopware\Storefront\Theme\DataAbstractionLayer;
 
-use Cicada\Core\Framework\DataAbstractionLayer\Dbal\Common\IterableQuery;
-use Cicada\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory;
-use Cicada\Core\Framework\DataAbstractionLayer\Doctrine\RetryableTransaction;
-use Cicada\Core\Framework\DataAbstractionLayer\EntityRepository;
-use Cicada\Core\Framework\DataAbstractionLayer\Event\EntityWrittenContainerEvent;
-use Cicada\Core\Framework\DataAbstractionLayer\Indexing\EntityIndexer;
-use Cicada\Core\Framework\DataAbstractionLayer\Indexing\EntityIndexingMessage;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Plugin\Exception\DecorationPatternException;
-use Cicada\Core\Framework\Uuid\Uuid;
-use Cicada\Storefront\Theme\Event\ThemeIndexerEvent;
-use Cicada\Storefront\Theme\ThemeCollection;
-use Cicada\Storefront\Theme\ThemeDefinition;
 use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
+use Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IterableQuery;
+use Shopware\Core\Framework\DataAbstractionLayer\Dbal\Common\IteratorFactory;
+use Shopware\Core\Framework\DataAbstractionLayer\Doctrine\RetryableTransaction;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
+use Shopware\Core\Framework\DataAbstractionLayer\Event\EntityWrittenContainerEvent;
+use Shopware\Core\Framework\DataAbstractionLayer\Indexing\EntityIndexer;
+use Shopware\Core\Framework\DataAbstractionLayer\Indexing\EntityIndexingMessage;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
+use Shopware\Core\Framework\Uuid\Uuid;
+use Shopware\Storefront\Theme\Event\ThemeIndexerEvent;
+use Shopware\Storefront\Theme\ThemeCollection;
+use Shopware\Storefront\Theme\ThemeDefinition;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 
 #[Package('framework')]

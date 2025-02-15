@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\SystemCheck;
+namespace Shopware\Storefront\Framework\SystemCheck;
 
-use Cicada\Core\Defaults;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\SystemCheck\BaseCheck;
-use Cicada\Core\Framework\SystemCheck\Check\Category;
-use Cicada\Core\Framework\SystemCheck\Check\Result;
-use Cicada\Core\Framework\SystemCheck\Check\Status;
-use Cicada\Core\Framework\SystemCheck\Check\SystemCheckExecutionContext;
-use Cicada\Core\Framework\Uuid\Uuid;
-use Cicada\Core\Kernel;
-use Cicada\Core\SalesChannelRequest;
 use Doctrine\DBAL\Connection;
+use Shopware\Core\Defaults;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\SystemCheck\BaseCheck;
+use Shopware\Core\Framework\SystemCheck\Check\Category;
+use Shopware\Core\Framework\SystemCheck\Check\Result;
+use Shopware\Core\Framework\SystemCheck\Check\Status;
+use Shopware\Core\Framework\SystemCheck\Check\SystemCheckExecutionContext;
+use Shopware\Core\Framework\Uuid\Uuid;
+use Shopware\Core\Kernel;
+use Shopware\Core\SalesChannelRequest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;

@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Pagelet\Menu\Offcanvas;
+namespace Shopware\Storefront\Pagelet\Menu\Offcanvas;
 
-use Cicada\Core\Content\Category\Exception\CategoryNotFoundException;
-use Cicada\Core\Content\Category\Service\NavigationLoaderInterface;
-use Cicada\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\Content\Category\Exception\CategoryNotFoundException;
+use Shopware\Core\Content\Category\Service\NavigationLoaderInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 

@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Twig;
+namespace Shopware\Storefront\Framework\Twig;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\PlatformRequest;
-use Cicada\Storefront\Framework\Routing\StorefrontRouteScope;
 use Composer\EventDispatcher\EventSubscriberInterface;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\PlatformRequest;
+use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -46,7 +46,7 @@ class TwigDateRequestListener implements EventSubscriberInterface
 
         $timezone = (string) $request->cookies->get(self::TIMEZONE_COOKIE);
 
-        if ($timezone === 'Asia/Shanghai' || !$timezone || !\in_array($timezone, timezone_identifiers_list(), true)) {
+        if ($timezone === 'UTC' || !$timezone || !\in_array($timezone, timezone_identifiers_list(), true)) {
             // Default will be UTC @see https://symfony.com/doc/current/reference/configuration/twig.html#timezone
             return;
         }

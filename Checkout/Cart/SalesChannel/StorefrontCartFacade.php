@@ -1,23 +1,23 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Checkout\Cart\SalesChannel;
+namespace Shopware\Storefront\Checkout\Cart\SalesChannel;
 
-use Cicada\Core\Checkout\Cart\AbstractCartPersister;
-use Cicada\Core\Checkout\Cart\Cart;
-use Cicada\Core\Checkout\Cart\CartCalculator;
-use Cicada\Core\Checkout\Cart\Error\ErrorCollection;
-use Cicada\Core\Checkout\Cart\SalesChannel\CartService;
-use Cicada\Core\Checkout\Payment\Cart\Error\PaymentMethodBlockedError;
-use Cicada\Core\Checkout\Shipping\Cart\Error\ShippingMethodBlockedError;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Validation\DataBag\RequestDataBag;
-use Cicada\Core\System\SalesChannel\Context\SalesChannelContextService;
-use Cicada\Core\System\SalesChannel\SalesChannel\AbstractContextSwitchRoute;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Checkout\Cart\Error\PaymentMethodChangedError;
-use Cicada\Storefront\Checkout\Cart\Error\ShippingMethodChangedError;
-use Cicada\Storefront\Checkout\Payment\BlockedPaymentMethodSwitcher;
-use Cicada\Storefront\Checkout\Shipping\BlockedShippingMethodSwitcher;
+use Shopware\Core\Checkout\Cart\AbstractCartPersister;
+use Shopware\Core\Checkout\Cart\Cart;
+use Shopware\Core\Checkout\Cart\CartCalculator;
+use Shopware\Core\Checkout\Cart\Error\ErrorCollection;
+use Shopware\Core\Checkout\Cart\SalesChannel\CartService;
+use Shopware\Core\Checkout\Payment\Cart\Error\PaymentMethodBlockedError;
+use Shopware\Core\Checkout\Shipping\Cart\Error\ShippingMethodBlockedError;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
+use Shopware\Core\System\SalesChannel\Context\SalesChannelContextService;
+use Shopware\Core\System\SalesChannel\SalesChannel\AbstractContextSwitchRoute;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Checkout\Cart\Error\PaymentMethodChangedError;
+use Shopware\Storefront\Checkout\Cart\Error\ShippingMethodChangedError;
+use Shopware\Storefront\Checkout\Payment\BlockedPaymentMethodSwitcher;
+use Shopware\Storefront\Checkout\Shipping\BlockedShippingMethodSwitcher;
 
 #[Package('checkout')]
 class StorefrontCartFacade

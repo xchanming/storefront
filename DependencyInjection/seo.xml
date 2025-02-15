@@ -5,27 +5,27 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <service id="Cicada\Storefront\Framework\Seo\SeoUrlRoute\ProductPageSeoUrlRoute">
-            <argument type="service" id="Cicada\Core\Content\Product\ProductDefinition"/>
+        <service id="Shopware\Storefront\Framework\Seo\SeoUrlRoute\ProductPageSeoUrlRoute">
+            <argument type="service" id="Shopware\Core\Content\Product\ProductDefinition"/>
 
-            <tag name="cicada.seo_url.route"/>
+            <tag name="shopware.seo_url.route"/>
         </service>
 
-        <service id="Cicada\Storefront\Framework\Seo\SeoUrlRoute\NavigationPageSeoUrlRoute">
-            <argument type="service" id="Cicada\Core\Content\Category\CategoryDefinition"/>
-            <argument type="service" id="Cicada\Core\Content\Category\Service\CategoryBreadcrumbBuilder"/>
+        <service id="Shopware\Storefront\Framework\Seo\SeoUrlRoute\NavigationPageSeoUrlRoute">
+            <argument type="service" id="Shopware\Core\Content\Category\CategoryDefinition"/>
+            <argument type="service" id="Shopware\Core\Content\Category\Service\CategoryBreadcrumbBuilder"/>
 
-            <tag name="cicada.seo_url.route"/>
+            <tag name="shopware.seo_url.route"/>
         </service>
 
-        <service id="Cicada\Storefront\Framework\Seo\SeoUrlRoute\LandingPageSeoUrlRoute">
-            <argument type="service" id="Cicada\Core\Content\LandingPage\LandingPageDefinition"/>
+        <service id="Shopware\Storefront\Framework\Seo\SeoUrlRoute\LandingPageSeoUrlRoute">
+            <argument type="service" id="Shopware\Core\Content\LandingPage\LandingPageDefinition"/>
 
-            <tag name="cicada.seo_url.route"/>
+            <tag name="shopware.seo_url.route"/>
         </service>
 
-        <service id="Cicada\Storefront\Framework\Seo\SeoUrlRoute\SeoUrlUpdateListener">
-            <argument type="service" id="Cicada\Core\Content\Seo\SeoUrlUpdater"/>
+        <service id="Shopware\Storefront\Framework\Seo\SeoUrlRoute\SeoUrlUpdateListener">
+            <argument type="service" id="Shopware\Core\Content\Seo\SeoUrlUpdater"/>
             <argument type="service" id="Doctrine\DBAL\Connection"/>
             <tag name="kernel.event_subscriber"/>
         </service>

@@ -1,16 +1,16 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Controller;
+namespace Shopware\Storefront\Controller;
 
-use Cicada\Core\Checkout\Customer\CustomerEntity;
-use Cicada\Core\Content\Newsletter\NewsletterException;
-use Cicada\Core\Content\Newsletter\SalesChannel\AbstractNewsletterConfirmRoute;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Validation\DataBag\QueryDataBag;
-use Cicada\Core\Framework\Validation\DataBag\RequestDataBag;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Page\Newsletter\Subscribe\NewsletterSubscribePageLoader;
-use Cicada\Storefront\Pagelet\Newsletter\Account\NewsletterAccountPageletLoader;
+use Shopware\Core\Checkout\Customer\CustomerEntity;
+use Shopware\Core\Content\Newsletter\NewsletterException;
+use Shopware\Core\Content\Newsletter\SalesChannel\AbstractNewsletterConfirmRoute;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Validation\DataBag\QueryDataBag;
+use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Page\Newsletter\Subscribe\NewsletterSubscribePageLoader;
+use Shopware\Storefront\Pagelet\Newsletter\Account\NewsletterAccountPageletLoader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Attribute\Route;
  * Do not use direct or indirect repository calls in a controller. Always use a store-api route to get or put data
  */
 #[Route(defaults: ['_routeScope' => ['storefront']])]
-#[Package('buyers-experience')]
+#[Package('after-sales')]
 class NewsletterController extends StorefrontController
 {
     /**

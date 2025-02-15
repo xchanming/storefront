@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Routing;
+namespace Shopware\Storefront\Framework\Routing;
 
-use Cicada\Core\Content\Seo\HreflangLoaderInterface;
-use Cicada\Core\Content\Seo\HreflangLoaderParameter;
-use Cicada\Core\Framework\App\ActiveAppsLoader;
-use Cicada\Core\Framework\App\Exception\AppUrlChangeDetectedException;
-use Cicada\Core\Framework\App\ShopId\ShopIdProvider;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\PlatformRequest;
-use Cicada\Core\SalesChannelRequest;
-use Cicada\Storefront\Event\StorefrontRenderEvent;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfiguration;
-use Cicada\Storefront\Theme\StorefrontPluginRegistryInterface;
+use Shopware\Core\Content\Seo\HreflangLoaderInterface;
+use Shopware\Core\Content\Seo\HreflangLoaderParameter;
+use Shopware\Core\Framework\App\ActiveAppsLoader;
+use Shopware\Core\Framework\App\Exception\AppUrlChangeDetectedException;
+use Shopware\Core\Framework\App\ShopId\ShopIdProvider;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\PlatformRequest;
+use Shopware\Core\SalesChannelRequest;
+use Shopware\Storefront\Event\StorefrontRenderEvent;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfiguration;
+use Shopware\Storefront\Theme\StorefrontPluginRegistryInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**

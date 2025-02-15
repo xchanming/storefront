@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Command;
+namespace Shopware\Storefront\Theme\Command;
 
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Log\Package;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -141,8 +141,8 @@ class ThemeCreateCommand extends Command
 
 namespace #namespace#;
 
-use Cicada\Core\Framework\Plugin;
-use Cicada\Storefront\Framework\ThemeInterface;
+use Shopware\Core\Framework\Plugin;
+use Shopware\Storefront\Framework\ThemeInterface;
 
 class #class# extends Plugin implements ThemeInterface
 {
@@ -156,7 +156,7 @@ EOL;
 {
   "name": "swag/theme-skeleton",
   "description": "Theme skeleton plugin",
-  "type": "cicada-platform-plugin",
+  "type": "shopware-platform-plugin",
   "license": "MIT",
   "autoload": {
     "psr-4": {
@@ -164,9 +164,9 @@ EOL;
     }
   },
   "extra": {
-    "cicada-plugin-class": "#namespace#\\\\#class#",
+    "shopware-plugin-class": "#namespace#\\\\#class#",
     "label": {
-      "zh-CN": "Theme #namespace# plugin",
+      "de-DE": "Theme #namespace# plugin",
       "en-GB": "Theme #namespace# plugin"
     }
   }
@@ -179,7 +179,7 @@ EOL;
         return <<<EOL
 {
   "name": "#name#",
-  "author": "Cicada AG",
+  "author": "Shopware AG",
   "views": [
      "@Storefront",
      "@Plugins",
@@ -208,7 +208,7 @@ EOL;
 /*
 Override variable defaults
 ==================================================
-This file is used to override default SCSS variables from the Cicada Storefront or Bootstrap.
+This file is used to override default SCSS variables from the Shopware Storefront or Bootstrap.
 
 Because of the !default flags, theme variable overrides have to be declared beforehand.
 https://getbootstrap.com/docs/5.3/customize/sass/#variable-defaults

@@ -1,20 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Controller;
+namespace Shopware\Storefront\Controller;
 
-use Cicada\Core\Content\Category\SalesChannel\AbstractCategoryRoute;
-use Cicada\Core\Content\Cms\CmsException;
-use Cicada\Core\Content\Cms\SalesChannel\AbstractCmsRoute;
-use Cicada\Core\Content\Product\SalesChannel\Detail\AbstractProductDetailRoute;
-use Cicada\Core\Content\Product\SalesChannel\FindVariant\AbstractFindProductVariantRoute;
-use Cicada\Core\Content\Product\SalesChannel\Listing\AbstractProductListingRoute;
-use Cicada\Core\Content\Product\SalesChannel\Review\AbstractProductReviewLoader;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Event\SwitchBuyBoxVariantEvent;
-use Cicada\Storefront\Page\Cms\CmsPageLoadedHook;
+use Shopware\Core\Content\Category\SalesChannel\AbstractCategoryRoute;
+use Shopware\Core\Content\Cms\CmsException;
+use Shopware\Core\Content\Cms\SalesChannel\AbstractCmsRoute;
+use Shopware\Core\Content\Product\SalesChannel\Detail\AbstractProductDetailRoute;
+use Shopware\Core\Content\Product\SalesChannel\FindVariant\AbstractFindProductVariantRoute;
+use Shopware\Core\Content\Product\SalesChannel\Listing\AbstractProductListingRoute;
+use Shopware\Core\Content\Product\SalesChannel\Review\AbstractProductReviewLoader;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Event\SwitchBuyBoxVariantEvent;
+use Shopware\Storefront\Page\Cms\CmsPageLoadedHook;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

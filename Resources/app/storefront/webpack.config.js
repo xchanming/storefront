@@ -53,7 +53,7 @@ try {
     hostName = undefined;
 }
 
-const useExtensionTwigWatch = process.env.CICADA_STOREFRONT_SKIP_EXTENSION_TWIG_WATCH !== '1';
+const useExtensionTwigWatch = process.env.SHOPWARE_STOREFRONT_SKIP_EXTENSION_TWIG_WATCH !== '1';
 let watchFilePaths = isHotMode ? [`${themeFiles.basePath}/**/*.twig`] : [];
 
 const pluginEntries = (() => {
@@ -223,7 +223,7 @@ const coreConfig = {
             })(),
         ],
     },
-    name: 'cicada-6-storefront',
+    name: 'shopware-6-storefront',
     optimization: {
         moduleIds: 'deterministic',
         chunkIds: false, // chunk name is set by FilenameToChunkNamePlugin
@@ -522,7 +522,7 @@ const mergedCoreConfig = merge([
         },
         plugins: [
             new WebpackBar({
-                name: 'Cicada 6 Storefront',
+                name: 'Shopware 6 Storefront',
                 color: '#118cff',
             }),
         ],

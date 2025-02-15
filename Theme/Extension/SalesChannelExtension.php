@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Extension;
+namespace Shopware\Storefront\Theme\Extension;
 
-use Cicada\Core\Framework\DataAbstractionLayer\EntityExtension;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\ManyToManyAssociationField;
-use Cicada\Core\Framework\DataAbstractionLayer\FieldCollection;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelDefinition;
-use Cicada\Storefront\Theme\Aggregate\ThemeSalesChannelDefinition;
-use Cicada\Storefront\Theme\ThemeDefinition;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityExtension;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\ManyToManyAssociationField;
+use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelDefinition;
+use Shopware\Storefront\Theme\Aggregate\ThemeSalesChannelDefinition;
+use Shopware\Storefront\Theme\ThemeDefinition;
 
 #[Package('framework')]
 class SalesChannelExtension extends EntityExtension
@@ -18,11 +18,6 @@ class SalesChannelExtension extends EntityExtension
         $collection->add(
             new ManyToManyAssociationField('themes', ThemeDefinition::class, ThemeSalesChannelDefinition::class, 'sales_channel_id', 'theme_id')
         );
-    }
-
-    public function getDefinitionClass(): string
-    {
-        return SalesChannelDefinition::class;
     }
 
     public function getEntityName(): string

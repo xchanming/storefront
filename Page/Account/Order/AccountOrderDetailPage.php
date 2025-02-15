@@ -1,28 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Account\Order;
+namespace Shopware\Storefront\Page\Account\Order;
 
-use Cicada\Core\Checkout\Order\Aggregate\OrderLineItem\OrderLineItemCollection;
-use Cicada\Core\Checkout\Order\OrderEntity;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Page\Page;
+use Shopware\Core\Checkout\Order\Aggregate\OrderLineItem\OrderLineItemCollection;
+use Shopware\Core\Checkout\Order\OrderEntity;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Page\Page;
 
 #[Package('checkout')]
 class AccountOrderDetailPage extends Page
 {
-    /**
-     * @var OrderEntity
-     *
-     * @deprecated tag:v6.7.0 - Will be natively typed
-     */
-    protected $order;
+    protected OrderEntity $order;
 
-    /**
-     * @var OrderLineItemCollection|null
-     *
-     * @deprecated tag:v6.7.0 - Will be natively typed
-     */
-    protected $lineItems;
+    protected ?OrderLineItemCollection $lineItems;
 
     public function getOrder(): OrderEntity
     {

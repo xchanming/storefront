@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Pagelet\Wishlist;
+namespace Shopware\Storefront\Pagelet\Wishlist;
 
-use Cicada\Core\Content\Product\SalesChannel\ProductListResponse;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Pagelet\Pagelet;
+use Shopware\Core\Content\Product\SalesChannel\ProductListResponse;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Pagelet\Pagelet;
 
 #[Package('discovery')]
 class GuestWishlistPagelet extends Pagelet

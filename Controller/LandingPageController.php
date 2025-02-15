@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Controller;
+namespace Shopware\Storefront\Controller;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Page\LandingPage\LandingPageLoadedHook;
-use Cicada\Storefront\Page\LandingPage\LandingPageLoader;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Page\LandingPage\LandingPageLoadedHook;
+use Shopware\Storefront\Page\LandingPage\LandingPageLoader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
  * Do not use direct or indirect repository calls in a controller. Always use a store-api route to get or put data
  */
 #[Route(defaults: ['_routeScope' => ['storefront']])]
-#[Package('buyers-experience')]
+#[Package('discovery')]
 class LandingPageController extends StorefrontController
 {
     /**

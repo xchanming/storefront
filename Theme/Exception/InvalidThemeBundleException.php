@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Exception;
+namespace Shopware\Storefront\Theme\Exception;
 
-use Cicada\Core\Framework\CicadaHttpException;
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\ShopwareHttpException;
 use Symfony\Component\HttpFoundation\Response;
 
 #[Package('framework')]
-class InvalidThemeBundleException extends CicadaHttpException
+class InvalidThemeBundleException extends ShopwareHttpException
 {
     public function __construct(string $themeName)
     {

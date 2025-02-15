@@ -1,16 +1,16 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Event;
+namespace Shopware\Storefront\Event;
 
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\Event\CicadaSalesChannelEvent;
-use Cicada\Core\Framework\Event\NestedEvent;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Event\NestedEvent;
+use Shopware\Core\Framework\Event\ShopwareSalesChannelEvent;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Symfony\Component\HttpFoundation\Request;
 
 #[Package('framework')]
-class StorefrontRenderEvent extends NestedEvent implements CicadaSalesChannelEvent
+class StorefrontRenderEvent extends NestedEvent implements ShopwareSalesChannelEvent
 {
     /**
      * @var string

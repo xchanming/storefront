@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Cookie;
+namespace Shopware\Storefront\Framework\Cookie;
 
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Log\Package;
 
 #[Package('framework')]
 class CookieProvider implements CookieProviderInterface

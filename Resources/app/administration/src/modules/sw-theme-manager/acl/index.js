@@ -2,7 +2,7 @@
  * @package buyers-experience
  */
 
-Cicada.Service('privileges')
+Shopware.Service('privileges')
     .addPrivilegeMappingEntry({
         category: 'permissions',
         parent: 'content',
@@ -13,7 +13,7 @@ Cicada.Service('privileges')
                     'theme:read',
                     'theme_child:read',
                     'sales_channel:read',
-                    Cicada.Service('privileges').getPrivileges('media.viewer')
+                    Shopware.Service('privileges').getPrivileges('media.viewer')
                 ],
                 dependencies: []
             },
@@ -35,7 +35,7 @@ Cicada.Service('privileges')
                     'custom_field_set:read',
                     'custom_field:read',
                     'custom_field_set_relation:read',
-                    Cicada.Service('privileges').getPrivileges('media.creator')
+                    Shopware.Service('privileges').getPrivileges('media.creator')
                 ],
                 dependencies: [
                     'theme.viewer'

@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme;
+namespace Shopware\Storefront\Theme;
 
-use Cicada\Core\Framework\Adapter\Asset\FallbackUrlPackage;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\PlatformRequest;
-use Cicada\Core\SalesChannelRequest;
+use Shopware\Core\Framework\Adapter\Asset\FallbackUrlPackage;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\PlatformRequest;
+use Shopware\Core\SalesChannelRequest;
 use Symfony\Component\Asset\VersionStrategy\VersionStrategyInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 

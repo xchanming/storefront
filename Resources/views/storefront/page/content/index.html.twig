@@ -1,6 +1,6 @@
 {% sw_extends '@Storefront/storefront/base.html.twig' %}
 
-{# @var page \Cicada\Storefront\Page\LandingPage\LandingPage|\Cicada\Storefront\Page\CategoryPage\CategoryPage #}
+{# @var page \Shopware\Storefront\Page\LandingPage\LandingPage|\Shopware\Storefront\Page\CategoryPage\CategoryPage #}
 {% block base_main_inner %}
     <div class="container-main">
         {% block page_content %}
@@ -9,7 +9,7 @@
                     {% sw_include '@Storefront/storefront/layout/breadcrumb.html.twig' with {
                         context: context,
                         themeIconConfig: themeIconConfig,
-                        categoryId: cicada.navigation.id,
+                        categoryId: shopware.navigation.id,
                     } only %}
                 </div>
             {% endblock %}

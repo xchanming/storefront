@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Captcha;
+namespace Shopware\Storefront\Framework\Captcha;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\PlatformRequest;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Core\System\SystemConfig\SystemConfigService;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\PlatformRequest;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\System\SystemConfig\SystemConfigService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\ConstraintViolation;
@@ -15,7 +15,7 @@ use Symfony\Component\Validator\ConstraintViolationList;
 class BasicCaptcha extends AbstractCaptcha
 {
     final public const CAPTCHA_NAME = 'basicCaptcha';
-    final public const CAPTCHA_REQUEST_PARAMETER = 'cicada_basic_captcha_confirm';
+    final public const CAPTCHA_REQUEST_PARAMETER = 'shopware_basic_captcha_confirm';
     final public const BASIC_CAPTCHA_SESSION = 'basic_captcha_session';
     final public const INVALID_CAPTCHA_CODE = 'captcha.basic-captcha-invalid';
 

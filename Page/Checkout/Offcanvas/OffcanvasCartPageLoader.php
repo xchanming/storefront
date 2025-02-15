@@ -1,17 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Checkout\Offcanvas;
+namespace Shopware\Storefront\Page\Checkout\Offcanvas;
 
-use Cicada\Core\Checkout\Shipping\SalesChannel\AbstractShippingMethodRoute;
-use Cicada\Core\Checkout\Shipping\ShippingMethodCollection;
-use Cicada\Core\Content\Category\Exception\CategoryNotFoundException;
-use Cicada\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Checkout\Cart\SalesChannel\StorefrontCartFacade;
-use Cicada\Storefront\Page\GenericPageLoaderInterface;
+use Shopware\Core\Checkout\Shipping\SalesChannel\AbstractShippingMethodRoute;
+use Shopware\Core\Checkout\Shipping\ShippingMethodCollection;
+use Shopware\Core\Content\Category\Exception\CategoryNotFoundException;
+use Shopware\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Checkout\Cart\SalesChannel\StorefrontCartFacade;
+use Shopware\Storefront\Page\GenericPageLoaderInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 

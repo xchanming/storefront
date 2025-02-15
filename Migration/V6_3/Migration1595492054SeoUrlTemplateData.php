@@ -1,14 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Migration\V6_3;
+namespace Shopware\Storefront\Migration\V6_3;
 
-use Cicada\Core\Defaults;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Migration\MigrationStep;
-use Cicada\Core\Framework\Uuid\Uuid;
-use Cicada\Storefront\Framework\Seo\SeoUrlRoute\NavigationPageSeoUrlRoute;
-use Cicada\Storefront\Framework\Seo\SeoUrlRoute\ProductPageSeoUrlRoute;
 use Doctrine\DBAL\Connection;
+use Shopware\Core\Defaults;
+use Shopware\Core\Framework\DataAbstractionLayer\Util\StatementHelper;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Migration\MigrationStep;
+use Shopware\Core\Framework\Uuid\Uuid;
+use Shopware\Storefront\Framework\Seo\SeoUrlRoute\NavigationPageSeoUrlRoute;
+use Shopware\Storefront\Framework\Seo\SeoUrlRoute\ProductPageSeoUrlRoute;
 
 /**
  * @internal
@@ -25,10 +26,10 @@ class Migration1595492054SeoUrlTemplateData extends MigrationStep
 
     public function update(Connection $connection): void
     {
-        $stmt = $connection->prepare('SELECT count(`id`) FROM seo_url_template WHERE `entity_name` = ? AND `route_name` = ?');
-        $result = $stmt->executeQuery([
-            'product',
-            ProductPageSeoUrlRoute::ROUTE_NAME,
+        $stmt = $connection->prepare('SELECT count(`id`) FROM seo_url_template WHERE `entity_name` = :entity_name AND `route_name` = :route_name');
+        $result = StatementHelper::executeQuery($stmt, [
+            'entity_name' => 'product',
+            'route_name' => ProductPageSeoUrlRoute::ROUTE_NAME,
         ]);
 
         if ((int) $result->fetchOne() === 0) {
@@ -42,9 +43,9 @@ class Migration1595492054SeoUrlTemplateData extends MigrationStep
             ]);
         }
 
-        $result = $stmt->executeQuery([
-            'category',
-            NavigationPageSeoUrlRoute::ROUTE_NAME,
+        $result = StatementHelper::executeQuery($stmt, [
+            'entity_name' => 'category',
+            'route_name' => NavigationPageSeoUrlRoute::ROUTE_NAME,
         ]);
 
         if ((int) $result->fetchOne() === 0) {

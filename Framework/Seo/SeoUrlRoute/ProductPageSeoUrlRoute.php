@@ -1,19 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Seo\SeoUrlRoute;
+namespace Shopware\Storefront\Framework\Seo\SeoUrlRoute;
 
-use Cicada\Core\Content\Product\ProductDefinition;
-use Cicada\Core\Content\Product\ProductEntity;
-use Cicada\Core\Content\Seo\SeoUrlRoute\SeoUrlMapping;
-use Cicada\Core\Content\Seo\SeoUrlRoute\SeoUrlRouteConfig;
-use Cicada\Core\Content\Seo\SeoUrlRoute\SeoUrlRouteInterface;
-use Cicada\Core\Framework\DataAbstractionLayer\Entity;
-use Cicada\Core\Framework\DataAbstractionLayer\EntityCollection;
-use Cicada\Core\Framework\DataAbstractionLayer\PartialEntity;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelEntity;
+use Shopware\Core\Content\Product\ProductDefinition;
+use Shopware\Core\Content\Product\ProductEntity;
+use Shopware\Core\Content\Seo\SeoUrlRoute\SeoUrlMapping;
+use Shopware\Core\Content\Seo\SeoUrlRoute\SeoUrlRouteConfig;
+use Shopware\Core\Content\Seo\SeoUrlRoute\SeoUrlRouteInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\Entity;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
+use Shopware\Core\Framework\DataAbstractionLayer\PartialEntity;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelEntity;
+use Shopware\Storefront\Framework\StorefrontFrameworkException;
 
 #[Package('inventory')]
 class ProductPageSeoUrlRoute implements SeoUrlRouteInterface
@@ -42,12 +43,13 @@ class ProductPageSeoUrlRoute implements SeoUrlRouteInterface
     {
         $criteria->addFilter(new EqualsFilter('active', true));
         $criteria->addFilter(new EqualsFilter('visibilities.salesChannelId', $salesChannel->getId()));
+        $criteria->addAssociation('options.group');
     }
 
     public function getMapping(Entity $product, ?SalesChannelEntity $salesChannel): SeoUrlMapping
     {
         if (!$product instanceof ProductEntity && !$product instanceof PartialEntity) {
-            throw new \InvalidArgumentException('Expected ProductEntity');
+            throw StorefrontFrameworkException::invalidArgument('SEO URL Mapping expects argument to be a ProductEntity');
         }
 
         $categories = $product->get('mainCategories') ?? null;

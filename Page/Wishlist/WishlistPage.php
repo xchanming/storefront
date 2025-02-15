@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Wishlist;
+namespace Shopware\Storefront\Page\Wishlist;
 
-use Cicada\Core\Checkout\Customer\SalesChannel\LoadWishlistRouteResponse;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Page\Page;
+use Shopware\Core\Checkout\Customer\SalesChannel\LoadWishlistRouteResponse;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Page\Page;
 
 #[Package('discovery')]
 class WishlistPage extends Page

@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Product\Configurator;
+namespace Shopware\Storefront\Page\Product\Configurator;
 
-use Cicada\Core\Content\Product\SalesChannel\Detail\ProductConfiguratorLoader;
-use Cicada\Core\Content\Product\SalesChannel\SalesChannelProductEntity;
-use Cicada\Core\Content\Property\PropertyGroupCollection;
-use Cicada\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\Content\Product\SalesChannel\Detail\ProductConfiguratorLoader;
+use Shopware\Core\Content\Product\SalesChannel\SalesChannelProductEntity;
+use Shopware\Core\Content\Property\PropertyGroupCollection;
+use Shopware\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
 
 #[Package('framework')]
 class ProductPageConfiguratorLoader extends ProductConfiguratorLoader

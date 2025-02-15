@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme;
+namespace Shopware\Storefront\Theme;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Plugin\Exception\DecorationPatternException;
-use Cicada\Core\Framework\Util\Hasher;
-use Cicada\Core\System\SystemConfig\SystemConfigService;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
+use Shopware\Core\Framework\Util\Hasher;
+use Shopware\Core\System\SystemConfig\SystemConfigService;
 
 #[Package('framework')]
 class SeedingThemePathBuilder extends AbstractThemePathBuilder

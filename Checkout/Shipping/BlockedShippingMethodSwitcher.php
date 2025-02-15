@@ -1,19 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Checkout\Shipping;
+namespace Shopware\Storefront\Checkout\Shipping;
 
-use Cicada\Core\Checkout\Cart\Cart;
-use Cicada\Core\Checkout\Cart\Error\Error;
-use Cicada\Core\Checkout\Cart\Error\ErrorCollection;
-use Cicada\Core\Checkout\Shipping\Cart\Error\ShippingMethodBlockedError;
-use Cicada\Core\Checkout\Shipping\SalesChannel\AbstractShippingMethodRoute;
-use Cicada\Core\Checkout\Shipping\ShippingMethodEntity;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsAnyFilter;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\NandFilter;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Checkout\Cart\Error\ShippingMethodChangedError;
+use Shopware\Core\Checkout\Cart\Cart;
+use Shopware\Core\Checkout\Cart\Error\Error;
+use Shopware\Core\Checkout\Cart\Error\ErrorCollection;
+use Shopware\Core\Checkout\Shipping\Cart\Error\ShippingMethodBlockedError;
+use Shopware\Core\Checkout\Shipping\SalesChannel\AbstractShippingMethodRoute;
+use Shopware\Core\Checkout\Shipping\ShippingMethodEntity;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsAnyFilter;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\NandFilter;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Checkout\Cart\Error\ShippingMethodChangedError;
 use Symfony\Component\HttpFoundation\Request;
 
 /**

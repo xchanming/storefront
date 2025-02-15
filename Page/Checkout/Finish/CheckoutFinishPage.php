@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Checkout\Finish;
+namespace Shopware\Storefront\Page\Checkout\Finish;
 
-use Cicada\Core\Checkout\Order\OrderEntity;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Page\Page;
+use Shopware\Core\Checkout\Order\OrderEntity;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Page\Page;
 
 #[Package('framework')]
 class CheckoutFinishPage extends Page

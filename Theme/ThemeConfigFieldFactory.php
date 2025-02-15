@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme;
+namespace Shopware\Storefront\Theme;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\Exception\InvalidThemeConfigException;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\Exception\InvalidThemeConfigException;
 
 #[Package('framework')]
 class ThemeConfigFieldFactory

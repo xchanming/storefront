@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Address;
+namespace Shopware\Storefront\Page\Address;
 
-use Cicada\Core\Checkout\Customer\Aggregate\CustomerAddress\CustomerAddressEntity;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Struct\Struct;
-use Cicada\Storefront\Page\Page;
+use Shopware\Core\Checkout\Customer\Aggregate\CustomerAddress\CustomerAddressEntity;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Struct\Struct;
+use Shopware\Storefront\Page\Page;
 
 /**
  * @codeCoverageIgnore

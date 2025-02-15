@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Account\Register;
+namespace Shopware\Storefront\Page\Account\Register;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Script\Execution\Awareness\SalesChannelContextAwareTrait;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Page\Account\Login\AccountLoginPage;
-use Cicada\Storefront\Page\PageLoadedHook;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Script\Execution\Awareness\SalesChannelContextAwareTrait;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Page\Account\Login\AccountLoginPage;
+use Shopware\Storefront\Page\PageLoadedHook;
 
 /**
  * Triggered when the AccountLoginPage is loaded

@@ -8,7 +8,7 @@
         </div>
     {% endblock %}
 
-    {# @var listing \Cicada\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult #}
+    {# @var listing \Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult #}
     {% block component_filter_panel_element %}
         <div class="filter-panel{% if sidebar %} is--sidebar{% endif %}" aria-label="{{ 'listing.filterTitleText'|trans|sw_sanitize }}">
             {% block component_filter_panel_items_container %}
@@ -16,7 +16,7 @@
                     {% block component_filter_panel_items %}
 
                         {% block component_filter_panel_item_manufacturer %}
-                            {# @var manufacturers \Cicada\Core\Framework\DataAbstractionLayer\Search\AggregationResult\Metric\EntityResult #}
+                            {# @var manufacturers \Shopware\Core\Framework\DataAbstractionLayer\Search\AggregationResult\Metric\EntityResult #}
                             {% set manufacturers = listing.aggregations.get('manufacturer') %}
                             {% if not manufacturers.entities is empty %}
                                 {% set manufacturersSorted = manufacturers.entities|sort((a, b) => a.translated.name|lower <=> b.translated.name|lower) %}
@@ -32,7 +32,7 @@
                         {% endblock %}
 
                         {% block component_filter_panel_item_properties %}
-                            {# @var properties \Cicada\Core\Framework\DataAbstractionLayer\Search\AggregationResult\Metric\EntityResult #}
+                            {# @var properties \Shopware\Core\Framework\DataAbstractionLayer\Search\AggregationResult\Metric\EntityResult #}
                             {% set properties = listing.aggregations.get('properties') %}
 
                             {% if not properties.entities is empty %}
@@ -100,7 +100,8 @@
             {% endblock %}
 
             {% block component_filter_panel_active_container %}
-                <div class="filter-panel-active-container d-flex flex-wrap gap-2">
+                {# @deprecated tag:v6.7.0 - Active filters container will be a simple flex layout with gap instead of putting margins on the individual buttons. #}
+                <div class="filter-panel-active-container{% if feature('ACCESSIBILITY_TWEAKS') %} d-flex flex-wrap gap-2{% endif %}">
                     {% block component_filter_panel_active_container_inner %}{% endblock %}
                 </div>
             {% endblock %}

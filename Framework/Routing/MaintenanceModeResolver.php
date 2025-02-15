@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Routing;
+namespace Shopware\Storefront\Framework\Routing;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\MaintenanceModeResolver as CoreMaintenanceModeResolver;
-use Cicada\Core\Framework\Util\Json;
-use Cicada\Core\PlatformRequest;
-use Cicada\Core\SalesChannelRequest;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\MaintenanceModeResolver as CoreMaintenanceModeResolver;
+use Shopware\Core\Framework\Util\Json;
+use Shopware\Core\PlatformRequest;
+use Shopware\Core\SalesChannelRequest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 

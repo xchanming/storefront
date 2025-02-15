@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Event;
+namespace Shopware\Storefront\Event;
 
-use Cicada\Core\Checkout\Cart\Event\CartMergedEvent;
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Checkout\Cart\Event\CartMergedEvent;
+use Shopware\Core\Framework\Log\Package;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Contracts\Translation\TranslatorInterface;

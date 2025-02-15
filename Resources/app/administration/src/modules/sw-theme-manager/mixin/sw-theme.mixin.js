@@ -2,7 +2,7 @@
  * @package buyers-experience
  */
 
-const { Mixin } = Cicada;
+const { Mixin } = Shopware;
 
 Mixin.register('theme', {
     inject: [
@@ -55,7 +55,7 @@ Mixin.register('theme', {
             const messageDeleteError = this.$tc('sw-theme-manager.components.themeListItem.notificationDeleteErrorMessage');
 
             this.isLoading = true;
-            this.themeRepository.delete(theme.id, Cicada.Context.api).then(() => {
+            this.themeRepository.delete(theme.id, Shopware.Context.api).then(() => {
                 if (this.getList) {
                     this.getList();
                     return;
@@ -95,7 +95,7 @@ Mixin.register('theme', {
         },
 
         duplicateTheme(parentTheme, name) {
-            const themeDuplicate = this.themeRepository.create(Cicada.Context.api);
+            const themeDuplicate = this.themeRepository.create(Shopware.Context.api);
 
             themeDuplicate.name = name;
             themeDuplicate.parentThemeId = parentTheme.id;
@@ -109,7 +109,7 @@ Mixin.register('theme', {
             themeDuplicate.previewMediaId = parentTheme.previewMediaId;
             themeDuplicate.active = true;
 
-            this.themeRepository.save(themeDuplicate, Cicada.Context.api).then(() => {
+            this.themeRepository.save(themeDuplicate, Shopware.Context.api).then(() => {
                 this.$router.push({ name: 'sw.theme.manager.detail', params: { id: themeDuplicate.id } });
             });
         },
@@ -143,7 +143,7 @@ Mixin.register('theme', {
                 theme.name = name;
             }
 
-            this.themeRepository.save(theme, Cicada.Context.api);
+            this.themeRepository.save(theme, Shopware.Context.api);
         }
     }
 });

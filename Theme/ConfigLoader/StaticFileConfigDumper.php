@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\ConfigLoader;
+namespace Shopware\Storefront\Theme\ConfigLoader;
 
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\Event\ThemeAssignedEvent;
-use Cicada\Storefront\Theme\Event\ThemeConfigChangedEvent;
-use Cicada\Storefront\Theme\Event\ThemeConfigResetEvent;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\FileCollection;
 use League\Flysystem\FilesystemOperator;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\Event\ThemeAssignedEvent;
+use Shopware\Storefront\Theme\Event\ThemeConfigChangedEvent;
+use Shopware\Storefront\Theme\Event\ThemeConfigResetEvent;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\FileCollection;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**

@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Event;
+namespace Shopware\Storefront\Theme\Event;
 
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\Event\NestedEvent;
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Event\NestedEvent;
+use Shopware\Core\Framework\Log\Package;
 
 #[Package('framework')]
 class ThemeIndexerEvent extends NestedEvent

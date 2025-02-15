@@ -1,29 +1,29 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme;
+namespace Shopware\Storefront\Theme;
 
-use Cicada\Core\Content\Media\MediaDefinition;
-use Cicada\Core\Framework\DataAbstractionLayer\EntityDefinition;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\BoolField;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\FkField;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\Flag\ApiAware;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\Flag\PrimaryKey;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\Flag\SearchRanking;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\IdField;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\JsonField;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\ManyToManyAssociationField;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\ManyToOneAssociationField;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\StringField;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\TranslatedField;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\TranslationsAssociationField;
-use Cicada\Core\Framework\DataAbstractionLayer\FieldCollection;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelDefinition;
-use Cicada\Storefront\Theme\Aggregate\ThemeChildDefinition;
-use Cicada\Storefront\Theme\Aggregate\ThemeMediaDefinition;
-use Cicada\Storefront\Theme\Aggregate\ThemeSalesChannelDefinition;
-use Cicada\Storefront\Theme\Aggregate\ThemeTranslationDefinition;
+use Shopware\Core\Content\Media\MediaDefinition;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityDefinition;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\BoolField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\FkField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\ApiAware;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\PrimaryKey;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\SearchRanking;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\IdField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\JsonField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\ManyToManyAssociationField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\ManyToOneAssociationField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\StringField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslatedField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslationsAssociationField;
+use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelDefinition;
+use Shopware\Storefront\Theme\Aggregate\ThemeChildDefinition;
+use Shopware\Storefront\Theme\Aggregate\ThemeMediaDefinition;
+use Shopware\Storefront\Theme\Aggregate\ThemeSalesChannelDefinition;
+use Shopware\Storefront\Theme\Aggregate\ThemeTranslationDefinition;
 
 #[Package('framework')]
 class ThemeDefinition extends EntityDefinition

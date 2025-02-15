@@ -5,8 +5,8 @@ import './sw-theme-manager-list.scss';
  * @package buyers-experience
  */
 
-const { Component, Mixin } = Cicada;
-const Criteria = Cicada.Data.Criteria;
+const { Component, Mixin } = Shopware;
+const Criteria = Shopware.Data.Criteria;
 
 Component.register('sw-theme-manager-list', {
     template,
@@ -70,7 +70,7 @@ Component.register('sw-theme-manager-list', {
         },
 
         dateFilter() {
-            return Cicada.Filter.getByName('date');
+            return Shopware.Filter.getByName('date');
         },
     },
 
@@ -92,7 +92,7 @@ Component.register('sw-theme-manager-list', {
                 criteria.setTerm(this.term);
             }
 
-            return this.themeRepository.search(criteria, Cicada.Context.api).then((searchResult) => {
+            return this.themeRepository.search(criteria, Shopware.Context.api).then((searchResult) => {
                 this.total = searchResult.total;
                 this.themes = searchResult;
                 this.isLoading = false;
@@ -118,7 +118,7 @@ Component.register('sw-theme-manager-list', {
         },
 
         onChangeLanguage(languageId) {
-            Cicada.Context.api.languageId = languageId;
+            Shopware.Context.api.languageId = languageId;
             this.resetList();
         },
 
@@ -187,7 +187,7 @@ Component.register('sw-theme-manager-list', {
 
         saveTheme(theme) {
             this.isLoading = true;
-            return this.themeRepository.save(theme, Cicada.Context.api).then(() => {
+            return this.themeRepository.save(theme, Shopware.Context.api).then(() => {
                 this.isLoading = false;
             }).catch(() => {
                 this.isLoading = false;

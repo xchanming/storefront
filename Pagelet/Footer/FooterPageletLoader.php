@@ -1,19 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Pagelet\Footer;
+namespace Shopware\Storefront\Pagelet\Footer;
 
-use Cicada\Core\Checkout\Payment\PaymentMethodCollection;
-use Cicada\Core\Checkout\Payment\SalesChannel\AbstractPaymentMethodRoute;
-use Cicada\Core\Checkout\Shipping\SalesChannel\AbstractShippingMethodRoute;
-use Cicada\Core\Checkout\Shipping\ShippingMethodCollection;
-use Cicada\Core\Content\Category\CategoryCollection;
-use Cicada\Core\Content\Category\Service\NavigationLoaderInterface;
-use Cicada\Core\Content\Category\Tree\TreeItem;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Event\RouteRequest\PaymentMethodRouteRequestEvent;
-use Cicada\Storefront\Event\RouteRequest\ShippingMethodRouteRequestEvent;
+use Shopware\Core\Checkout\Payment\PaymentMethodCollection;
+use Shopware\Core\Checkout\Payment\SalesChannel\AbstractPaymentMethodRoute;
+use Shopware\Core\Checkout\Shipping\SalesChannel\AbstractShippingMethodRoute;
+use Shopware\Core\Checkout\Shipping\ShippingMethodCollection;
+use Shopware\Core\Content\Category\CategoryCollection;
+use Shopware\Core\Content\Category\Service\NavigationLoaderInterface;
+use Shopware\Core\Content\Category\Tree\TreeItem;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Event\RouteRequest\PaymentMethodRouteRequestEvent;
+use Shopware\Storefront\Event\RouteRequest\ShippingMethodRouteRequestEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 

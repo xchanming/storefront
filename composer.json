@@ -1,11 +1,11 @@
 {
-    "name": "cicada-ag/storefront",
-    "description": "Storefront for Cicada",
+    "name": "xchanming/storefront",
+    "description": "Storefront for Shopware",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Cicada\\Storefront\\": ""
+            "Shopware\\Storefront\\": ""
         },
         "exclude-from-classmap": [
             "*/Test/"
@@ -15,7 +15,7 @@
         "sort-packages": true
     },
     "support": {
-        "issues": "https://github.com/cicada/cicada/issues",
+        "issues": "https://github.com/xchanming/xchanming/issues",
         "forum": "https://forum.xchanming.com",
         "wiki": "https://developer.xchanming.com",
         "docs": "https://developer.xchanming.com",
@@ -23,18 +23,18 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "6.6.x-dev",
-            "dev-trunk": "6.6.x-dev"
+            "dev-master": "6.7.x-dev",
+            "dev-trunk": "6.7.x-dev"
         }
     },
     "require": {
         "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
         "cocur/slugify": "^4.3.0",
-        "doctrine/dbal": "^3.9",
+        "doctrine/dbal": "^4.2",
         "meyfa/php-svg": "^0.14.0",
         "padaliyajay/php-autoprefixer": "^1.4",
         "scssphp/scssphp": "v1.12.0",
-        "cicada-ag/core": "*",
+        "xchanming/core": "*",
         "symfony/cache": "~7.2.0",
         "symfony/cache-contracts": "~3.5.0",
         "symfony/console": "~7.2.0",
@@ -52,7 +52,7 @@
         "symfony/mime": "~7.2.0",
         "twig/intl-extra": "^3.10.0",
         "twig/string-extra": "^3.10.0",
-        "twig/twig": "^3.18.0"
+        "twig/twig": "^3.19.0"
     },
     "require-dev": {
         "symfony/css-selector": "~7.2.0",

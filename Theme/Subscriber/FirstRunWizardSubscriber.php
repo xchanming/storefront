@@ -1,19 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Subscriber;
+namespace Shopware\Storefront\Theme\Subscriber;
 
-use Cicada\Core\Defaults;
-use Cicada\Core\Framework\DataAbstractionLayer\Entity;
-use Cicada\Core\Framework\DataAbstractionLayer\EntityCollection;
-use Cicada\Core\Framework\DataAbstractionLayer\EntityRepository;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Store\Event\FirstRunWizardFinishedEvent;
-use Cicada\Core\System\SalesChannel\SalesChannelCollection;
-use Cicada\Storefront\Theme\ThemeCollection;
-use Cicada\Storefront\Theme\ThemeLifecycleService;
-use Cicada\Storefront\Theme\ThemeService;
+use Shopware\Core\Defaults;
+use Shopware\Core\Framework\DataAbstractionLayer\Entity;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Store\Event\FirstRunWizardFinishedEvent;
+use Shopware\Core\System\SalesChannel\SalesChannelCollection;
+use Shopware\Storefront\Theme\ThemeCollection;
+use Shopware\Storefront\Theme\ThemeLifecycleService;
+use Shopware\Storefront\Theme\ThemeService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -62,6 +62,7 @@ class FirstRunWizardSubscriber implements EventSubscriberInterface
         $themeCriteria = new Criteria();
         $themeCriteria->addAssociation('salesChannels');
         $themeCriteria->addFilter(new EqualsFilter('technicalName', 'Storefront'));
+
         $theme = $this->themeRepository->search($themeCriteria, $context)->getEntities()->first();
         if (!$theme) {
             throw new \RuntimeException('Default theme not found');

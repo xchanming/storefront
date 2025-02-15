@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Routing\Exception;
+namespace Shopware\Storefront\Framework\Routing\Exception;
 
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\Event\CicadaEvent;
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Event\ShopwareEvent;
+use Shopware\Core\Framework\Log\Package;
 use Symfony\Component\HttpFoundation\Request;
 
 #[Package('framework')]
-class ErrorRedirectRequestEvent implements CicadaEvent
+class ErrorRedirectRequestEvent implements ShopwareEvent
 {
     public function __construct(
         private readonly Request $request,

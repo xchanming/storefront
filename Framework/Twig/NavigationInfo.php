@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Twig;
+namespace Shopware\Storefront\Framework\Twig;
 
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Log\Package;
 
 /**
  * @codeCoverageIgnore

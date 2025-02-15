@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Migration\V6_3;
+namespace Shopware\Storefront\Migration\V6_3;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Migration\MigrationStep;
 use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\Connection;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Migration\MigrationStep;
 
 /**
  * @internal

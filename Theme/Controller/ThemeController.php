@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Controller;
+namespace Shopware\Storefront\Theme\Controller;
 
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\AbstractScssCompiler;
-use Cicada\Storefront\Theme\ThemeService;
-use Cicada\Storefront\Theme\Validator\SCSSValidator;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\AbstractScssCompiler;
+use Shopware\Storefront\Theme\ThemeService;
+use Shopware\Storefront\Theme\Validator\SCSSValidator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

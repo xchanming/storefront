@@ -9,7 +9,7 @@ import './component/sw-theme-list-item/';
 import './component/sw-theme-modal/';
 import './acl';
 
-const { Module } = Cicada;
+const { Module } = Shopware;
 
 Module.register('sw-theme-manager', {
     type: 'core',

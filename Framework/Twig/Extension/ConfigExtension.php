@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Twig\Extension;
+namespace Shopware\Storefront\Framework\Twig\Extension;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Core\System\SalesChannel\SalesChannelEntity;
-use Cicada\Storefront\Framework\StorefrontFrameworkException;
-use Cicada\Storefront\Framework\Twig\TemplateConfigAccessor;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\System\SalesChannel\SalesChannelEntity;
+use Shopware\Storefront\Framework\StorefrontFrameworkException;
+use Shopware\Storefront\Framework\Twig\TemplateConfigAccessor;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 

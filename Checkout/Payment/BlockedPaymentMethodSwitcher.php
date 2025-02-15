@@ -1,19 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Checkout\Payment;
+namespace Shopware\Storefront\Checkout\Payment;
 
-use Cicada\Core\Checkout\Cart\Cart;
-use Cicada\Core\Checkout\Cart\Error\Error;
-use Cicada\Core\Checkout\Cart\Error\ErrorCollection;
-use Cicada\Core\Checkout\Payment\Cart\Error\PaymentMethodBlockedError;
-use Cicada\Core\Checkout\Payment\PaymentMethodEntity;
-use Cicada\Core\Checkout\Payment\SalesChannel\AbstractPaymentMethodRoute;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsAnyFilter;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\NandFilter;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Checkout\Cart\Error\PaymentMethodChangedError;
+use Shopware\Core\Checkout\Cart\Cart;
+use Shopware\Core\Checkout\Cart\Error\Error;
+use Shopware\Core\Checkout\Cart\Error\ErrorCollection;
+use Shopware\Core\Checkout\Payment\Cart\Error\PaymentMethodBlockedError;
+use Shopware\Core\Checkout\Payment\PaymentMethodEntity;
+use Shopware\Core\Checkout\Payment\SalesChannel\AbstractPaymentMethodRoute;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsAnyFilter;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\NandFilter;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Checkout\Cart\Error\PaymentMethodChangedError;
 use Symfony\Component\HttpFoundation\Request;
 
 /**

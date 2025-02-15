@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Cms;
+namespace Shopware\Storefront\Page\Cms;
 
-use Cicada\Core\Content\Cms\CmsPageEntity;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Script\Execution\Awareness\SalesChannelContextAwareTrait;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Page\PageLoadedHook;
+use Shopware\Core\Content\Cms\CmsPageEntity;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Script\Execution\Awareness\SalesChannelContextAwareTrait;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Page\PageLoadedHook;
 
 /**
  * Triggered when a CmsPage is loaded

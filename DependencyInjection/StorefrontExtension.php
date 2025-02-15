@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\DependencyInjection;
+namespace Shopware\Storefront\DependencyInjection;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\AbstractThemePathBuilder;
-use Cicada\Storefront\Theme\ConfigLoader\AbstractAvailableThemeProvider;
-use Cicada\Storefront\Theme\ConfigLoader\AbstractConfigLoader;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\AbstractThemePathBuilder;
+use Shopware\Storefront\Theme\ConfigLoader\AbstractAvailableThemeProvider;
+use Shopware\Storefront\Theme\ConfigLoader\AbstractConfigLoader;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 

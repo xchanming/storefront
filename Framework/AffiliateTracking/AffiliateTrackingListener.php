@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\AffiliateTracking;
+namespace Shopware\Storefront\Framework\AffiliateTracking;
 
-use Cicada\Core\Checkout\Order\SalesChannel\OrderService;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\KernelListenerPriorities;
-use Cicada\Core\PlatformRequest;
-use Cicada\Storefront\Framework\Routing\StorefrontRouteScope;
+use Shopware\Core\Checkout\Order\SalesChannel\OrderService;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\KernelListenerPriorities;
+use Shopware\Core\PlatformRequest;
+use Shopware\Storefront\Framework\Routing\StorefrontRouteScope;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;

@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\ConfigLoader;
+namespace Shopware\Storefront\Theme\ConfigLoader;
 
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Plugin\Exception\DecorationPatternException;
 use League\Flysystem\FilesystemOperator;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
 
 #[Package('framework')]
 class StaticFileAvailableThemeProvider extends AbstractAvailableThemeProvider

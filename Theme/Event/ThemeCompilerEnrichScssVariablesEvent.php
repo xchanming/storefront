@@ -1,17 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Event;
+namespace Shopware\Storefront\Theme\Event;
 
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\Event\CicadaEvent;
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Event\ShopwareEvent;
+use Shopware\Core\Framework\Log\Package;
 use Symfony\Contracts\EventDispatcher\Event;
 
 #[Package('framework')]
-class ThemeCompilerEnrichScssVariablesEvent extends Event implements CicadaEvent
+class ThemeCompilerEnrichScssVariablesEvent extends Event implements ShopwareEvent
 {
     /**
-     * @param array<string, string|int> $variables
+     * @param array<string, string|int|null> $variables
      */
     public function __construct(
         private array $variables,
@@ -30,7 +30,7 @@ class ThemeCompilerEnrichScssVariablesEvent extends Event implements CicadaEvent
     }
 
     /**
-     * @return array<string, string|int>
+     * @return array<string, string|int|null>
      */
     public function getVariables(): array
     {

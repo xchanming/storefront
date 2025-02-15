@@ -1,19 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Command;
+namespace Shopware\Storefront\Theme\Command;
 
-use Cicada\Core\Defaults;
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\DataAbstractionLayer\EntityRepository;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\ConfigLoader\StaticFileConfigDumper;
-use Cicada\Storefront\Theme\StorefrontPluginRegistryInterface;
-use Cicada\Storefront\Theme\ThemeCollection;
-use Cicada\Storefront\Theme\ThemeEntity;
-use Cicada\Storefront\Theme\ThemeFileResolver;
-use Cicada\Storefront\Theme\ThemeFilesystemResolver;
+use Shopware\Core\Defaults;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\ConfigLoader\StaticFileConfigDumper;
+use Shopware\Storefront\Theme\StorefrontPluginRegistryInterface;
+use Shopware\Storefront\Theme\ThemeCollection;
+use Shopware\Storefront\Theme\ThemeEntity;
+use Shopware\Storefront\Theme\ThemeFileResolver;
+use Shopware\Storefront\Theme\ThemeFilesystemResolver;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

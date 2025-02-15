@@ -2,7 +2,7 @@
   "name": "sw-next-storefront",
   "version": "1.0.0",
   "private": true,
-  "description": "Storefront Building Pipeline for Cicada Next",
+  "description": "Storefront Building Pipeline for Shopware Next",
   "keywords": [
     "next",
     "pipeline",
@@ -45,7 +45,6 @@
     "postcss-loader": "7.3.4",
     "postcss-pxtorem": "6.0.0",
     "qrcode": "^1.5.3",
-    "query-string": "7.1.3",
     "sass": "1.57.1",
     "sass-loader": "13.3.3",
     "style-loader": "3.3.3",

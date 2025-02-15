@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Pagelet\Wishlist;
+namespace Shopware\Storefront\Pagelet\Wishlist;
 
-use Cicada\Core\Content\Product\ProductCollection;
-use Cicada\Core\Content\Product\SalesChannel\AbstractProductCloseoutFilterFactory;
-use Cicada\Core\Content\Product\SalesChannel\AbstractProductListRoute;
-use Cicada\Core\Content\Product\SalesChannel\ProductListResponse;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\Framework\Uuid\Uuid;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Core\System\SystemConfig\SystemConfigService;
+use Shopware\Core\Content\Product\ProductCollection;
+use Shopware\Core\Content\Product\SalesChannel\AbstractProductCloseoutFilterFactory;
+use Shopware\Core\Content\Product\SalesChannel\AbstractProductListRoute;
+use Shopware\Core\Content\Product\SalesChannel\ProductListResponse;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\Framework\Uuid\Uuid;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\System\SystemConfig\SystemConfigService;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 

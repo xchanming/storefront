@@ -1,15 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Controller;
+namespace Shopware\Storefront\Controller;
 
-use Cicada\Core\Framework\Adapter\Cache\Http\CacheStore;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Script\Api\ScriptResponseEncoder;
-use Cicada\Core\PlatformRequest;
-use Cicada\Core\System\SalesChannel\Api\ResponseFields;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Framework\Script\Api\StorefrontHook;
-use Cicada\Storefront\Page\GenericPageLoaderInterface;
+use Shopware\Core\Framework\Adapter\Cache\Http\CacheStore;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Script\Api\ScriptResponseEncoder;
+use Shopware\Core\PlatformRequest;
+use Shopware\Core\System\SalesChannel\Api\ResponseFields;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Framework\Script\Api\StorefrontHook;
+use Shopware\Storefront\Page\GenericPageLoaderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;

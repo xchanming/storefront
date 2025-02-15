@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme;
+namespace Shopware\Storefront\Theme;
 
-use Cicada\Core\Framework\App\Source\SourceResolver;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Plugin;
-use Cicada\Core\Framework\Util\Filesystem;
-use Cicada\Core\Kernel;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfiguration;
+use Shopware\Core\Framework\App\Source\SourceResolver;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Plugin;
+use Shopware\Core\Framework\Util\Filesystem;
+use Shopware\Core\Kernel;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfiguration;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 
 /**

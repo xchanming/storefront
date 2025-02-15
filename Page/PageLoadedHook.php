@@ -1,14 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page;
+namespace Shopware\Storefront\Page;
 
-use Cicada\Core\Framework\DataAbstractionLayer\Facade\RepositoryFacadeHookFactory;
-use Cicada\Core\Framework\DataAbstractionLayer\Facade\SalesChannelRepositoryFacadeHookFactory;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\Facade\RequestFacadeFactory;
-use Cicada\Core\Framework\Script\Execution\Awareness\SalesChannelContextAware;
-use Cicada\Core\Framework\Script\Execution\Hook;
-use Cicada\Core\System\SystemConfig\Facade\SystemConfigFacadeHookFactory;
+use Shopware\Core\Framework\DataAbstractionLayer\Facade\RepositoryFacadeHookFactory;
+use Shopware\Core\Framework\DataAbstractionLayer\Facade\SalesChannelRepositoryFacadeHookFactory;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\Facade\RequestFacadeFactory;
+use Shopware\Core\Framework\Script\Execution\Awareness\HookServiceFactory;
+use Shopware\Core\Framework\Script\Execution\Awareness\SalesChannelContextAware;
+use Shopware\Core\Framework\Script\Execution\Hook;
+use Shopware\Core\System\SystemConfig\Facade\SystemConfigFacadeHookFactory;
 
 /**
  * @internal only rely on the concrete implementations
@@ -17,7 +18,7 @@ use Cicada\Core\System\SystemConfig\Facade\SystemConfigFacadeHookFactory;
 abstract class PageLoadedHook extends Hook implements SalesChannelContextAware
 {
     /**
-     * @return string[]
+     * @return list<class-string<HookServiceFactory>>
      */
     public static function getServiceIds(): array
     {

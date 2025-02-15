@@ -1,9 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Controller\Exception;
+namespace Shopware\Storefront\Controller\Exception;
 
-use Cicada\Core\Framework\HttpException;
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Content\Product\Exception\ReviewNotActiveExeption;
+use Shopware\Core\Framework\Feature;
+use Shopware\Core\Framework\HttpException;
+use Shopware\Core\Framework\Log\Package;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Error\Error as TwigError;
 
@@ -57,6 +59,26 @@ class StorefrontException extends HttpException
         return $exception;
     }
 
+    /**
+     * @deprecated tag:v6.7.0 - Use renderViewException instead
+     *
+     * @param array<string, mixed> $parameters
+     */
+    public static function cannotRenderView(string $view, string $message, array $parameters): self
+    {
+        Feature::triggerDeprecationOrThrow(
+            'v6.7.0.0',
+            Feature::deprecatedMethodMessage(
+                self::class,
+                __FUNCTION__,
+                'v6.7.0.0',
+                'Use StorefrontException::renderViewException instead.'
+            )
+        );
+
+        return self::renderViewException($view, new TwigError($message), $parameters);
+    }
+
     public static function unSupportStorefrontResponse(): self
     {
         return new self(
@@ -85,8 +107,15 @@ class StorefrontException extends HttpException
         );
     }
 
-    public static function reviewNotActive(): self
+    /**
+     * @deprecated tag:v6.7.0 - reason:return-type-change - Will only return `self` in the future
+     */
+    public static function reviewNotActive(): self|ReviewNotActiveExeption
     {
+        if (!Feature::isActive('v6.7.0.0')) {
+            return new ReviewNotActiveExeption();
+        }
+
         return new self(
             Response::HTTP_FORBIDDEN,
             self::PRODUCT_REVIEW_NOT_ACTIVE,

@@ -13,6 +13,9 @@
 
         .checkout-aside {
             @extend .col-md-4;
+            @if not feature('ACCESSIBILITY_TWEAKS') {
+                @extend .d-none;
+            }
             @extend .d-lg-block;
         }
     }

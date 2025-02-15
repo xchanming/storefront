@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Account\Login;
+namespace Shopware\Storefront\Page\Account\Login;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Script\Execution\Awareness\SalesChannelContextAwareTrait;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Page\PageLoadedHook;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Script\Execution\Awareness\SalesChannelContextAwareTrait;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Page\PageLoadedHook;
 
 /**
  * Triggered when the AccountGuestLoginPage is loaded

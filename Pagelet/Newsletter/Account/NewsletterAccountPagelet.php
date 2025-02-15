@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Pagelet\Newsletter\Account;
+namespace Shopware\Storefront\Pagelet\Newsletter\Account;
 
-use Cicada\Core\Checkout\Customer\CustomerEntity;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Pagelet\Pagelet;
+use Shopware\Core\Checkout\Customer\CustomerEntity;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Pagelet\Pagelet;
 
 #[Package('checkout')]
 class NewsletterAccountPagelet extends Pagelet

@@ -1,26 +1,26 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Subscriber;
+namespace Shopware\Storefront\Theme\Subscriber;
 
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Plugin;
-use Cicada\Core\Framework\Plugin\Event\PluginLifecycleEvent;
-use Cicada\Core\Framework\Plugin\Event\PluginPostActivateEvent;
-use Cicada\Core\Framework\Plugin\Event\PluginPostDeactivateEvent;
-use Cicada\Core\Framework\Plugin\Event\PluginPostDeactivationFailedEvent;
-use Cicada\Core\Framework\Plugin\Event\PluginPostUninstallEvent;
-use Cicada\Core\Framework\Plugin\Event\PluginPreDeactivateEvent;
-use Cicada\Core\Framework\Plugin\Event\PluginPreUninstallEvent;
-use Cicada\Core\Framework\Plugin\Event\PluginPreUpdateEvent;
-use Cicada\Core\Framework\Plugin\PluginLifecycleService;
-use Cicada\Storefront\Theme\Exception\InvalidThemeBundleException;
-use Cicada\Storefront\Theme\Exception\ThemeCompileException;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\AbstractStorefrontPluginConfigurationFactory;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfiguration;
-use Cicada\Storefront\Theme\StorefrontPluginRegistryInterface;
-use Cicada\Storefront\Theme\ThemeLifecycleHandler;
-use Cicada\Storefront\Theme\ThemeLifecycleService;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Plugin;
+use Shopware\Core\Framework\Plugin\Event\PluginLifecycleEvent;
+use Shopware\Core\Framework\Plugin\Event\PluginPostActivateEvent;
+use Shopware\Core\Framework\Plugin\Event\PluginPostDeactivateEvent;
+use Shopware\Core\Framework\Plugin\Event\PluginPostDeactivationFailedEvent;
+use Shopware\Core\Framework\Plugin\Event\PluginPostUninstallEvent;
+use Shopware\Core\Framework\Plugin\Event\PluginPreDeactivateEvent;
+use Shopware\Core\Framework\Plugin\Event\PluginPreUninstallEvent;
+use Shopware\Core\Framework\Plugin\Event\PluginPreUpdateEvent;
+use Shopware\Core\Framework\Plugin\PluginLifecycleService;
+use Shopware\Storefront\Theme\Exception\InvalidThemeBundleException;
+use Shopware\Storefront\Theme\Exception\ThemeCompileException;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\AbstractStorefrontPluginConfigurationFactory;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfiguration;
+use Shopware\Storefront\Theme\StorefrontPluginRegistryInterface;
+use Shopware\Storefront\Theme\ThemeLifecycleHandler;
+use Shopware\Storefront\Theme\ThemeLifecycleService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**

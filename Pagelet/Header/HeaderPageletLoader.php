@@ -1,24 +1,21 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Pagelet\Header;
+namespace Shopware\Storefront\Pagelet\Header;
 
-use Cicada\Core\Content\Category\CategoryCollection;
-use Cicada\Core\Content\Category\Service\NavigationLoaderInterface;
-use Cicada\Core\Content\Category\Tree\TreeItem;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Sorting\FieldSorting;
-use Cicada\Core\Framework\Feature;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\System\Currency\CurrencyCollection;
-use Cicada\Core\System\Currency\SalesChannel\AbstractCurrencyRoute;
-use Cicada\Core\System\Language\LanguageCollection;
-use Cicada\Core\System\Language\SalesChannel\AbstractLanguageRoute;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Core\System\SalesChannel\SalesChannelException;
-use Cicada\Storefront\Event\RouteRequest\CurrencyRouteRequestEvent;
-use Cicada\Storefront\Event\RouteRequest\LanguageRouteRequestEvent;
+use Shopware\Core\Content\Category\Service\NavigationLoaderInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Sorting\FieldSorting;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\System\Currency\CurrencyCollection;
+use Shopware\Core\System\Currency\SalesChannel\AbstractCurrencyRoute;
+use Shopware\Core\System\Language\LanguageCollection;
+use Shopware\Core\System\Language\SalesChannel\AbstractLanguageRoute;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\System\SalesChannel\SalesChannelException;
+use Shopware\Storefront\Event\RouteRequest\CurrencyRouteRequestEvent;
+use Shopware\Storefront\Event\RouteRequest\LanguageRouteRequestEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -46,21 +43,8 @@ class HeaderPageletLoader implements HeaderPageletLoaderInterface
     {
         $salesChannel = $context->getSalesChannel();
 
-        $navigationId = null;
-        if (!Feature::isActive('cache_rework')) {
-            $navigationId = $request->get('navigationId');
-            if ($navigationId !== null) {
-                Feature::triggerDeprecationOrThrow(
-                    'cache_rework',
-                    'The parameter "navigationId" is deprecated and will not be considered anymore with the next major release.'
-                );
-            }
-        }
-
-        $navigationId ??= $salesChannel->getNavigationCategoryId();
-
         $navigation = $this->navigationLoader->load(
-            $navigationId,
+            $salesChannel->getNavigationCategoryId(),
             $context,
             $salesChannel->getNavigationCategoryId(),
             $salesChannel->getNavigationCategoryDepth()
@@ -79,25 +63,11 @@ class HeaderPageletLoader implements HeaderPageletLoaderInterface
             $currencies,
             $contextLanguage,
             $context->getCurrency(),
-            $this->getServiceMenu($context)
         );
 
         $this->eventDispatcher->dispatch(new HeaderPageletLoadedEvent($page, $context, $request));
 
         return $page;
-    }
-
-    private function getServiceMenu(SalesChannelContext $context): CategoryCollection
-    {
-        $serviceId = $context->getSalesChannel()->getServiceCategoryId();
-
-        if ($serviceId === null) {
-            return new CategoryCollection();
-        }
-
-        $navigation = $this->navigationLoader->load($serviceId, $context, $serviceId, 1);
-
-        return new CategoryCollection(array_map(static fn (TreeItem $treeItem) => $treeItem->getCategory(), $navigation->getTree()));
     }
 
     private function getLanguages(SalesChannelContext $context, Request $request): LanguageCollection
@@ -109,10 +79,6 @@ class HeaderPageletLoader implements HeaderPageletLoaderInterface
             new EqualsFilter('language.salesChannelDomains.salesChannelId', $context->getSalesChannelId())
         );
         $criteria->addSorting(new FieldSorting('name', FieldSorting::ASCENDING));
-
-        if (!Feature::isActive('cache_rework')) {
-            $criteria->addAssociation('productSearchConfig');
-        }
 
         $event = new LanguageRouteRequestEvent($request, new Request(), $context, $criteria);
         $this->eventDispatcher->dispatch($event);

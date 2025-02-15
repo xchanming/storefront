@@ -1,19 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Account\RecoverPassword;
+namespace Shopware\Storefront\Page\Account\RecoverPassword;
 
-use Cicada\Core\Checkout\Customer\Exception\CustomerNotFoundByHashException;
-use Cicada\Core\Checkout\Customer\SalesChannel\AbstractCustomerRecoveryIsExpiredRoute;
-use Cicada\Core\Content\Category\Exception\CategoryNotFoundException;
-use Cicada\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\Framework\Validation\DataBag\RequestDataBag;
-use Cicada\Core\Framework\Validation\Exception\ConstraintViolationException;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Page\GenericPageLoaderInterface;
+use Shopware\Core\Checkout\Customer\Exception\CustomerNotFoundByHashException;
+use Shopware\Core\Checkout\Customer\SalesChannel\AbstractCustomerRecoveryIsExpiredRoute;
+use Shopware\Core\Content\Category\Exception\CategoryNotFoundException;
+use Shopware\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
+use Shopware\Core\Framework\Validation\Exception\ConstraintViolationException;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Page\GenericPageLoaderInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 

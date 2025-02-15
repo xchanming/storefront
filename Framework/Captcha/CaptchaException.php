@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Captcha;
+namespace Shopware\Storefront\Framework\Captcha;
 
-use Cicada\Core\Framework\Feature;
-use Cicada\Core\Framework\HttpException;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Framework\Captcha\Exception\CaptchaInvalidException;
+use Shopware\Core\Framework\Feature;
+use Shopware\Core\Framework\HttpException;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Framework\Captcha\Exception\CaptchaInvalidException;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

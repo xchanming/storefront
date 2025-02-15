@@ -1,15 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Routing\NotFound;
+namespace Shopware\Storefront\Framework\Routing\NotFound;
 
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\Event\CicadaEvent;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Event\ShopwareEvent;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Symfony\Component\HttpFoundation\Request;
 
 #[Package('framework')]
-class NotFoundPageTagsEvent implements CicadaEvent
+class NotFoundPageTagsEvent implements ShopwareEvent
 {
     /**
      * @param array<string> $tags

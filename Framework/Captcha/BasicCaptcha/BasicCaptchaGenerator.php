@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Captcha\BasicCaptcha;
+namespace Shopware\Storefront\Framework\Captcha\BasicCaptcha;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Util\Random;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Util\Random;
 use Symfony\Component\Filesystem\Filesystem;
 
 #[Package('framework')]

@@ -1,17 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\StorefrontPluginConfiguration;
+namespace Shopware\Storefront\Theme\StorefrontPluginConfiguration;
 
-use Cicada\Core\Framework\App\Source\SourceResolver;
-use Cicada\Core\Framework\Bundle;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Parameter\AdditionalBundleParameters;
-use Cicada\Core\Framework\Plugin;
-use Cicada\Core\Framework\Plugin\Exception\DecorationPatternException;
-use Cicada\Core\Framework\Plugin\KernelPluginLoader\KernelPluginLoader;
-use Cicada\Storefront\Framework\ThemeInterface;
-use Cicada\Storefront\Theme\Exception\InvalidThemeBundleException;
-use Cicada\Storefront\Theme\Exception\ThemeCompileException;
+use Shopware\Core\Framework\App\Source\SourceResolver;
+use Shopware\Core\Framework\Bundle;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Parameter\AdditionalBundleParameters;
+use Shopware\Core\Framework\Plugin;
+use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
+use Shopware\Core\Framework\Plugin\KernelPluginLoader\KernelPluginLoader;
+use Shopware\Storefront\Framework\ThemeInterface;
+use Shopware\Storefront\Theme\Exception\InvalidThemeBundleException;
+use Shopware\Storefront\Theme\Exception\ThemeCompileException;
 use Symfony\Component\Finder\Finder;
 
 #[Package('framework')]

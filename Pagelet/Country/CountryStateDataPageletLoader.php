@@ -1,12 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Pagelet\Country;
+namespace Shopware\Storefront\Pagelet\Country;
 
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\Country\SalesChannel\AbstractCountryStateRoute;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\Country\SalesChannel\AbstractCountryStateRoute;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -25,13 +24,11 @@ class CountryStateDataPageletLoader
     ) {
     }
 
-    public function load(string $countryId, Request $request, SalesChannelContext $context, ?string $parentId = null): CountryStateDataPagelet
+    public function load(string $countryId, Request $request, SalesChannelContext $context): CountryStateDataPagelet
     {
         $page = new CountryStateDataPagelet();
 
         $criteria = new Criteria();
-        $criteria->addAssociation('children.children');
-        $criteria->addFilter(new EqualsFilter('parentId', empty($parentId) ? null : $parentId));
 
         $this->eventDispatcher->dispatch(new CountryStateDataPageletCriteriaEvent($criteria, $context, $request));
 

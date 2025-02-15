@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\LandingPage;
+namespace Shopware\Storefront\Page\LandingPage;
 
-use Cicada\Core\Content\Cms\Exception\PageNotFoundException;
-use Cicada\Core\Content\LandingPage\SalesChannel\AbstractLandingPageRoute;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Page\GenericPageLoaderInterface;
-use Cicada\Storefront\Page\MetaInformation;
+use Shopware\Core\Content\Cms\Exception\PageNotFoundException;
+use Shopware\Core\Content\LandingPage\SalesChannel\AbstractLandingPageRoute;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Page\GenericPageLoaderInterface;
+use Shopware\Storefront\Page\MetaInformation;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 

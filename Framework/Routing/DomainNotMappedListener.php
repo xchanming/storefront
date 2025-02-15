@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Routing;
+namespace Shopware\Storefront\Framework\Routing;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Framework\Routing\Exception\SalesChannelMappingException;
 use Doctrine\DBAL\Connection;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Framework\Routing\Exception\SalesChannelMappingException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;

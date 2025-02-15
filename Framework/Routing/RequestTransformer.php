@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Routing;
+namespace Shopware\Storefront\Framework\Routing;
 
-use Cicada\Core\Content\Seo\AbstractSeoResolver;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RequestTransformerInterface;
-use Cicada\Core\PlatformRequest;
-use Cicada\Core\SalesChannelRequest;
-use Cicada\Storefront\Framework\Routing\Exception\SalesChannelMappingException;
+use Shopware\Core\Content\Seo\AbstractSeoResolver;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RequestTransformerInterface;
+use Shopware\Core\PlatformRequest;
+use Shopware\Core\SalesChannelRequest;
+use Shopware\Storefront\Framework\Routing\Exception\SalesChannelMappingException;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -125,21 +125,21 @@ class RequestTransformer implements RequestTransformerInterface
         $currentRequestUri = $request->getRequestUri();
 
         /**
-         * - Remove "virtual" suffix of domain mapping cicada.de/de
-         * - To get only the host cicada.de as real request uri cicada.de/
-         * - Resolve remaining seo url and get the real path info cicada.de/outdoor => cicada.de/navigation/{id}
+         * - Remove "virtual" suffix of domain mapping shopware.de/de
+         * - To get only the host shopware.de as real request uri shopware.de/
+         * - Resolve remaining seo url and get the real path info shopware.de/outdoor => shopware.de/navigation/{id}
          *
          * Possible domains
          *
          * same host, different "virtual" suffix
-         * http://cicada.de/de
-         * http://cicada.de/en
-         * http://cicada.de/fr
+         * http://shopware.de/de
+         * http://shopware.de/en
+         * http://shopware.de/fr
          *
          * same host, different location
-         * http://cicada.fr
+         * http://shopware.fr
          * http://xchanming.com
-         * http://cicada.de
+         * http://shopware.de
          *
          * complete different host and location
          * http://color.com

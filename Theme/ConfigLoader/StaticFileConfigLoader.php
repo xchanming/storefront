@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\ConfigLoader;
+namespace Shopware\Storefront\Theme\ConfigLoader;
 
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Plugin\Exception\DecorationPatternException;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\File;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\FileCollection;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfiguration;
 use League\Flysystem\FilesystemOperator;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Plugin\Exception\DecorationPatternException;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\File;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\FileCollection;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfiguration;
 
 #[Package('framework')]
 class StaticFileConfigLoader extends AbstractConfigLoader

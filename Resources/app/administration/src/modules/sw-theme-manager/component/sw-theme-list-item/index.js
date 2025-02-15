@@ -5,7 +5,7 @@ import './sw-theme-list-item.scss';
  * @package buyers-experience
  */
 
-const { Component, Application } = Cicada;
+const { Component, Application } = Shopware;
 
 Component.register('sw-theme-list-item', {
     template,
@@ -45,7 +45,7 @@ Component.register('sw-theme-list-item', {
         },
 
         defaultThemeAsset() {
-            const assetFilter = Cicada.Filter.getByName('asset');
+            const assetFilter = Shopware.Filter.getByName('asset');
             const previewUrl = assetFilter('administration/static/img/theme/default_theme_preview.jpg');
 
             return `url(${previewUrl})`;

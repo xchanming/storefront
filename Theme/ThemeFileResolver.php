@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme;
+namespace Shopware\Storefront\Theme;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\Exception\ThemeCompileException;
-use Cicada\Storefront\Theme\Exception\ThemeException;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\File;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\FileCollection;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfiguration;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfigurationCollection;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\Exception\ThemeCompileException;
+use Shopware\Storefront\Theme\Exception\ThemeException;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\File;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\FileCollection;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfiguration;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfigurationCollection;
 
 #[Package('framework')]
 class ThemeFileResolver

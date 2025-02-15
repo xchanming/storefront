@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Cms;
+namespace Shopware\Storefront\Page\Cms;
 
-use Cicada\Core\Content\Media\Cms\AbstractDefaultMediaResolver;
-use Cicada\Core\Content\Media\MediaEntity;
-use Cicada\Core\Framework\Adapter\Translation\AbstractTranslator;
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Content\Media\Cms\AbstractDefaultMediaResolver;
+use Shopware\Core\Content\Media\MediaEntity;
+use Shopware\Core\Framework\Adapter\Translation\AbstractTranslator;
+use Shopware\Core\Framework\Log\Package;
 use Symfony\Component\Asset\Packages;
 
 #[Package('discovery')]

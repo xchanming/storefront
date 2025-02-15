@@ -2,7 +2,7 @@
 
 {% block component_address_personal_account_type %}
     {% if page.group.translated.registrationOnlyCompanyRegistration %}
-        <input type="hidden" name="{% if prefix %}{{ prefix }}[accountType]{% else %}accountType{% endif %}" value="{{ constant('Cicada\\Core\\Checkout\\Customer\\CustomerEntity::ACCOUNT_TYPE_BUSINESS') }}">
+        <input type="hidden" name="{% if prefix %}{{ prefix }}[accountType]{% else %}accountType{% endif %}" value="{{ constant('Shopware\\Core\\Checkout\\Customer\\CustomerEntity::ACCOUNT_TYPE_BUSINESS') }}">
     {% else %}
         {{ parent() }}
     {% endif %}

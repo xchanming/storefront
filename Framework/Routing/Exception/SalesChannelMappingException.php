@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Routing\Exception;
+namespace Shopware\Storefront\Framework\Routing\Exception;
 
-use Cicada\Core\Framework\CicadaHttpException;
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\ShopwareHttpException;
 use Symfony\Component\HttpFoundation\Response;
 
 #[Package('framework')]
-class SalesChannelMappingException extends CicadaHttpException
+class SalesChannelMappingException extends ShopwareHttpException
 {
     public function __construct(string $url)
     {

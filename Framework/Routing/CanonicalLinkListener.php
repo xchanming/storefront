@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Routing;
+namespace Shopware\Storefront\Framework\Routing;
 
-use Cicada\Core\Framework\Event\BeforeSendResponseEvent;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\SalesChannelRequest;
+use Shopware\Core\Framework\Event\BeforeSendResponseEvent;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\SalesChannelRequest;
 
 /**
  * @internal

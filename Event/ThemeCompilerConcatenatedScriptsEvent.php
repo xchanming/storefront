@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Event;
+namespace Shopware\Storefront\Event;
 
-use Cicada\Core\Framework\Feature;
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Feature;
+use Shopware\Core\Framework\Log\Package;
 use Symfony\Contracts\EventDispatcher\Event;
 
 /**

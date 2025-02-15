@@ -1,21 +1,21 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Script\Api;
+namespace Shopware\Storefront\Framework\Script\Api;
 
-use Cicada\Core\Framework\DataAbstractionLayer\Facade\RepositoryFacadeHookFactory;
-use Cicada\Core\Framework\DataAbstractionLayer\Facade\RepositoryWriterFacadeHookFactory;
-use Cicada\Core\Framework\DataAbstractionLayer\Facade\SalesChannelRepositoryFacadeHookFactory;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\Facade\RequestFacadeFactory;
-use Cicada\Core\Framework\Script\Api\ScriptResponseFactoryFacadeHookFactory;
-use Cicada\Core\Framework\Script\Execution\Awareness\SalesChannelContextAware;
-use Cicada\Core\Framework\Script\Execution\Awareness\ScriptResponseAwareTrait;
-use Cicada\Core\Framework\Script\Execution\Awareness\StoppableHook;
-use Cicada\Core\Framework\Script\Execution\Awareness\StoppableHookTrait;
-use Cicada\Core\Framework\Script\Execution\Hook;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Core\System\SystemConfig\Facade\SystemConfigFacadeHookFactory;
-use Cicada\Storefront\Page\Page;
+use Shopware\Core\Framework\DataAbstractionLayer\Facade\RepositoryFacadeHookFactory;
+use Shopware\Core\Framework\DataAbstractionLayer\Facade\RepositoryWriterFacadeHookFactory;
+use Shopware\Core\Framework\DataAbstractionLayer\Facade\SalesChannelRepositoryFacadeHookFactory;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\Facade\RequestFacadeFactory;
+use Shopware\Core\Framework\Script\Api\ScriptResponseFactoryFacadeHookFactory;
+use Shopware\Core\Framework\Script\Execution\Awareness\SalesChannelContextAware;
+use Shopware\Core\Framework\Script\Execution\Awareness\ScriptResponseAwareTrait;
+use Shopware\Core\Framework\Script\Execution\Awareness\StoppableHook;
+use Shopware\Core\Framework\Script\Execution\Awareness\StoppableHookTrait;
+use Shopware\Core\Framework\Script\Execution\Hook;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\System\SystemConfig\Facade\SystemConfigFacadeHookFactory;
+use Shopware\Storefront\Page\Page;
 
 /**
  * Triggered when the storefront endpoint /storefront/script/{hook} is called

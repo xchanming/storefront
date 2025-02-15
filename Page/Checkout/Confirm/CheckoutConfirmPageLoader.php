@@ -1,26 +1,26 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Checkout\Confirm;
+namespace Shopware\Storefront\Page\Checkout\Confirm;
 
-use Cicada\Core\Checkout\Cart\Address\Error\AddressValidationError;
-use Cicada\Core\Checkout\Cart\Cart;
-use Cicada\Core\Checkout\Cart\CartException;
-use Cicada\Core\Checkout\Cart\Exception\CustomerNotLoggedInException;
-use Cicada\Core\Checkout\Customer\Aggregate\CustomerAddress\CustomerAddressEntity;
-use Cicada\Core\Checkout\Customer\Validation\Constraint\CustomerZipCode;
-use Cicada\Core\Checkout\Gateway\SalesChannel\AbstractCheckoutGatewayRoute;
-use Cicada\Core\Content\Product\State;
-use Cicada\Core\Framework\Adapter\Translation\AbstractTranslator;
-use Cicada\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Validation\BuildValidationEvent;
-use Cicada\Core\Framework\Validation\DataBag\DataBag;
-use Cicada\Core\Framework\Validation\DataValidationFactoryInterface;
-use Cicada\Core\Framework\Validation\DataValidator;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Checkout\Cart\SalesChannel\StorefrontCartFacade;
-use Cicada\Storefront\Page\GenericPageLoaderInterface;
-use Cicada\Storefront\Page\MetaInformation;
+use Shopware\Core\Checkout\Cart\Address\Error\AddressValidationError;
+use Shopware\Core\Checkout\Cart\Cart;
+use Shopware\Core\Checkout\Cart\CartException;
+use Shopware\Core\Checkout\Cart\Exception\CustomerNotLoggedInException;
+use Shopware\Core\Checkout\Customer\Aggregate\CustomerAddress\CustomerAddressEntity;
+use Shopware\Core\Checkout\Customer\Validation\Constraint\CustomerZipCode;
+use Shopware\Core\Checkout\Gateway\SalesChannel\AbstractCheckoutGatewayRoute;
+use Shopware\Core\Content\Product\State;
+use Shopware\Core\Framework\Adapter\Translation\AbstractTranslator;
+use Shopware\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Validation\BuildValidationEvent;
+use Shopware\Core\Framework\Validation\DataBag\DataBag;
+use Shopware\Core\Framework\Validation\DataValidationFactoryInterface;
+use Shopware\Core\Framework\Validation\DataValidator;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Checkout\Cart\SalesChannel\StorefrontCartFacade;
+use Shopware\Storefront\Page\GenericPageLoaderInterface;
+use Shopware\Storefront\Page\MetaInformation;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 

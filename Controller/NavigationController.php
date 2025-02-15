@@ -1,15 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Controller;
+namespace Shopware\Storefront\Controller;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Page\Navigation\NavigationPageLoadedHook;
-use Cicada\Storefront\Page\Navigation\NavigationPageLoaderInterface;
-use Cicada\Storefront\Pagelet\Footer\FooterPageletLoaderInterface;
-use Cicada\Storefront\Pagelet\Header\HeaderPageletLoaderInterface;
-use Cicada\Storefront\Pagelet\Menu\Offcanvas\MenuOffcanvasPageletLoadedHook;
-use Cicada\Storefront\Pagelet\Menu\Offcanvas\MenuOffcanvasPageletLoaderInterface;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Page\Navigation\NavigationPageLoadedHook;
+use Shopware\Storefront\Page\Navigation\NavigationPageLoaderInterface;
+use Shopware\Storefront\Pagelet\Footer\FooterPageletLoaderInterface;
+use Shopware\Storefront\Pagelet\Header\HeaderPageletLoaderInterface;
+use Shopware\Storefront\Pagelet\Menu\Offcanvas\MenuOffcanvasPageletLoadedHook;
+use Shopware\Storefront\Pagelet\Menu\Offcanvas\MenuOffcanvasPageletLoaderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -19,7 +19,7 @@ use Symfony\Component\Routing\Attribute\Route;
  * Do not use direct or indirect repository calls in a controller. Always use a store-api route to get or put data
  */
 #[Route(defaults: ['_routeScope' => ['storefront']])]
-#[Package('buyers-experience')]
+#[Package('discovery')]
 class NavigationController extends StorefrontController
 {
     /**

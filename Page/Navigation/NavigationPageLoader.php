@@ -1,15 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Navigation;
+namespace Shopware\Storefront\Page\Navigation;
 
-use Cicada\Core\Content\Category\CategoryEntity;
-use Cicada\Core\Content\Category\CategoryException;
-use Cicada\Core\Content\Category\SalesChannel\AbstractCategoryRoute;
-use Cicada\Core\Content\Seo\SeoUrlPlaceholderHandlerInterface;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Core\System\SalesChannel\SalesChannelEntity;
-use Cicada\Storefront\Page\GenericPageLoaderInterface;
+use Shopware\Core\Content\Category\CategoryEntity;
+use Shopware\Core\Content\Category\CategoryException;
+use Shopware\Core\Content\Category\SalesChannel\AbstractCategoryRoute;
+use Shopware\Core\Content\Seo\SeoUrlPlaceholderHandlerInterface;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\System\SalesChannel\SalesChannelEntity;
+use Shopware\Storefront\Page\GenericPageLoaderInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 

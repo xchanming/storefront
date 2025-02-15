@@ -4,7 +4,7 @@ import './sw-settings-storefront-index.scss';
 /**
  * @sw-package framework
  */
-Cicada.Component.register('sw-settings-storefront-index', {
+Shopware.Component.register('sw-settings-storefront-index', {
     template,
 
     inject: ['systemConfigApiService'],

@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Pagelet\Country;
+namespace Shopware\Storefront\Pagelet\Country;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\Country\Aggregate\CountryState\CountryStateCollection;
-use Cicada\Storefront\Pagelet\Pagelet;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\Country\Aggregate\CountryState\CountryStateCollection;
+use Shopware\Storefront\Pagelet\Pagelet;
 
 #[Package('discovery')]
 class CountryStateDataPagelet extends Pagelet

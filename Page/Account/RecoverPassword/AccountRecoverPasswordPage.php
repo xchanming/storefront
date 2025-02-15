@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Account\RecoverPassword;
+namespace Shopware\Storefront\Page\Account\RecoverPassword;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Page\Page;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Page\Page;
 
 #[Package('checkout')]
 class AccountRecoverPasswordPage extends Page

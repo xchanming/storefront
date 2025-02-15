@@ -5,8 +5,8 @@ import './sw-theme-modal.scss';
  * @package buyers-experience
  */
 
-const { Component, Mixin } = Cicada;
-const Criteria = Cicada.Data.Criteria;
+const { Component, Mixin } = Shopware;
+const Criteria = Shopware.Data.Criteria;
 
 Component.register('sw-theme-modal', {
     template,
@@ -46,7 +46,7 @@ Component.register('sw-theme-modal', {
             criteria.addSorting(Criteria.sort(this.sortBy, this.sortDirection));
             criteria.setTerm(this.term);
 
-            return this.themeRepository.search(criteria, Cicada.Context.api).then((searchResult) => {
+            return this.themeRepository.search(criteria, Shopware.Context.api).then((searchResult) => {
                 this.total = searchResult.total;
                 this.themes = searchResult;
                 this.isLoading = false;

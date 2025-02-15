@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Event;
+namespace Shopware\Storefront\Event;
 
-use Cicada\Core\Content\Product\SalesChannel\SalesChannelProductEntity;
-use Cicada\Core\Content\Property\PropertyGroupCollection;
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\Event\CicadaSalesChannelEvent;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\Content\Product\SalesChannel\SalesChannelProductEntity;
+use Shopware\Core\Content\Property\PropertyGroupCollection;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Event\ShopwareSalesChannelEvent;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\EventDispatcher\Event;
 
 #[Package('framework')]
-class SwitchBuyBoxVariantEvent extends Event implements CicadaSalesChannelEvent
+class SwitchBuyBoxVariantEvent extends Event implements ShopwareSalesChannelEvent
 {
     public function __construct(
         private readonly string $elementId,

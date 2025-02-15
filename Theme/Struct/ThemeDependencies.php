@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Struct;
+namespace Shopware\Storefront\Theme\Struct;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Struct\Struct;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Struct\Struct;
 
 #[Package('framework')]
 class ThemeDependencies extends Struct

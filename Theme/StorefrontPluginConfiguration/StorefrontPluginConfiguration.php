@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\StorefrontPluginConfiguration;
+namespace Shopware\Storefront\Theme\StorefrontPluginConfiguration;
 
-use Cicada\Core\Framework\Feature;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Struct\Struct;
+use Shopware\Core\Framework\Feature;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Struct\Struct;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 
 #[Package('framework')]
@@ -136,7 +136,7 @@ class StorefrontPluginConfiguration extends Struct
     }
 
     /**
-     * @deprecated tag:v6.7.0 - Method will be removed, get base path via `\Cicada\Storefront\Theme\ThemeFilesystemResolver`
+     * @deprecated tag:v6.7.0 - Method will be removed, get base path via `\Shopware\Storefront\Theme\ThemeFilesystemResolver`
      */
     public function getBasePath(): string
     {

@@ -1,16 +1,16 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Controller;
+namespace Shopware\Storefront\Controller;
 
-use Cicada\Core\Framework\Adapter\Kernel\HttpCacheKernel;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\SalesChannelRequest;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Core\System\SystemConfig\SystemConfigService;
-use Cicada\Storefront\Framework\Routing\MaintenanceModeResolver;
-use Cicada\Storefront\Page\Maintenance\MaintenancePageLoadedHook;
-use Cicada\Storefront\Page\Maintenance\MaintenancePageLoader;
+use Shopware\Core\Framework\Adapter\Kernel\HttpCacheKernel;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\SalesChannelRequest;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\System\SystemConfig\SystemConfigService;
+use Shopware\Storefront\Framework\Routing\MaintenanceModeResolver;
+use Shopware\Storefront\Page\Maintenance\MaintenancePageLoadedHook;
+use Shopware\Storefront\Page\Maintenance\MaintenancePageLoader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;

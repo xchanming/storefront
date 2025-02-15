@@ -1,20 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Routing;
+namespace Shopware\Storefront\Framework\Routing;
 
-use Cicada\Core\Checkout\Cart\Exception\CustomerNotLoggedInException;
-use Cicada\Core\Checkout\Customer\Event\CustomerLoginEvent;
-use Cicada\Core\Checkout\Customer\Event\CustomerLogoutEvent;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\Event\SalesChannelContextResolvedEvent;
-use Cicada\Core\Framework\Routing\Exception\CustomerNotLoggedInRoutingException;
-use Cicada\Core\Framework\Routing\KernelListenerPriorities;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\Framework\Util\Random;
-use Cicada\Core\PlatformRequest;
-use Cicada\Core\SalesChannelRequest;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Core\System\SystemConfig\SystemConfigService;
+use Shopware\Core\Checkout\Cart\Exception\CustomerNotLoggedInException;
+use Shopware\Core\Checkout\Customer\Event\CustomerLoginEvent;
+use Shopware\Core\Checkout\Customer\Event\CustomerLogoutEvent;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\Event\SalesChannelContextResolvedEvent;
+use Shopware\Core\Framework\Routing\Exception\CustomerNotLoggedInRoutingException;
+use Shopware\Core\Framework\Routing\KernelListenerPriorities;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\Framework\Util\Random;
+use Shopware\Core\PlatformRequest;
+use Shopware\Core\SalesChannelRequest;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\System\SystemConfig\SystemConfigService;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;

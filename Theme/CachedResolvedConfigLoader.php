@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme;
+namespace Shopware\Storefront\Theme;
 
-use Cicada\Core\Framework\Adapter\Cache\CacheValueCompressor;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Util\Hasher;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\Framework\Adapter\Cache\CacheValueCompressor;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Util\Hasher;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\Cache\ItemInterface;
 

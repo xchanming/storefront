@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\DependencyInjection;
+namespace Shopware\Storefront\DependencyInjection;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\ConfigLoader\DatabaseAvailableThemeProvider;
-use Cicada\Storefront\Theme\ConfigLoader\DatabaseConfigLoader;
-use Cicada\Storefront\Theme\SeedingThemePathBuilder;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\ConfigLoader\DatabaseAvailableThemeProvider;
+use Shopware\Storefront\Theme\ConfigLoader\DatabaseConfigLoader;
+use Shopware\Storefront\Theme\SeedingThemePathBuilder;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 

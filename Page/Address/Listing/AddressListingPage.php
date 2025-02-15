@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Address\Listing;
+namespace Shopware\Storefront\Page\Address\Listing;
 
-use Cicada\Core\Checkout\Cart\Cart;
-use Cicada\Core\Checkout\Customer\Aggregate\CustomerAddress\CustomerAddressCollection;
-use Cicada\Core\Checkout\Customer\Aggregate\CustomerAddress\CustomerAddressEntity;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\Country\CountryCollection;
-use Cicada\Core\System\Salutation\SalutationCollection;
-use Cicada\Storefront\Page\Page;
+use Shopware\Core\Checkout\Cart\Cart;
+use Shopware\Core\Checkout\Customer\Aggregate\CustomerAddress\CustomerAddressCollection;
+use Shopware\Core\Checkout\Customer\Aggregate\CustomerAddress\CustomerAddressEntity;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\Country\CountryCollection;
+use Shopware\Core\System\Salutation\SalutationCollection;
+use Shopware\Storefront\Page\Page;
 
 #[Package('framework')]
 class AddressListingPage extends Page

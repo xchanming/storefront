@@ -4,10 +4,10 @@ import './sw-theme-manager-detail.scss';
  * @package buyers-experience
  */
 
-const { Component, Mixin } = Cicada;
-const Criteria = Cicada.Data.Criteria;
-const { getObjectDiff, cloneDeep, deepMergeObject } = Cicada.Utils.object;
-const { isArray } = Cicada.Utils.types;
+const { Component, Mixin } = Shopware;
+const Criteria = Shopware.Data.Criteria;
+const { getObjectDiff, cloneDeep, deepMergeObject } = Shopware.Utils.object;
+const { isArray } = Shopware.Utils.types;
 
 Component.register('sw-theme-manager-detail', {
     template,
@@ -117,7 +117,7 @@ Component.register('sw-theme-manager-detail', {
         },
 
         defaultThemeAsset() {
-            const assetFilter = Cicada.Filter.getByName('asset');
+            const assetFilter = Shopware.Filter.getByName('asset');
             const previewUrl = assetFilter('administration/static/img/theme/default_theme_preview.jpg');
 
             return `url(${previewUrl})`;
@@ -175,7 +175,7 @@ Component.register('sw-theme-manager-detail', {
             criteria.addAssociation('previewMedia');
             criteria.addAssociation('salesChannels');
 
-            this.themeRepository.get(this.themeId, Cicada.Context.api, criteria).then((response) => {
+            this.themeRepository.get(this.themeId, Shopware.Context.api, criteria).then((response) => {
                 this.theme = response;
                 this.getThemeConfig();
 

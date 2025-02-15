@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Validator;
+namespace Shopware\Storefront\Theme\Validator;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\AbstractScssCompiler;
-use Cicada\Storefront\Theme\CompilerConfiguration;
-use Cicada\Storefront\Theme\Exception\ThemeException;
 use ScssPhp\ScssPhp\Colors;
 use ScssPhp\ScssPhp\OutputStyle;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\AbstractScssCompiler;
+use Shopware\Storefront\Theme\CompilerConfiguration;
+use Shopware\Storefront\Theme\Exception\ThemeException;
 
 #[Package('framework')]
 class SCSSValidator
@@ -18,12 +18,13 @@ class SCSSValidator
      */
     public static function validate(AbstractScssCompiler $compiler, array $data, array $customAllowedRegex = [], bool $sanitize = false): mixed
     {
-        if (!isset($data['value']) && !$sanitize) {
-            throw ThemeException::InvalidScssValue('', $data['type'] ?? 'undefined', $data['name'] ?? 'undefined');
-        }
-
-        if (!\array_key_exists('value', $data) || (empty($data['value']) && $data['value'] !== 0)) {
-            $data['value'] = 'inherit';
+        // Empty values are allowed and will be set as a "null" value in SCSS.
+        // In addition, 0 or "0" can be valid values, for example for setting margins.
+        if (!\array_key_exists('value', $data)
+            || !isset($data['value'])
+            || $data['value'] === ''
+            || $data['value'] === false) {
+            return null;
         }
 
         if (\is_string($data['value']) && self::validateCustom($data['value'], $customAllowedRegex)) {
@@ -137,13 +138,13 @@ class SCSSValidator
             str_starts_with($value, '#')
             && self::isHex(substr($value, 1))
         ) || str_starts_with($value, 'rgb')
-            || str_starts_with($value, 'rgba')
-            || str_starts_with($value, 'hsl')
-            || str_starts_with($value, 'hsla')
-            || (
-                !str_starts_with($value, '#')
-                && Colors::colorNameToRGBa($value) !== null
-            );
+                || str_starts_with($value, 'rgba')
+                || str_starts_with($value, 'hsl')
+                || str_starts_with($value, 'hsla')
+                || (
+                    !str_starts_with($value, '#')
+                    && Colors::colorNameToRGBa($value) !== null
+                );
     }
 
     private static function initVariables(string $value, string $varVal): string

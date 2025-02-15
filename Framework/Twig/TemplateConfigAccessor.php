@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Twig;
+namespace Shopware\Storefront\Framework\Twig;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Core\System\SystemConfig\SystemConfigService;
-use Cicada\Storefront\Theme\ThemeConfigValueAccessor;
-use Cicada\Storefront\Theme\ThemeScripts;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\System\SystemConfig\SystemConfigService;
+use Shopware\Storefront\Theme\ThemeConfigValueAccessor;
+use Shopware\Storefront\Theme\ThemeScripts;
 
 #[Package('framework')]
 class TemplateConfigAccessor

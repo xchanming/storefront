@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Controller\Api;
+namespace Shopware\Storefront\Controller\Api;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Framework\Captcha\AbstractCaptcha;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Framework\Captcha\AbstractCaptcha;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;

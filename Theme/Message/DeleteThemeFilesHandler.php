@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Message;
+namespace Shopware\Storefront\Theme\Message;
 
-use Cicada\Core\Framework\Adapter\Cache\CacheInvalidator;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\AbstractThemePathBuilder;
 use League\Flysystem\FilesystemOperator;
+use Shopware\Core\Framework\Adapter\Cache\CacheInvalidator;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\AbstractThemePathBuilder;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**

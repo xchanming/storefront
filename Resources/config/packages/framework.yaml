@@ -1,8 +1,8 @@
 framework:
     exceptions:
-        Cicada\Storefront\Framework\Captcha\Exception\CaptchaInvalidException:
+        Shopware\Storefront\Framework\Captcha\Exception\CaptchaInvalidException:
             log_level: notice
-        Cicada\Storefront\Theme\Exception\ThemeException:
+        Shopware\Storefront\Theme\Exception\ThemeException:
             log_level: notice
-        Cicada\Storefront\Theme\Exception\ThemeAssignmentException:
+        Shopware\Storefront\Theme\Exception\ThemeAssignmentException:
             log_level: notice

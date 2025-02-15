@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Pagelet\Captcha;
+namespace Shopware\Storefront\Pagelet\Captcha;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Framework\Captcha\BasicCaptcha\BasicCaptchaImage;
-use Cicada\Storefront\Pagelet\Pagelet;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Framework\Captcha\BasicCaptcha\BasicCaptchaImage;
+use Shopware\Storefront\Pagelet\Pagelet;
 
 #[Package('framework')]
 class BasicCaptchaPagelet extends Pagelet

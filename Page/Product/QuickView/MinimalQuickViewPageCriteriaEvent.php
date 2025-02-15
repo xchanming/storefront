@@ -1,16 +1,16 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Product\QuickView;
+namespace Shopware\Storefront\Page\Product\QuickView;
 
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\Event\CicadaSalesChannelEvent;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\Event\ShopwareSalesChannelEvent;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
 use Symfony\Contracts\EventDispatcher\Event;
 
 #[Package('framework')]
-class MinimalQuickViewPageCriteriaEvent extends Event implements CicadaSalesChannelEvent
+class MinimalQuickViewPageCriteriaEvent extends Event implements ShopwareSalesChannelEvent
 {
     /**
      * @var string

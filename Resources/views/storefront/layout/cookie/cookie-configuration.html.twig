@@ -15,12 +15,14 @@
 {% block utilities_offcanvas_content %}
     <div class="offcanvas-cookie">
         <div class="offcanvas-cookie-description">
-            {% set privacySnippetKey = 'cookie.messageTextPage' %}
-            {% set cmsPath = 'frontend.cms.page.full' %}
+            <p>
+                {% set privacySnippetKey = feature('ACCESSIBILITY_TWEAKS') ? 'cookie.messageTextPage' : 'cookie.messageText' %}
+                {% set cmsPath = feature('ACCESSIBILITY_TWEAKS') ? 'frontend.cms.page.full' : 'frontend.cms.page' %}
 
-            {{ privacySnippetKey|trans({
-                '%url%': path(cmsPath, { id: config('core.basicInformation.privacyPage') })
-            })|raw }}
+                {{ privacySnippetKey|trans({
+                    '%url%': path(cmsPath, { id: config('core.basicInformation.privacyPage') })
+                })|raw }}
+            </p>
 
             <div class="row align-items-center h6 offcanvas-cookie-header">
                 <div class="col">

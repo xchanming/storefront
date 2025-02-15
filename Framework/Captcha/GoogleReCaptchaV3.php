@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Captcha;
+namespace Shopware\Storefront\Framework\Captcha;
 
-use Cicada\Core\Framework\Log\Package;
 use GuzzleHttp\ClientInterface;
 use Psr\Http\Client\ClientExceptionInterface;
+use Shopware\Core\Framework\Log\Package;
 use Symfony\Component\HttpFoundation\Request;
 
 #[Package('framework')]

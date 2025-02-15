@@ -1,16 +1,16 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Controller;
+namespace Shopware\Storefront\Controller;
 
-use Cicada\Core\Content\ContactForm\SalesChannel\AbstractContactFormRoute;
-use Cicada\Core\Content\Newsletter\SalesChannel\AbstractNewsletterSubscribeRoute;
-use Cicada\Core\Content\Newsletter\SalesChannel\AbstractNewsletterUnsubscribeRoute;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\RateLimiter\Exception\RateLimitExceededException;
-use Cicada\Core\Framework\Validation\DataBag\RequestDataBag;
-use Cicada\Core\Framework\Validation\Exception\ConstraintViolationException;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Framework\Routing\RequestTransformer;
+use Shopware\Core\Content\ContactForm\SalesChannel\AbstractContactFormRoute;
+use Shopware\Core\Content\Newsletter\SalesChannel\AbstractNewsletterSubscribeRoute;
+use Shopware\Core\Content\Newsletter\SalesChannel\AbstractNewsletterUnsubscribeRoute;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\RateLimiter\Exception\RateLimitExceededException;
+use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
+use Shopware\Core\Framework\Validation\Exception\ConstraintViolationException;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Framework\Routing\RequestTransformer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Attribute\Route;
  * Do not use direct or indirect repository calls in a controller. Always use a store-api route to get or put data
  */
 #[Route(defaults: ['_routeScope' => ['storefront']])]
-#[Package('buyers-experience')]
+#[Package('discovery')]
 class FormController extends StorefrontController
 {
     final public const SUBSCRIBE = 'subscribe';

@@ -1,17 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Seo\SeoUrlRoute;
+namespace Shopware\Storefront\Framework\Seo\SeoUrlRoute;
 
-use Cicada\Core\Content\LandingPage\LandingPageDefinition;
-use Cicada\Core\Content\LandingPage\LandingPageEntity;
-use Cicada\Core\Content\Seo\SeoUrlRoute\SeoUrlMapping;
-use Cicada\Core\Content\Seo\SeoUrlRoute\SeoUrlRouteConfig;
-use Cicada\Core\Content\Seo\SeoUrlRoute\SeoUrlRouteInterface;
-use Cicada\Core\Framework\DataAbstractionLayer\Entity;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\System\SalesChannel\SalesChannelEntity;
+use Shopware\Core\Content\LandingPage\LandingPageDefinition;
+use Shopware\Core\Content\LandingPage\LandingPageEntity;
+use Shopware\Core\Content\Seo\SeoUrlRoute\SeoUrlMapping;
+use Shopware\Core\Content\Seo\SeoUrlRoute\SeoUrlRouteConfig;
+use Shopware\Core\Content\Seo\SeoUrlRoute\SeoUrlRouteInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\Entity;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\System\SalesChannel\SalesChannelEntity;
 
 #[Package('inventory')]
 class LandingPageSeoUrlRoute implements SeoUrlRouteInterface

@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Checkout\Offcanvas;
+namespace Shopware\Storefront\Page\Checkout\Offcanvas;
 
-use Cicada\Core\Checkout\Cart\Cart;
-use Cicada\Core\Checkout\Shipping\ShippingMethodCollection;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Page\Page;
+use Shopware\Core\Checkout\Cart\Cart;
+use Shopware\Core\Checkout\Shipping\ShippingMethodCollection;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Page\Page;
 
 #[Package('framework')]
 class OffcanvasCartPage extends Page

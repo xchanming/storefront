@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Suggest;
+namespace Shopware\Storefront\Page\Suggest;
 
-use Cicada\Core\Content\Product\ProductCollection;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Page\Page;
+use Shopware\Core\Content\Product\ProductCollection;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Page\Page;
 
 #[Package('discovery')]
 class SuggestPage extends Page

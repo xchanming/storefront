@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Search;
+namespace Shopware\Storefront\Page\Search;
 
-use Cicada\Core\Content\Product\SalesChannel\Listing\ProductListingResult;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Page\Page;
+use Shopware\Core\Content\Product\SalesChannel\Listing\ProductListingResult;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Page\Page;
 
 #[Package('inventory')]
 class SearchPage extends Page

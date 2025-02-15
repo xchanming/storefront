@@ -1,15 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Extension;
+namespace Shopware\Storefront\Theme\Extension;
 
-use Cicada\Core\Content\Media\MediaDefinition;
-use Cicada\Core\Framework\DataAbstractionLayer\EntityExtension;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\ManyToManyAssociationField;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\OneToManyAssociationField;
-use Cicada\Core\Framework\DataAbstractionLayer\FieldCollection;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\Aggregate\ThemeMediaDefinition;
-use Cicada\Storefront\Theme\ThemeDefinition;
+use Shopware\Core\Content\Media\MediaDefinition;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityExtension;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\ManyToManyAssociationField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\OneToManyAssociationField;
+use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\Aggregate\ThemeMediaDefinition;
+use Shopware\Storefront\Theme\ThemeDefinition;
 
 #[Package('framework')]
 class MediaExtension extends EntityExtension
@@ -23,11 +23,6 @@ class MediaExtension extends EntityExtension
         $collection->add(
             new ManyToManyAssociationField('themeMedia', ThemeDefinition::class, ThemeMediaDefinition::class, 'media_id', 'theme_id')
         );
-    }
-
-    public function getDefinitionClass(): string
-    {
-        return MediaDefinition::class;
     }
 
     public function getEntityName(): string

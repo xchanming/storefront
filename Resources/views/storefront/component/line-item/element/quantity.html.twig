@@ -11,7 +11,7 @@
         {% set showQuantitySelect = true %}
     {% endif %}
 
-    {# @var quantityInformation \Cicada\Core\Checkout\Cart\LineItem\QuantityInformation #}
+    {# @var quantityInformation \Shopware\Core\Checkout\Cart\LineItem\QuantityInformation #}
     {% set quantityInformation = lineItem.quantityInformation %}
     {% if quantityInformation.maxPurchase %}
         {% set maxQuantity = quantityInformation.maxPurchase %}
@@ -19,13 +19,13 @@
         {% set maxQuantity = config('core.cart.maxQuantity') %}
     {% endif %}
 
-    {% set DOWNLOAD_STATE = constant('Cicada\\Core\\Content\\Product\\State::IS_DOWNLOAD') %}
+    {% set DOWNLOAD_STATE = constant('Shopware\\Core\\Content\\Product\\State::IS_DOWNLOAD') %}
     {% set isDigital = lineItem.states is defined and DOWNLOAD_STATE in lineItem.states and (DOWNLOAD_STATE not in lineItem.states or quantityInformation.maxPurchase === 1) %}
 
     {% block component_line_item_quantity_inner %}
         <div class="row line-item-quantity-row">
             {% block component_line_item_quantity_label %}
-                <div class="line-item-quantity-label" aria-hidden="true">
+                <div class="line-item-quantity-label" {% if showQuantitySelect and lineItem.quantityInformation and lineItem.stackable and nestingLevel < 1 %} aria-hidden="true"{% endif %}>
                     {{ 'checkout.cartHeaderQuantity'|trans|sw_sanitize }}
                 </div>
             {% endblock %}
@@ -55,6 +55,9 @@
                                            name="redirectParameters"
                                            value="{{ redirectParameters }}">
                                 {% endblock %}
+
+                                {# @deprecated tag:v6.7.0 - Unused variable selectQuantityThreshold will be removed without replacement #}
+                                {% set selectQuantityThreshold = 100 %}
 
                                 {% block component_line_item_quantity_select %}
                                     <fieldset>

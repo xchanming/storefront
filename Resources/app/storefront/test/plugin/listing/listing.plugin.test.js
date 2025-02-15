@@ -31,9 +31,7 @@ describe('ListingPlugin tests', () => {
             </div>
         `;
 
-        /** @deprecated tag:v6.7.0 - Remove the Feature init. ACCESSIBILITY_TWEAKS will become the default. */
         window.Feature = Feature;
-        window.Feature.init({ 'ACCESSIBILITY_TWEAKS': true });
 
         // mock listing plugins
         listingPlugin = new ListingPlugin(document.querySelector('[data-listing="true"]'));

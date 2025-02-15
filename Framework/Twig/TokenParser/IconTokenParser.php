@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Twig\TokenParser;
+namespace Shopware\Storefront\Framework\Twig\TokenParser;
 
-use Cicada\Core\Framework\Adapter\Twig\Node\SwInclude;
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Adapter\Twig\Node\SwInclude;
+use Shopware\Core\Framework\Log\Package;
 use Twig\Node\Expression\ArrayExpression;
 use Twig\Node\Expression\ConstantExpression;
 use Twig\Parser;

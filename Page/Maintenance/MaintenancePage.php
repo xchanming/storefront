@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Maintenance;
+namespace Shopware\Storefront\Page\Maintenance;
 
-use Cicada\Core\Content\Cms\CmsPageEntity;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Page\Page;
+use Shopware\Core\Content\Cms\CmsPageEntity;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Page\Page;
 
 #[Package('framework')]
 class MaintenancePage extends Page

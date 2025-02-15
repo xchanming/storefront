@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Twig;
+namespace Shopware\Storefront\Theme\Twig;
 
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Log\Package;
 
 #[Package('framework')]
 interface ThemeInheritanceBuilderInterface
 {
     /**
-     * Themes can define the inheritance order for templates. For example, you can define a theme that first loads the templates from your own theme, then from the plugins and finally from the Cicada Storefront theme.
+     * Themes can define the inheritance order for templates. For example, you can define a theme that first loads the templates from your own theme, then from the plugins and finally from the Shopware Storefront theme.
      * This Inheritance is built here correctly. The corresponding configuration takes place in the Resources\theme.json. This can look like the following:
      *
      * ```
@@ -22,7 +22,7 @@ interface ThemeInheritanceBuilderInterface
      *  }
      * ```
      *
-     * - @Storefront stands here for the Cicada Storefront theme
+     * - @Storefront stands here for the Shopware Storefront theme
      * - @SwagPayPal explicitly defines the order in which the PayPal plugin should be considered
      * - @Plugins is a wildcard for all plugins that are not explicitly specified.
      * - @MyNewTheme stands for your own theme, which should be inherited from Storefront.

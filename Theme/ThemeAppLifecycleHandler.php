@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme;
+namespace Shopware\Storefront\Theme;
 
-use Cicada\Core\Framework\App\Event\AppActivatedEvent;
-use Cicada\Core\Framework\App\Event\AppChangedEvent;
-use Cicada\Core\Framework\App\Event\AppDeactivatedEvent;
-use Cicada\Core\Framework\App\Event\AppUpdatedEvent;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\AbstractStorefrontPluginConfigurationFactory;
+use Shopware\Core\Framework\App\Event\AppActivatedEvent;
+use Shopware\Core\Framework\App\Event\AppChangedEvent;
+use Shopware\Core\Framework\App\Event\AppDeactivatedEvent;
+use Shopware\Core\Framework\App\Event\AppUpdatedEvent;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\AbstractStorefrontPluginConfigurationFactory;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**

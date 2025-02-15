@@ -38,9 +38,9 @@ describe('WishlistLocalStoragePlugin tests', () => {
     });
 
     test('LocalWishlistStoragePlugin methods test', () => {
-        window.salesChannelId = 'http://cicada.test';
+        window.salesChannelId = 'http://shopware.test';
         const key = wishlistStoragePlugin._getStorageKey();
-        expect(key).toEqual('wishlist-http://cicada.test');
+        expect(key).toEqual('wishlist-http://shopware.test');
 
         Storage.removeItem(key);
 
@@ -62,7 +62,7 @@ describe('WishlistLocalStoragePlugin tests', () => {
         window = Object.create(window);
         Object.defineProperty(window, 'location', {
             value: {
-                href: 'http://cicada.test',
+                href: 'http://shopware.test',
             },
             writable: true,
         });
@@ -76,10 +76,10 @@ describe('WishlistLocalStoragePlugin tests', () => {
             loginRedirectEventFired = true;
         });
 
-        wishlistStoragePlugin.add('PRODUCT_001', { afterLoginPath: 'http://cicada.test/login' });
+        wishlistStoragePlugin.add('PRODUCT_001', { afterLoginPath: 'http://shopware.test/login' });
 
         expect(loginRedirectEventFired).toBe(true);
-        expect(window.location.href).toBe('http://cicada.test/login');
+        expect(window.location.href).toBe('http://shopware.test/login');
     });
 
     test('LocalWishlistStoragePlugin clear wishlist storage on guest logout', () => {

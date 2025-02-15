@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Page;
+namespace Shopware\Storefront\Framework\Page;
 
-use Cicada\Core\Framework\DataAbstractionLayer\EntityCollection;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Sorting\FieldSorting;
-use Cicada\Core\Framework\Feature;
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Sorting\FieldSorting;
+use Shopware\Core\Framework\Feature;
+use Shopware\Core\Framework\Log\Package;
 
 /**
  * @template TEntityCollection of EntityCollection
@@ -39,7 +39,7 @@ class StorefrontSearchResult extends EntitySearchResult
     {
         Feature::triggerDeprecationOrThrow(
             'v6.7.0.0',
-            '\Cicada\Storefront\Framework\Page\StorefrontSearchResult will be removed use \Cicada\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult instead'
+            '\Shopware\Storefront\Framework\Page\StorefrontSearchResult will be removed use \Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult instead'
         );
 
         return $this->sortings;
@@ -52,7 +52,7 @@ class StorefrontSearchResult extends EntitySearchResult
     {
         Feature::triggerDeprecationOrThrow(
             'v6.7.0.0',
-            '\Cicada\Storefront\Framework\Page\StorefrontSearchResult will be removed use \Cicada\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult instead'
+            '\Shopware\Storefront\Framework\Page\StorefrontSearchResult will be removed use \Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult instead'
         );
 
         $this->sortings = $sortings;
@@ -62,7 +62,7 @@ class StorefrontSearchResult extends EntitySearchResult
     {
         Feature::triggerDeprecationOrThrow(
             'v6.7.0.0',
-            '\Cicada\Storefront\Framework\Page\StorefrontSearchResult will be removed use \Cicada\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult instead'
+            '\Shopware\Storefront\Framework\Page\StorefrontSearchResult will be removed use \Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult instead'
         );
 
         return $this->sorting;
@@ -72,7 +72,7 @@ class StorefrontSearchResult extends EntitySearchResult
     {
         Feature::triggerDeprecationOrThrow(
             'v6.7.0.0',
-            '\Cicada\Storefront\Framework\Page\StorefrontSearchResult will be removed use \Cicada\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult instead'
+            '\Shopware\Storefront\Framework\Page\StorefrontSearchResult will be removed use \Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult instead'
         );
 
         $this->sorting = $sorting;

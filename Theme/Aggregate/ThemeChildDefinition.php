@@ -1,15 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Aggregate;
+namespace Shopware\Storefront\Theme\Aggregate;
 
-use Cicada\Core\Framework\DataAbstractionLayer\Field\FkField;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\Flag\PrimaryKey;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
-use Cicada\Core\Framework\DataAbstractionLayer\Field\ManyToOneAssociationField;
-use Cicada\Core\Framework\DataAbstractionLayer\FieldCollection;
-use Cicada\Core\Framework\DataAbstractionLayer\MappingEntityDefinition;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\ThemeDefinition;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\FkField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\PrimaryKey;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\ManyToOneAssociationField;
+use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
+use Shopware\Core\Framework\DataAbstractionLayer\MappingEntityDefinition;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\ThemeDefinition;
 
 #[Package('framework')]
 class ThemeChildDefinition extends MappingEntityDefinition

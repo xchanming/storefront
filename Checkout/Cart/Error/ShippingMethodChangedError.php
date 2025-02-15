@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Checkout\Cart\Error;
+namespace Shopware\Storefront\Checkout\Cart\Error;
 
-use Cicada\Core\Checkout\Cart\Error\Error;
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Checkout\Cart\Error\Error;
+use Shopware\Core\Framework\Log\Package;
 
 #[Package('checkout')]
 class ShippingMethodChangedError extends Error

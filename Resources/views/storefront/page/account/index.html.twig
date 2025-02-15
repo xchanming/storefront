@@ -4,15 +4,13 @@
     {% block page_account_overview %}
         <div class="account-overview">
             {% block page_account_overview_shipping_warning %}
-                {% set defaultShippingAddress = context.customer.defaultShippingAddress %}
-                {% if defaultShippingAddress is not null %}
-                    {% set ableToShipToShippingCountry = context.customer.defaultShippingAddress.country.shippingAvailable %}
-                    {% if not ableToShipToShippingCountry %}
-                        {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
-                            type: 'warning',
-                            content: 'account.overviewNotAbleToShip'|trans|sw_sanitize
-                        } %}
-                    {% endif %}
+                {% set ableToShipToShippingCountry = context.customer.defaultShippingAddress.country.shippingAvailable %}
+
+                {% if not ableToShipToShippingCountry %}
+                    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                        type: 'warning',
+                        content: 'account.overviewNotAbleToShip'|trans|sw_sanitize
+                    } %}
                 {% endif %}
             {% endblock %}
 
@@ -58,7 +56,7 @@
                                                 {% if context.customer.title %}
                                                     {{ context.customer.title }}<br>
                                                 {% endif %}
-                                                {{ context.customer.name }}
+                                                {{ context.customer.firstName }} {{ context.customer.lastName }}
                                             </p>
                                         {% endblock %}
 

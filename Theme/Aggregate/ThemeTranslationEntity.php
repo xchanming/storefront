@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Aggregate;
+namespace Shopware\Storefront\Theme\Aggregate;
 
-use Cicada\Core\Framework\DataAbstractionLayer\EntityCustomFieldsTrait;
-use Cicada\Core\Framework\DataAbstractionLayer\TranslationEntity;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\ThemeEntity;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityCustomFieldsTrait;
+use Shopware\Core\Framework\DataAbstractionLayer\TranslationEntity;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\ThemeEntity;
 
 #[Package('framework')]
 class ThemeTranslationEntity extends TranslationEntity

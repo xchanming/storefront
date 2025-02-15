@@ -1,17 +1,17 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Controller;
+namespace Shopware\Storefront\Controller;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\Framework\Uuid\Uuid;
-use Cicada\Core\Framework\Validation\DataBag\RequestDataBag;
-use Cicada\Core\Framework\Validation\Exception\ConstraintViolationException;
-use Cicada\Core\System\SalesChannel\Context\SalesChannelContextService;
-use Cicada\Core\System\SalesChannel\SalesChannel\AbstractContextSwitchRoute;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Framework\Routing\RequestTransformer;
-use Cicada\Storefront\Framework\Routing\Router;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\Framework\Uuid\Uuid;
+use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
+use Shopware\Core\Framework\Validation\Exception\ConstraintViolationException;
+use Shopware\Core\System\SalesChannel\Context\SalesChannelContextService;
+use Shopware\Core\System\SalesChannel\SalesChannel\AbstractContextSwitchRoute;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Framework\Routing\RequestTransformer;
+use Shopware\Storefront\Framework\Routing\Router;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -90,13 +90,13 @@ class ContextController extends StorefrontController
         /*
          * possible domains
          *
-         * http://cicada.de/de
-         * http://cicada.de/en
-         * http://cicada.de/fr
+         * http://shopware.de/de
+         * http://shopware.de/en
+         * http://shopware.de/fr
          *
-         * http://cicada.fr
+         * http://shopware.fr
          * http://xchanming.com
-         * http://cicada.de
+         * http://shopware.de
          *
          * http://color.com
          * http://farben.de
@@ -105,12 +105,12 @@ class ContextController extends StorefrontController
          * http://localhost/development/public/de
          * http://localhost/development/public/en
          * http://localhost/development/public/fr
-         * http://localhost/development/public/zh-CN
+         * http://localhost/development/public/de-DE
          *
          * http://localhost:8080
          * http://localhost:8080/en
          * http://localhost:8080/fr
-         * http://localhost:8080/zh-CN
+         * http://localhost:8080/de-DE
          */
         $parsedUrl = parse_url($newTokenResponse->getRedirectUrl());
 

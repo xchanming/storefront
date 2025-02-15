@@ -1,10 +1,4 @@
-{# @deprecated tag:v6.7.0 - Fallback will be removed, add footer directly #}
-{% if not feature('cache_rework') and not footer is defined and page is defined %}
-    {% set footer = page.footer %}
-{% endif %}
-
-{% set cmsPath = 'frontend.cms.page.full' %}
-
+{% set cmsPath = feature('ACCESSIBILITY_TWEAKS') ? 'frontend.cms.page.full' : 'frontend.cms.page' %}
 
 {% block layout_footer_inner_container %}
     <div class="container">
@@ -54,7 +48,7 @@
                                     </p>
                                 </div>
                                 <div class="footer-contact-form">
-                                    {% set contactSnippetKey = 'footer.serviceContactTextPage'  %}
+                                    {% set contactSnippetKey = feature('ACCESSIBILITY_TWEAKS') ? 'footer.serviceContactTextPage' : 'footer.serviceContactText' %}
 
                                     {{ contactSnippetKey|trans({
                                         '%url%': path(cmsPath, { id: config('core.basicInformation.contactPage') })
@@ -216,9 +210,29 @@
                 </div>
             {% endblock %}
 
+            {% block layout_footer_vat %}
+                {% if showVatNotice or showVatNotice is not defined %}
+                    <div class="footer-vat">
+                        {%- if feature('ACCESSIBILITY_TWEAKS') -%}
+                            {% set shippingSnippetKey = context.taxState == 'gross' ? 'footer.includeVatTextPage' : 'footer.excludeVatTextPage' %}
+                        {%- else -%}
+                            {% set shippingSnippetKey = context.taxState == 'gross' ? 'footer.includeVatText' : 'footer.excludeVatText' %}
+                        {%- endif -%}
+
+                        <p>
+                            {# @deprecated tag:v6.7.0 - The %star% translation parameter will be removed. Translation text will no longer contain the asterisk/star. #}
+                            {{ shippingSnippetKey|trans({
+                                '%url%': path(cmsPath, { id: config('core.basicInformation.shippingPaymentInfoPage') }),
+                                '%star%': feature('ACCESSIBILITY_TWEAKS') ? '' : '* '
+                            })|raw }}
+                        </p>
+                    </div>
+                {% endif %}
+            {% endblock %}
+
             {% block layout_footer_copyright %}
                 <div class="footer-copyright">
-                    {% sw_icon 'heart' style { size:'xs' } %}
+                    {% sw_icon 'shopware' style { size:'xs' } %}
                     {{ 'footer.copyrightInfo'|trans|sw_sanitize }}
                 </div>
             {% endblock %}

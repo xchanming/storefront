@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\DependencyInjection;
+namespace Shopware\Storefront\DependencyInjection;
 
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Log\Package;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 

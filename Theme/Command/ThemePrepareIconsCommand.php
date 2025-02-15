@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Command;
+namespace Shopware\Storefront\Theme\Command;
 
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Log\Package;
 use SVG\Nodes\Structures\SVGDefs;
 use SVG\Nodes\Structures\SVGUse;
 use SVG\Nodes\SVGNode;

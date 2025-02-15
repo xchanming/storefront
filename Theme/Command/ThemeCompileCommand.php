@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Command;
+namespace Shopware\Storefront\Theme\Command;
 
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\ConfigLoader\AbstractAvailableThemeProvider;
-use Cicada\Storefront\Theme\ThemeService;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\ConfigLoader\AbstractAvailableThemeProvider;
+use Shopware\Storefront\Theme\ThemeService;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;

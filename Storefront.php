@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront;
+namespace Shopware\Storefront;
 
-use Cicada\Core\Framework\Bundle;
-use Cicada\Core\Framework\Feature;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\DependencyInjection\DisableTemplateCachePass;
-use Cicada\Storefront\DependencyInjection\StorefrontMigrationReplacementCompilerPass;
-use Cicada\Storefront\Framework\ThemeInterface;
+use Shopware\Core\Framework\Bundle;
+use Shopware\Core\Framework\Feature;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\DependencyInjection\DisableTemplateCachePass;
+use Shopware\Storefront\DependencyInjection\StorefrontMigrationReplacementCompilerPass;
+use Shopware\Storefront\Framework\ThemeInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;

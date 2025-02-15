@@ -4,6 +4,7 @@
     {% set blockId = block.id %}
 
     <div class="cms-element-{{ element.type }}{% if sliderConfig.displayMode.value == "standard" and sliderConfig.verticalAlign.value %} has-vertical-alignment{% endif %}">
+        {# @todo NEXT-40267 - Re-implement autoplay, when tiny-slider solution has been replaced #}
         {% set baseSliderOptions = {
             slider: {
                 controls: sliderConfig.navigationArrows.value in visibleValues,

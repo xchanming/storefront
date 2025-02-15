@@ -1,22 +1,22 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Controller;
+namespace Shopware\Storefront\Controller;
 
-use Cicada\Core\Checkout\Customer\CustomerEntity;
-use Cicada\Core\Checkout\Customer\SalesChannel\AbstractChangeCustomerProfileRoute;
-use Cicada\Core\Checkout\Customer\SalesChannel\AbstractChangeEmailRoute;
-use Cicada\Core\Checkout\Customer\SalesChannel\AbstractChangePasswordRoute;
-use Cicada\Core\Checkout\Customer\SalesChannel\AbstractDeleteCustomerRoute;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\Framework\Validation\DataBag\RequestDataBag;
-use Cicada\Core\Framework\Validation\Exception\ConstraintViolationException;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Page\Account\Overview\AccountOverviewPageLoadedHook;
-use Cicada\Storefront\Page\Account\Overview\AccountOverviewPageLoader;
-use Cicada\Storefront\Page\Account\Profile\AccountProfilePageLoadedHook;
-use Cicada\Storefront\Page\Account\Profile\AccountProfilePageLoader;
 use Psr\Log\LoggerInterface;
+use Shopware\Core\Checkout\Customer\CustomerEntity;
+use Shopware\Core\Checkout\Customer\SalesChannel\AbstractChangeCustomerProfileRoute;
+use Shopware\Core\Checkout\Customer\SalesChannel\AbstractChangeEmailRoute;
+use Shopware\Core\Checkout\Customer\SalesChannel\AbstractChangePasswordRoute;
+use Shopware\Core\Checkout\Customer\SalesChannel\AbstractDeleteCustomerRoute;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
+use Shopware\Core\Framework\Validation\Exception\ConstraintViolationException;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Page\Account\Overview\AccountOverviewPageLoadedHook;
+use Shopware\Storefront\Page\Account\Overview\AccountOverviewPageLoader;
+use Shopware\Storefront\Page\Account\Profile\AccountProfilePageLoadedHook;
+use Shopware\Storefront\Page\Account\Profile\AccountProfilePageLoader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;

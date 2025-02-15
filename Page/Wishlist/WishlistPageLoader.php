@@ -1,23 +1,23 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Wishlist;
+namespace Shopware\Storefront\Page\Wishlist;
 
-use Cicada\Core\Checkout\Cart\Exception\CustomerNotLoggedInException;
-use Cicada\Core\Checkout\Customer\Aggregate\CustomerWishlist\CustomerWishlistEntity;
-use Cicada\Core\Checkout\Customer\CustomerEntity;
-use Cicada\Core\Checkout\Customer\Exception\CustomerWishlistNotFoundException;
-use Cicada\Core\Checkout\Customer\SalesChannel\AbstractLoadWishlistRoute;
-use Cicada\Core\Checkout\Customer\SalesChannel\LoadWishlistRouteResponse;
-use Cicada\Core\Content\Category\Exception\CategoryNotFoundException;
-use Cicada\Core\Content\Product\ProductCollection;
-use Cicada\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Sorting\FieldSorting;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Page\GenericPageLoaderInterface;
+use Shopware\Core\Checkout\Cart\Exception\CustomerNotLoggedInException;
+use Shopware\Core\Checkout\Customer\Aggregate\CustomerWishlist\CustomerWishlistEntity;
+use Shopware\Core\Checkout\Customer\CustomerEntity;
+use Shopware\Core\Checkout\Customer\Exception\CustomerWishlistNotFoundException;
+use Shopware\Core\Checkout\Customer\SalesChannel\AbstractLoadWishlistRoute;
+use Shopware\Core\Checkout\Customer\SalesChannel\LoadWishlistRouteResponse;
+use Shopware\Core\Content\Category\Exception\CategoryNotFoundException;
+use Shopware\Core\Content\Product\ProductCollection;
+use Shopware\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\EntitySearchResult;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Sorting\FieldSorting;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Page\GenericPageLoaderInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 

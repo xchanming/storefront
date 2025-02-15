@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Media;
+namespace Shopware\Storefront\Framework\Media;
 
-use Cicada\Core\Content\Media\File\FileSaver;
-use Cicada\Core\Content\Media\File\MediaFile;
-use Cicada\Core\Content\Media\MediaException;
-use Cicada\Core\Content\Media\MediaService;
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Uuid\Uuid;
-use Cicada\Storefront\Framework\StorefrontFrameworkException;
+use Shopware\Core\Content\Media\File\FileSaver;
+use Shopware\Core\Content\Media\File\MediaFile;
+use Shopware\Core\Content\Media\MediaException;
+use Shopware\Core\Content\Media\MediaService;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Uuid\Uuid;
+use Shopware\Storefront\Framework\StorefrontFrameworkException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-#[Package('buyers-experience')]
+#[Package('discovery')]
 class StorefrontMediaUploader
 {
     /**

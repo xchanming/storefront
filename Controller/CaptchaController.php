@@ -1,13 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Controller;
+namespace Shopware\Storefront\Controller;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Framework\Captcha\AbstractCaptcha;
-use Cicada\Storefront\Framework\Captcha\BasicCaptcha;
-use Cicada\Storefront\Pagelet\Captcha\AbstractBasicCaptchaPageletLoader;
+use Shopware\Core\Framework\Feature;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\Framework\Validation\Exception\ConstraintViolationException;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Framework\Captcha\AbstractCaptcha;
+use Shopware\Storefront\Framework\Captcha\BasicCaptcha;
+use Shopware\Storefront\Pagelet\Captcha\AbstractBasicCaptchaPageletLoader;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -59,10 +61,27 @@ class CaptchaController extends StorefrontController
             return new JsonResponse(['session' => $fakeSession]);
         }
 
-        $response[] = [
-            'type' => 'danger',
-            'error' => 'invalid_captcha',
-        ];
+        $violations = $this->basicCaptcha->getViolations();
+        $formViolations = new ConstraintViolationException($violations, []);
+
+        if (Feature::isActive('ACCESSIBILITY_TWEAKS')) {
+            $response[] = [
+                'type' => 'danger',
+                'error' => 'invalid_captcha',
+            ];
+        } else {
+            $response[] = [
+                'type' => 'danger',
+                'error' => 'invalid_captcha',
+                /**
+                 * @deprecated tag:v6.7.0 - Storefront implementation changed. The response no longer needs the rendered input.
+                 */
+                'input' => $this->renderView('@Storefront/storefront/component/captcha/basicCaptchaFields.html.twig', [
+                    'formId' => $request->get('formId'),
+                    'formViolations' => $formViolations,
+                ]),
+            ];
+        }
 
         return new JsonResponse($response);
     }

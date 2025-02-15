@@ -4,11 +4,8 @@
 
 import Plugin from 'src/plugin-system/plugin.class';
 import HttpClient from 'src/service/http-client.service';
-import Iterator from 'src/helper/iterator.helper';
 import DomAccess from 'src/helper/dom-access.helper';
-import querystring from 'query-string';
 import ElementReplaceHelper from 'src/helper/element-replace.helper';
-import HistoryUtil from 'src/utility/history/history.util';
 import Debouncer from 'src/helper/debouncer.helper';
 
 export default class ListingPlugin extends Plugin {
@@ -48,7 +45,7 @@ export default class ListingPlugin extends Plugin {
 
         this.httpClient = new HttpClient();
 
-        this._urlFilterParams = querystring.parse(HistoryUtil.getSearch());
+        this._urlFilterParams = Object.fromEntries(new URLSearchParams(window.location.search).entries());
 
         this._filterPanel = DomAccess.querySelector(document, this.options.filterPanelSelector, false);
         this._filterPanelActive = !!this._filterPanel;
@@ -204,14 +201,14 @@ export default class ListingPlugin extends Plugin {
             mapped[paramKey] = paramValue;
         });
 
-        let query = querystring.stringify(mapped);
+        let query = new URLSearchParams(mapped).toString();
         this.sendDataRequest(query);
 
         delete mapped['slots'];
         delete mapped['no-aggregations'];
         delete mapped['reduce-aggregations'];
         delete mapped['only-aggregations'];
-        query = querystring.stringify(mapped);
+        query = new URLSearchParams(mapped).toString();
 
         if (pushHistory) {
             this._updateHistory(query);
@@ -248,7 +245,7 @@ export default class ListingPlugin extends Plugin {
     }
 
     _updateHistory(query) {
-        HistoryUtil.push(HistoryUtil.getLocation().pathname, query, {});
+        window.history.pushState({}, '', `${window.location.pathname}?${query}`);
     }
 
     /**
@@ -270,6 +267,7 @@ export default class ListingPlugin extends Plugin {
         this.activeFilterContainer.innerHTML = labelHtml;
 
         const resetButtons = DomAccess.querySelectorAll(this.activeFilterContainer, this.options.activeFilterLabelSelector, false);
+
         if (labelHtml.length) {
             this._registerLabelEvents(resetButtons);
             this.createResetAllButton();
@@ -277,7 +275,7 @@ export default class ListingPlugin extends Plugin {
     }
 
     _registerLabelEvents(resetButtons) {
-        Iterator.iterate(resetButtons, (label) => {
+        resetButtons.forEach((label) => {
             label.addEventListener('click', () => this.resetFilter(label));
         });
     }
@@ -336,15 +334,15 @@ export default class ListingPlugin extends Plugin {
      */
     getLabelTemplate(label) {
         return `
-            <button
-                class="${this.options.activeFilterLabelClasses}"
-                data-id="${label.id}"
-                aria-label="${this.options.snippets.removeFilterAriaLabel}: ${label.label}">
-                ${this.getLabelPreviewTemplate(label)}
-                ${label.label}
-                <span aria-hidden="true" class="ms-1 fs-4">&times;</span>
-            </button>
-            `;
+        <button
+            class="${this.options.activeFilterLabelClasses}"
+            data-id="${label.id}"
+            aria-label="${this.options.snippets.removeFilterAriaLabel}: ${label.label}">
+            ${this.getLabelPreviewTemplate(label)}
+            ${label.label}
+            <span aria-hidden="true" class="ms-1 fs-4">&times;</span>
+        </button>
+        `;
     }
 
     getLabelPreviewTemplate(label) {
@@ -450,8 +448,9 @@ export default class ListingPlugin extends Plugin {
         this._allFiltersInitializedDebounce = () => {};
 
         const filterParams = this._getDisabledFiltersParamsFromParams(mapped);
+        const paramsString = new URLSearchParams(filterParams).toString();
 
-        this.httpClient.get(`${this.options.filterUrl}?${querystring.stringify(filterParams)}`, (response) => {
+        this.httpClient.get(`${this.options.filterUrl}?${paramsString}`, (response) => {
             const filter =  JSON.parse(response);
 
             this._registry.forEach((item) => {

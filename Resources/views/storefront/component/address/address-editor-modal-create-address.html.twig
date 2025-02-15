@@ -1,14 +1,18 @@
+{# @deprecated tag:v6.7.0 - File will be removed as it is no longer loaded by default. #}
+{# Extend `src/Storefront/Resources/views/storefront/component/address/address-manager-modal-create-address.html.twig` instead #}
+
 {% block component_address_address_editor_modal_create_address %}
+    {% if not feature('v6.7.0.0') %}
+        <div
+            id="{{ typePrefix }}{% if address %}address-create-edit{% else %}address-create-new{% endif %}"
+            class="collapse"
+            data-bs-parent="#{{ typePrefix }}addressEditorAccordion"
+        >
+    {% endif %}
     {% block component_address_address_editor_modal_create_address_wrapper %}
-
-        {% set mode = address ? "-edit" : "-new" %}
-        {% set formAjaxSubmitOptions = {
-            replaceSelectors: "##{typePrefix}address-create#{mode}" ,
-        } %}
-
-        <div class="card address-editor-create-address-wrapper address-editor-wrapper-{{ mode }}">
+        <div class="card address-editor-create-address-wrapper address-editor-create-address-{{ address ? "edit" : "new" }}-wrapper">
             {% block component_address_address_editor_modal_create_address_title %}
-                <div class="card-title create-address-title border-0">
+                <div class="card-title create-address-title{% if feature('v6.7.0.0') %} border-0{% endif %}">
                     {% block component_address_address_editor_modal_create_address_title_text %}
                         {% if address %}
                             {{ "account.addressEditWelcome"|trans|sw_sanitize }}
@@ -25,8 +29,10 @@
                         <form method="post"
                               action="{{ path('frontend.account.addressbook') }}"
                               class="js-close-address-editor"
+                              {# @deprecated tag:v6.7.0 - Form validation plugin is replaced by form handler plugin. #}
+                              {% if feature('ACCESSIBILITY_TWEAKS') %}data-form-handler="true"{% endif %}
+                              {% if not feature('ACCESSIBILITY_TWEAKS') %}data-form-validation="true"{% endif %}
                               data-form-ajax-submit="true"
-                              data-form-handler="true"
                               data-form-ajax-submit-options="{{ formAjaxSubmitOptions|json_encode }}">
 
                             {% block component_address_address_editor_modal_create_address_form_hidden_inputs %}
@@ -59,7 +65,7 @@
                                     'showFormCompany': true,
                                     'showNoShippingPostfix': true,
                                     'showVatIdField': changeBilling and context.customer and context.customer.guest ? true : false,
-                                    scopeElementSelector: '.address-editor-wrapper-'~ mode,
+                                    scopeElementSelector: '.address-editor-create-address-' ~ (address ? "edit" : "new") ~ '-wrapper',
                                 } %}
                             {% endblock %}
 
@@ -72,18 +78,20 @@
                             {% endblock %}
 
                             {% block component_address_address_editor_modal_create_address_form_actions %}
-                                <div class="address-form-actions text-end">
-                                    {% block component_address_address_editor_modal_create_address_form_actions_cancel %}
-                                        <button
-                                            type="button"
-                                            class="btn btn-light"
-                                            title="{{ "global.default.cancel"|trans|sw_sanitize }}"
-                                            data-bs-toggle="collapse"
-                                            data-bs-target="#{{ typePrefix }}address-list"
-                                        >
-                                            {{ "global.default.cancel"|trans|sw_sanitize }}
-                                        </button>
-                                    {% endblock %}
+                                <div class="address-form-actions{% if feature('v6.7.0.0') %} text-end{% endif %}">
+                                    {% if feature('v6.7.0.0') %}
+                                        {% block component_address_address_editor_modal_create_address_form_actions_cancel %}
+                                            <button
+                                                type="button"
+                                                class="btn btn-light"
+                                                title="{{ "global.default.cancel"|trans|sw_sanitize }}"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#{{ typePrefix }}address-list"
+                                            >
+                                                {{ "global.default.cancel"|trans|sw_sanitize }}
+                                            </button>
+                                        {% endblock %}
+                                    {% endif %}
                                     {% block component_address_address_editor_modal_create_address_form_actions_submit %}
                                         <button
                                             type="submit"
@@ -103,4 +111,7 @@
             {% endblock %}
         </div>
     {% endblock %}
+    {% if not feature('v6.7.0.0') %}
+        </div>
+    {% endif %}
 {% endblock %}

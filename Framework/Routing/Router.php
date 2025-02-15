@@ -1,9 +1,9 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Routing;
+namespace Shopware\Storefront\Framework\Routing;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\PlatformRequest;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\PlatformRequest;
 use Symfony\Bundle\FrameworkBundle\Routing\Router as SymfonyRouter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -122,14 +122,14 @@ class Router implements RouterInterface, RequestMatcherInterface, WarmableInterf
                 break;
 
             case self::RELATIVE_PATH:
-                // remove base path from generated url (/cicada/public or /)
+                // remove base path from generated url (/shopware/public or /)
                 $generated = $this->removePrefix(
                     $this->decorated->generate($name, $parameters, self::RELATIVE_PATH),
                     $basePath
                 );
 
                 // url contains the base path and the base url
-                // base url /cicada/public/de
+                // base url /shopware/public/de
                 $rewrite = ltrim($salesChannelBaseUrl, '/') . $generated;
 
                 break;

@@ -6,7 +6,7 @@
                     {% block component_product_properties_table %}
                         <table class="table table-striped product-detail-properties-table">
                             <tbody>
-                            {# @var product \Cicada\Core\Content\Product\SalesChannel\SalesChannelProductEntity #}
+                            {# @var product \Shopware\Core\Content\Product\SalesChannel\SalesChannelProductEntity #}
                             {% for group in product.sortedProperties %}
                                 {% block component_product_properties_table_row %}
                                     <tr class="properties-row">

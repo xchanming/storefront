@@ -1,10 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Twig;
+namespace Shopware\Storefront\Theme\Twig;
 
-use Cicada\Core\Framework\Adapter\Twig\NamespaceHierarchy\TemplateNamespaceHierarchyBuilderInterface;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\SalesChannelRequest;
+use Shopware\Core\Checkout\Document\Event\DocumentTemplateRendererParameterEvent;
+use Shopware\Core\Framework\Adapter\Twig\NamespaceHierarchy\TemplateNamespaceHierarchyBuilderInterface;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\SalesChannelRequest;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Theme\DatabaseSalesChannelThemeLoader;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
@@ -27,6 +30,7 @@ class ThemeNamespaceHierarchyBuilder implements TemplateNamespaceHierarchyBuilde
      */
     public function __construct(
         private readonly ThemeInheritanceBuilderInterface $themeInheritanceBuilder,
+        private readonly ?DatabaseSalesChannelThemeLoader $salesChannelThemeLoader = null
     ) {
     }
 
@@ -38,6 +42,7 @@ class ThemeNamespaceHierarchyBuilder implements TemplateNamespaceHierarchyBuilde
         return [
             KernelEvents::REQUEST => 'requestEvent',
             KernelEvents::EXCEPTION => 'requestEvent',
+            DocumentTemplateRendererParameterEvent::class => 'onDocumentRendering',
         ];
     }
 
@@ -46,6 +51,31 @@ class ThemeNamespaceHierarchyBuilder implements TemplateNamespaceHierarchyBuilde
         $request = $event->getRequest();
 
         $this->themes = $this->detectedThemes($request);
+    }
+
+    public function onDocumentRendering(DocumentTemplateRendererParameterEvent $event): void
+    {
+        $parameters = $event->getParameters();
+
+        if (!\array_key_exists('context', $parameters)) {
+            return;
+        }
+
+        /** @var SalesChannelContext $context */
+        $context = $parameters['context'];
+
+        $themes = [];
+
+        $theme = $this->salesChannelThemeLoader?->load($context->getSalesChannelId());
+
+        if (empty($theme) || !isset($theme[0])) {
+            return;
+        }
+
+        $themes[$theme[0]] = true;
+        $themes['Storefront'] = true;
+
+        $this->themes = $themes;
     }
 
     public function buildNamespaceHierarchy(array $namespaceHierarchy): array

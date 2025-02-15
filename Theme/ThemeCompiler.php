@@ -1,28 +1,29 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme;
+namespace Shopware\Storefront\Theme;
 
-use Cicada\Core\Framework\Adapter\Cache\CacheInvalidator;
-use Cicada\Core\Framework\Adapter\Filesystem\Plugin\CopyBatch;
-use Cicada\Core\Framework\Adapter\Filesystem\Plugin\CopyBatchInput;
-use Cicada\Core\Framework\Adapter\Filesystem\Plugin\CopyBatchInputFactory;
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\Feature;
-use Cicada\Core\Framework\Uuid\Uuid;
-use Cicada\Storefront\Event\ThemeCompilerConcatenatedStylesEvent;
-use Cicada\Storefront\Theme\Event\ThemeCompilerEnrichScssVariablesEvent;
-use Cicada\Storefront\Theme\Exception\ThemeException;
-use Cicada\Storefront\Theme\Message\DeleteThemeFilesMessage;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\File;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\FileCollection;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfiguration;
-use Cicada\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfigurationCollection;
-use Cicada\Storefront\Theme\Validator\SCSSValidator;
+use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
 use League\Flysystem\UnableToDeleteDirectory;
 use Padaliyajay\PHPAutoprefixer\Autoprefixer;
 use Psr\Log\LoggerInterface;
 use ScssPhp\ScssPhp\OutputStyle;
+use Shopware\Core\Framework\Adapter\Cache\CacheInvalidator;
+use Shopware\Core\Framework\Adapter\Filesystem\Plugin\CopyBatch;
+use Shopware\Core\Framework\Adapter\Filesystem\Plugin\CopyBatchInput;
+use Shopware\Core\Framework\Adapter\Filesystem\Plugin\CopyBatchInputFactory;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\Feature;
+use Shopware\Core\Framework\Uuid\Uuid;
+use Shopware\Storefront\Event\ThemeCompilerConcatenatedStylesEvent;
+use Shopware\Storefront\Theme\Event\ThemeCompilerEnrichScssVariablesEvent;
+use Shopware\Storefront\Theme\Exception\ThemeException;
+use Shopware\Storefront\Theme\Message\DeleteThemeFilesMessage;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\File;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\FileCollection;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfiguration;
+use Shopware\Storefront\Theme\StorefrontPluginConfiguration\StorefrontPluginConfigurationCollection;
+use Shopware\Storefront\Theme\Validator\SCSSValidator;
 use Symfony\Component\Asset\Package;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Finder\Exception\DirectoryNotFoundException;
@@ -30,7 +31,7 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Messenger\MessageBusInterface;
 use Symfony\Component\Messenger\Stamp\DelayStamp;
 
-#[\Cicada\Core\Framework\Log\Package('framework')]
+#[\Shopware\Core\Framework\Log\Package('framework')]
 class ThemeCompiler implements ThemeCompilerInterface
 {
     /**
@@ -143,19 +144,9 @@ class ThemeCompiler implements ThemeCompilerInterface
             );
         }
 
-        if (Feature::isActive('cache_rework')) {
-            $this->cacheInvalidator->invalidate([
-                CachedResolvedConfigLoader::buildName($themeId),
-            ]);
-
-            return;
-        }
-
-        // Reset cache buster state for improving performance in getMetadata
         $this->cacheInvalidator->invalidate([
-            'theme-metaData',
-            'theme_scripts_' . $themePrefix,
-        ], true);
+            CachedResolvedConfigLoader::buildName($themeId),
+        ]);
     }
 
     /**
@@ -398,17 +389,26 @@ class ThemeCompiler implements ThemeCompilerInterface
     }
 
     /**
-     * @param array<string, string|int> $variables
+     * Creates the strings that will be written to the SCSS file.
+     * If variables have no or nullish value they will be written as "null" in SCSS.
+     *
+     * @param array<string, string|int|null> $variables
      *
      * @return array<string>
      */
     private function formatVariables(array $variables): array
     {
-        return array_map(fn ($value, $key) => \sprintf('$%s: %s;', $key, !empty($value) ? $value : 0), $variables, array_keys($variables));
+        return array_map(fn ($value, $key) => \sprintf(
+            '$%s: %s;',
+            $key,
+            isset($value) && $value !== '' ? $value : 'null'
+        ), $variables, array_keys($variables));
     }
 
     /**
      * @param array{fields?: array{value: string|array<mixed>|null, scss?: bool, type: string}[]} $config
+     *
+     * @throws FilesystemException
      */
     private function dumpVariables(array $config, string $themeId, string $salesChannelId, Context $context): string
     {
@@ -430,7 +430,8 @@ class ThemeCompiler implements ThemeCompilerInterface
             }
 
             if (!\array_key_exists('value', $data)) {
-                $variables[$key] = 0;
+                // If a variable does not exist, it should still be written with a null value.
+                $variables[$key] = null;
                 continue;
             }
 

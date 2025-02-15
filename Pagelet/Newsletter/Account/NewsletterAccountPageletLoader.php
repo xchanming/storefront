@@ -1,20 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Pagelet\Newsletter\Account;
+namespace Shopware\Storefront\Pagelet\Newsletter\Account;
 
-use Cicada\Core\Checkout\Customer\CustomerEntity;
-use Cicada\Core\Checkout\Customer\SalesChannel\AbstractAccountNewsletterRecipientRoute;
-use Cicada\Core\Content\Newsletter\SalesChannel\AbstractNewsletterSubscribeRoute;
-use Cicada\Core\Content\Newsletter\SalesChannel\AbstractNewsletterUnsubscribeRoute;
-use Cicada\Core\Content\Newsletter\SalesChannel\NewsletterSubscribeRoute;
-use Cicada\Core\Framework\Adapter\Translation\AbstractTranslator;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Validation\DataBag\RequestDataBag;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Core\System\SystemConfig\SystemConfigService;
-use Cicada\Storefront\Event\RouteRequest\AccountNewsletterRecipientRouteRequestEvent;
-use Cicada\Storefront\Framework\Routing\RequestTransformer;
+use Shopware\Core\Checkout\Customer\CustomerEntity;
+use Shopware\Core\Checkout\Customer\SalesChannel\AbstractAccountNewsletterRecipientRoute;
+use Shopware\Core\Content\Newsletter\SalesChannel\AbstractNewsletterSubscribeRoute;
+use Shopware\Core\Content\Newsletter\SalesChannel\AbstractNewsletterUnsubscribeRoute;
+use Shopware\Core\Content\Newsletter\SalesChannel\NewsletterSubscribeRoute;
+use Shopware\Core\Framework\Adapter\Translation\AbstractTranslator;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\System\SystemConfig\SystemConfigService;
+use Shopware\Storefront\Event\RouteRequest\AccountNewsletterRecipientRouteRequestEvent;
+use Shopware\Storefront\Framework\Routing\RequestTransformer;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -213,7 +213,8 @@ class NewsletterAccountPageletLoader
         $dataBag->set('email', $customer->getEmail());
         $dataBag->set('salutationId', $customer->getSalutationId());
         $dataBag->set('title', $customer->getTitle());
-        $dataBag->set('name', $customer->getName());
+        $dataBag->set('firstName', $customer->getName());
+        $dataBag->set('lastName', $customer->getNickname());
         $dataBag->set(
             'zipCode',
             $customer->getDefaultShippingAddress() ? $customer->getDefaultShippingAddress()->getZipcode() : ''

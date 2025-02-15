@@ -4,7 +4,7 @@ import './component/sw-settings-storefront-configuration';
 /**
  * @sw-package framework
  */
-Cicada.Module.register('sw-settings-storefront', {
+Shopware.Module.register('sw-settings-storefront', {
     type: 'core',
     name: 'sw-settings-storefront',
     title: 'sw-settings-storefront.general.mainMenuItemGeneral',

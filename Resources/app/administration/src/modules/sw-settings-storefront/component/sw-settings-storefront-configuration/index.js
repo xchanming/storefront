@@ -4,7 +4,7 @@ import './sw-settings-storefront-configuration.scss';
 /**
  * @sw-package framework
  */
-Cicada.Component.register('sw-settings-storefront-configuration', {
+Shopware.Component.register('sw-settings-storefront-configuration', {
     template,
 
     inject: ['feature'],

@@ -1,40 +1,40 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Test\Page;
+namespace Shopware\Storefront\Test\Page;
 
-use Cicada\Core\Checkout\Cart\CartRuleLoader;
-use Cicada\Core\Checkout\Cart\LineItem\LineItem;
-use Cicada\Core\Checkout\Cart\SalesChannel\CartService;
-use Cicada\Core\Checkout\Customer\CustomerCollection;
-use Cicada\Core\Checkout\Customer\CustomerEntity;
-use Cicada\Core\Content\Product\Aggregate\ProductVisibility\ProductVisibilityDefinition;
-use Cicada\Core\Content\Product\ProductCollection;
-use Cicada\Core\Content\Product\ProductEntity;
-use Cicada\Core\Defaults;
-use Cicada\Core\Framework\Api\Util\AccessKeyHelper;
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\DataAbstractionLayer\EntityRepository;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\Framework\Struct\Struct;
-use Cicada\Core\Framework\Test\TestCaseBase\TaxAddToSalesChannelTestBehaviour;
-use Cicada\Core\Framework\Uuid\Uuid;
-use Cicada\Core\Framework\Validation\DataBag\RequestDataBag;
-use Cicada\Core\System\SalesChannel\Context\SalesChannelContextFactory;
-use Cicada\Core\System\SalesChannel\Context\SalesChannelContextService;
-use Cicada\Core\System\SalesChannel\Entity\SalesChannelRepository;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Core\Test\TestDefaults;
-use Cicada\Storefront\Page\PageLoadedEvent;
-use Cicada\Storefront\Pagelet\PageletLoadedEvent;
-use Cicada\Tests\Integration\Storefront\Page\StorefrontPageTestConstants;
 use PHPUnit\Framework\TestCase;
+use Shopware\Core\Checkout\Cart\CartRuleLoader;
+use Shopware\Core\Checkout\Cart\LineItem\LineItem;
+use Shopware\Core\Checkout\Cart\SalesChannel\CartService;
+use Shopware\Core\Checkout\Customer\CustomerCollection;
+use Shopware\Core\Checkout\Customer\CustomerEntity;
+use Shopware\Core\Content\Product\Aggregate\ProductVisibility\ProductVisibilityDefinition;
+use Shopware\Core\Content\Product\ProductCollection;
+use Shopware\Core\Content\Product\ProductEntity;
+use Shopware\Core\Defaults;
+use Shopware\Core\Framework\Api\Util\AccessKeyHelper;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\Framework\Struct\Struct;
+use Shopware\Core\Framework\Test\TestCaseBase\TaxAddToSalesChannelTestBehaviour;
+use Shopware\Core\Framework\Uuid\Uuid;
+use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
+use Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory;
+use Shopware\Core\System\SalesChannel\Context\SalesChannelContextService;
+use Shopware\Core\System\SalesChannel\Entity\SalesChannelRepository;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\Test\TestDefaults;
+use Shopware\Storefront\Page\PageLoadedEvent;
+use Shopware\Storefront\Pagelet\PageletLoadedEvent;
+use Shopware\Tests\Integration\Storefront\Page\StorefrontPageTestConstants;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\EventDispatcher\Event;
 
 /**
- * @internal
+ * @deprecated tag:v6.7.0 - reason:becomes-internal - Will be internal in v6.7.0
  */
 trait StorefrontPageTestBehaviour
 {
@@ -183,7 +183,7 @@ trait StorefrontPageTestBehaviour
         $paymentMethodId = $this->getValidPaymentMethodId();
         $shippingMethodId = $this->getAvailableShippingMethod()->getId();
         $countryId = $this->getValidCountryId();
-        $snippetSetId = $this->getSnippetSetIdForLocale('zh-CN');
+        $snippetSetId = $this->getSnippetSetIdForLocale('en-GB');
         $data = [
             'typeId' => Defaults::SALES_CHANNEL_TYPE_STOREFRONT,
             'name' => 'store front',
@@ -281,20 +281,20 @@ trait StorefrontPageTestBehaviour
             'salesChannelId' => TestDefaults::SALES_CHANNEL,
             'defaultShippingAddress' => [
                 'id' => $addressId,
-                'name' => 'Max',
+                'firstName' => 'Max',
+                'lastName' => 'Mustermann',
                 'street' => 'Musterstraße 1',
-                'cityId' => $this->getValidCountryCityId(),
+                'city' => 'Schöppingen',
                 'zipcode' => '12345',
                 'salutationId' => $this->getValidSalutationId(),
                 'country' => ['id' => $this->getValidCountryId()],
-                'districtId' => $this->getValidCountryDistrictId(),
-                'phoneNumber' => '0123456789',
             ],
             'defaultBillingAddressId' => $addressId,
             'groupId' => TestDefaults::FALLBACK_CUSTOMER_GROUP,
             'email' => 'foo@bar.de',
             'password' => 'password',
-            'title' => 'Max',
+            'firstName' => 'Max',
+            'lastName' => 'Mustermann',
             'salutationId' => $this->getValidSalutationId(),
             'customerNumber' => '12345',
         ];

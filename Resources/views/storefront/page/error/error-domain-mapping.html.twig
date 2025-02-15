@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="robots" content="noindex, nofollow">
         {% if debug %}
-        <title>Cicada Domain Mapping Misconfiguration Help</title>
+        <title>Shopware Domain Mapping Misconfiguration Help</title>
         {% else %}
         <title>Sales Channel Not Found</title>
         {% endif %}
@@ -48,15 +48,15 @@
         {% endif %}
 
         {% if debug %}
-        <h1>Cicada Domain Mapping Misconfiguration Help</h1>
+        <h1>Shopware Domain Mapping Misconfiguration Help</h1>
 
-        <p>Dear Visitor, you accessed Cicada 6 with an unknown Domain. This page provides guidance on common misconfigurations and how to resolve them.</p>
+        <p>Dear Visitor, you accessed Shopware 6 with an unknown Domain. This page provides guidance on common misconfigurations and how to resolve them.</p>
 
         <h2>Common Misconfigurations</h2>
 
         <div class="issue">
             <h3>1. Current URL not matching any Sales Channel Domains</h3>
-            <p>Following URLs are known to Cicada: {% for domain in registeredDomains %}{{ domain }}, {% endfor %}</p>
+            <p>Following URLs are known to Shopware: {% for domain in registeredDomains %}{{ domain }}, {% endfor %}</p>
             <div class="solution">
                 <h4>Solution:</h4>
                 <ol>
@@ -74,7 +74,7 @@
                 <h4>Solution:</h4>
                 <p>Make sure the visible URL is the actual URL in your browser: <code>{{ accessedUrl }}</code>. If not, the proxy configuration could be wrong.</p>
                 <p>
-                    Cicada got following headers from IP <code>{{ clientIp }}</code>:<br>
+                    Shopware got following headers from IP <code>{{ clientIp }}</code>:<br>
                     <code>{{ relevantHeaders|json_encode(constant('JSON_PRETTY_PRINT')) }}</code>
                     <br><br>
 

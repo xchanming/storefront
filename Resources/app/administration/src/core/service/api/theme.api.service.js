@@ -1,4 +1,4 @@
-const ApiService = Cicada.Classes.ApiService;
+const ApiService = Shopware.Classes.ApiService;
 
 /**
  * Gateway for the API end point "theme"
@@ -63,7 +63,7 @@ class ThemeApiService extends ApiService {
         const apiRoute = `/_action/${this.getApiBasePath()}/${themeId}/configuration`;
 
         const additionalHeaders = {
-            'sw-language-id': Cicada.State.get('session').languageId
+            'sw-language-id': Shopware.Store.get('session').languageId
         };
 
         return this.httpClient.get(
@@ -80,7 +80,7 @@ class ThemeApiService extends ApiService {
         const apiRoute = `/_action/${this.getApiBasePath()}/${themeId}/structured-fields`;
 
         const additionalHeaders = {
-            'sw-language-id': Cicada.State.get('session').languageId
+            'sw-language-id': Shopware.Store.get('session').languageId
         };
 
         return this.httpClient.get(
@@ -97,7 +97,7 @@ class ThemeApiService extends ApiService {
         const apiRoute = `/_action/${this.getApiBasePath()}/validate-fields`;
 
         const additionalHeaders = {
-            'sw-language-id': Cicada.State.get('session').languageId
+            'sw-language-id': Shopware.Store.get('session').languageId
         };
 
         return this.httpClient.post(

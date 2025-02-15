@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Media;
+namespace Shopware\Storefront\Framework\Media;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Framework\Media\Exception\MediaValidatorMissingException;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Framework\Media\Exception\MediaValidatorMissingException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-#[Package('buyers-experience')]
+#[Package('discovery')]
 class StorefrontMediaValidatorRegistry
 {
     /**

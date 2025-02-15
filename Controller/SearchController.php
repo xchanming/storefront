@@ -1,19 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Controller;
+namespace Shopware\Storefront\Controller;
 
-use Cicada\Core\Content\Product\ProductEntity;
-use Cicada\Core\Content\Product\SalesChannel\Search\AbstractProductSearchRoute;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Page\Search\SearchPage;
-use Cicada\Storefront\Page\Search\SearchPageLoadedHook;
-use Cicada\Storefront\Page\Search\SearchPageLoader;
-use Cicada\Storefront\Page\Search\SearchWidgetLoadedHook;
-use Cicada\Storefront\Page\Suggest\SuggestPageLoadedHook;
-use Cicada\Storefront\Page\Suggest\SuggestPageLoader;
+use Shopware\Core\Content\Product\ProductEntity;
+use Shopware\Core\Content\Product\SalesChannel\Search\AbstractProductSearchRoute;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Page\Search\SearchPage;
+use Shopware\Storefront\Page\Search\SearchPageLoadedHook;
+use Shopware\Storefront\Page\Search\SearchPageLoader;
+use Shopware\Storefront\Page\Search\SearchWidgetLoadedHook;
+use Shopware\Storefront\Page\Suggest\SuggestPageLoadedHook;
+use Shopware\Storefront\Page\Suggest\SuggestPageLoader;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +24,7 @@ use Symfony\Component\Routing\Attribute\Route;
  * Do not use direct or indirect repository calls in a controller. Always use a store-api route to get or put data
  */
 #[Route(defaults: ['_routeScope' => ['storefront']])]
-#[Package('buyers-experience')]
+#[Package('inventory')]
 class SearchController extends StorefrontController
 {
     /**

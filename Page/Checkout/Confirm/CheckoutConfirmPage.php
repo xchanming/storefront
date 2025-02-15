@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Checkout\Confirm;
+namespace Shopware\Storefront\Page\Checkout\Confirm;
 
-use Cicada\Core\Checkout\Cart\Cart;
-use Cicada\Core\Checkout\Payment\PaymentMethodCollection;
-use Cicada\Core\Checkout\Shipping\ShippingMethodCollection;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Page\Page;
+use Shopware\Core\Checkout\Cart\Cart;
+use Shopware\Core\Checkout\Payment\PaymentMethodCollection;
+use Shopware\Core\Checkout\Shipping\ShippingMethodCollection;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Page\Page;
 
 #[Package('framework')]
 class CheckoutConfirmPage extends Page

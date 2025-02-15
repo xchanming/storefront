@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Captcha\Exception;
+namespace Shopware\Storefront\Framework\Captcha\Exception;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Framework\Captcha\AbstractCaptcha;
-use Cicada\Storefront\Framework\Captcha\CaptchaException;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Framework\Captcha\AbstractCaptcha;
+use Shopware\Storefront\Framework\Captcha\CaptchaException;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

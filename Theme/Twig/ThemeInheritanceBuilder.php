@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Twig;
+namespace Shopware\Storefront\Theme\Twig;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Theme\StorefrontPluginRegistry;
-use Cicada\Storefront\Theme\StorefrontPluginRegistryInterface;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Theme\StorefrontPluginRegistry;
+use Shopware\Storefront\Theme\StorefrontPluginRegistryInterface;
 
 #[Package('framework')]
 class ThemeInheritanceBuilder implements ThemeInheritanceBuilderInterface

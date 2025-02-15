@@ -1,19 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Message;
+namespace Shopware\Storefront\Theme\Message;
 
-use Cicada\Administration\Notification\NotificationService;
-use Cicada\Core\Framework\Context;
-use Cicada\Core\Framework\DataAbstractionLayer\EntityRepository;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Uuid\Uuid;
-use Cicada\Core\System\SalesChannel\SalesChannelCollection;
-use Cicada\Storefront\Theme\ConfigLoader\AbstractConfigLoader;
-use Cicada\Storefront\Theme\Exception\ThemeException;
-use Cicada\Storefront\Theme\StorefrontPluginRegistryInterface;
-use Cicada\Storefront\Theme\ThemeCompilerInterface;
-use Cicada\Storefront\Theme\ThemeService;
+use Shopware\Administration\Notification\NotificationService;
+use Shopware\Core\Framework\Context;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Uuid\Uuid;
+use Shopware\Core\System\SalesChannel\SalesChannelCollection;
+use Shopware\Storefront\Theme\ConfigLoader\AbstractConfigLoader;
+use Shopware\Storefront\Theme\Exception\ThemeException;
+use Shopware\Storefront\Theme\StorefrontPluginRegistryInterface;
+use Shopware\Storefront\Theme\ThemeCompilerInterface;
+use Shopware\Storefront\Theme\ThemeService;
 use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
 /**
@@ -50,6 +50,7 @@ final class CompileThemeHandler
         if ($message->getContext()->getScope() !== Context::USER_SCOPE) {
             return;
         }
+
         $salesChannel = $this->saleschannelRepository->search(
             new Criteria([$message->getSalesChannelId()]),
             $message->getContext()

@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Media\Validator;
+namespace Shopware\Storefront\Framework\Media\Validator;
 
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Log\Package;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-#[Package('buyers-experience')]
+#[Package('discovery')]
 trait MimeTypeValidationTrait
 {
     /**

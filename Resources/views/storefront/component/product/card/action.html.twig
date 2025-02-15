@@ -7,7 +7,7 @@
 
         {% if displayBuyButton and config('core.listing.allowBuyInListing') %}
             {% block component_product_box_action_buy %}
-                {# @var product \Cicada\Core\Content\Product\SalesChannel\SalesChannelProductEntity #}
+                {# @var product \Shopware\Core\Content\Product\SalesChannel\SalesChannelProductEntity #}
                 <form action="{{ path('frontend.checkout.line-item.add') }}"
                       method="post"
                       class="buy-widget"
@@ -26,6 +26,8 @@
                         {% endblock %}
 
                         {% block component_product_box_action_buy_info %}
+                            {# @deprecated tag:v6.7.0 - Block will be removed, use component_product_box_action_buy_info instead #}
+                            {% block page_product_detail_buy_product_buy_info %}
                                 <input type="hidden"
                                        name="lineItems[{{ id }}][id]"
                                        value="{{ id }}">
@@ -44,23 +46,30 @@
                                 <input type="hidden"
                                        name="lineItems[{{ id }}][quantity]"
                                        value="{{ product.minPurchase }}">
+                            {% endblock %}
                         {% endblock %}
 
                         {% block component_product_box_action_buy_meta %}
-                            <input type="hidden"
-                                   name="product-name"
-                                   value="{{ product.translated.name }}">
+                            {# @deprecated tag:v6.7.0 - Block will be removed, use component_product_box_action_buy_meta instead #}
+                            {% block page_product_detail_product_buy_meta %}
+                                <input type="hidden"
+                                       name="product-name"
+                                       value="{{ product.translated.name }}">
+                            {% endblock %}
                         {% endblock %}
 
                         {% block component_product_box_action_buy_button %}
-                            <div class="d-grid">
-                                <button class="btn btn-buy"
-                                        title="{{ 'listing.boxAddProduct'|trans|striptags }}">
-                                    {% block page_product_detail_product_buy_button_label %}
-                                        {{ 'listing.boxAddProduct'|trans|sw_sanitize }}
-                                    {% endblock %}
-                                </button>
-                            </div>
+                            {# @deprecated tag:v6.7.0 - Block will be removed, use component_product_box_action_buy_button instead #}
+                            {% block page_product_detail_product_buy_button %}
+                                <div class="d-grid">
+                                    <button class="btn btn-buy"
+                                            title="{{ 'listing.boxAddProduct'|trans|striptags }}">
+                                        {% block page_product_detail_product_buy_button_label %}
+                                            {{ 'listing.boxAddProduct'|trans|sw_sanitize }}
+                                        {% endblock %}
+                                    </button>
+                                </div>
+                            {% endblock %}
                         {% endblock %}
                     {% endblock %}
                 </form>
@@ -79,4 +88,17 @@
             {% endblock %}
         {% endif %}
     </div>
+
+    {# @deprecated tag:v6.7.0 - Block, including the content will be removed. "product-name" and "product-id" will be hold inside "data-product-information" in box-standard.html.twig instead. #}
+    {% if not feature('v6.7.0.0') %}
+        {% block component_product_box_action_meta %}
+            <input type="hidden"
+                   name="product-name"
+                   value="{{ product.translated.name }}">
+
+            <input type="hidden"
+                   name="product-id"
+                   value="{{ id }}">
+        {% endblock %}
+    {% endif %}
 {% endblock %}

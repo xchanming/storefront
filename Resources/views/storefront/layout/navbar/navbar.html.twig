@@ -1,8 +1,3 @@
-{# @deprecated tag:v6.7.0 - Fallback will be removed, add header directly #}
-{% if not feature('cache_rework') and not header is defined and page is defined %}
-    {% set header = page.header %}
-{% endif %}
-
 {% block layout_navbar %}
     <div class="container">
         <nav class="navbar navbar-expand-lg main-navigation-menu"
@@ -22,17 +17,19 @@
                                        href="{{ path('frontend.home.page') }}"
                                        itemprop="url"
                                        title="{{ homeLabel|striptags }}">
-                                        <div class="main-navigation-link-text">
-                                            <span itemprop="name" class="main-navigation-link-text">{{ homeLabel|sw_sanitize }}</span>
-                                        </div>
+                                        <span itemprop="name" class="main-navigation-link-text">{{ homeLabel|sw_sanitize }}</span>
                                     </a>
                                 </li>
                             {% endif %}
                         {% endblock %}
 
                         {% block layout_navbar_menu_items %}
+                            {# @deprecated tag:v6.7.0 - variable `activePath` will be removed #}
+                            {% if not feature('v6.7.0.0') %}
+                                {% set activePath = '|' ~ shopware.navigation.pathIdList|join('|') ~ '|' %}
+                            {% endif %}
 
-                            {% for treeItem in page.header.navigation.tree %}
+                            {% for treeItem in header.navigation.tree %}
                                 {% set category = treeItem.category %}
                                 {% set id = category.id %}
                                 {% set name = category.translated.name %}

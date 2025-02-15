@@ -9,9 +9,19 @@
 {% block page_checkout_main_content %}
     {% block page_checkout_confirm %}
         {% block page_checkout_confirm_header %}
-            <h1 class="confirm-main-header">
-                {{ 'checkout.confirmHeader'|trans|sw_sanitize }}
-            </h1>
+            {# @deprecated tag:v6.7.0 - Cart header will also display the current amount of line-items #}
+            {% if feature('ACCESSIBILITY_TWEAKS') %}
+                <h1 class="confirm-main-header d-inline-block">
+                    {{ 'checkout.confirmHeader'|trans|sw_sanitize }}
+                </h1>
+                <span class="confirm-main-header-item-counter d-inline-block mb-4 fw-bold fs-3 ms-1 text-dark-emphasis">
+                    ({{- 'checkout.itemCounter'|trans({'%count%': page.cart.lineItems|length})|sw_sanitize -}})
+                </span>
+            {% else %}
+                <h1 class="confirm-main-header">
+                    {{ 'checkout.confirmHeader'|trans|sw_sanitize }}
+                </h1>
+            {% endif %}
         {% endblock %}
 
         {% block page_checkout_confirm_alerts %}
@@ -32,7 +42,7 @@
             <div class="confirm-tos">
                 <div class="card checkout-card">
                     <div class="card-body">
-                        {% set cmsPath = 'frontend.cms.page.full'  %}
+                        {% set cmsPath = 'frontend.cms.page' %}
 
                         {% block page_checkout_confirm_tos_header %}
                             <div class="card-title">
@@ -42,7 +52,7 @@
 
                         {% block page_checkout_confirm_revocation_notice %}
                             <p class="revocation-notice">
-                                {% set revocationSnippetKey = 'checkout.confirmRevocationNoticePage' %}
+                                {% set revocationSnippetKey = 'checkout.confirmRevocationNotice' %}
 
                                 {{ revocationSnippetKey|trans({
                                     '%url%': path(cmsPath, { id: config('core.basicInformation.revocationPage') })
@@ -62,7 +72,7 @@
                                 {% endblock %}
 
                                 {% block page_checkout_confirm_tos_control_label %}
-                                    {% set tosSnippetKey = 'checkout.confirmTermsTextPage' %}
+                                    {% set tosSnippetKey = 'checkout.confirmTermsText' %}
                                     <label for="tos"
                                            class="checkout-confirm-tos-label custom-control-label">
                                         {{ tosSnippetKey|trans({
@@ -100,12 +110,9 @@
         {% endblock %}
 
         {% block page_checkout_confirm_address %}
-            {% set PHYSICAL_STATE = constant('Cicada\\Core\\Content\\Product\\State::IS_PHYSICAL') %}
-            {% if page.cart.lineItems.hasLineItemWithState(PHYSICAL_STATE) %}
             <div class="confirm-address">
                 {% sw_include '@Storefront/storefront/page/checkout/confirm/confirm-address.html.twig' %}
             </div>
-            {% endif %}
         {% endblock %}
 
         {% block page_checkout_confirm_payment_shipping %}
@@ -118,7 +125,7 @@
                     {% endblock %}
 
                     {% block page_checkout_confirm_shipping %}
-                        {% set PHYSICAL_STATE = constant('Cicada\\Core\\Content\\Product\\State::IS_PHYSICAL') %}
+                        {% set PHYSICAL_STATE = constant('Shopware\\Core\\Content\\Product\\State::IS_PHYSICAL') %}
                         {% if page.cart.lineItems.hasLineItemWithState(PHYSICAL_STATE) %}
                             <div class="col-sm-6 confirm-shipping">
                                 {% sw_include '@Storefront/storefront/page/checkout/confirm/confirm-shipping.html.twig' %}
@@ -133,7 +140,12 @@
             <div class="confirm-product">
                 {% block page_checkout_confirm_table_container %}
                     <div class="card">
-                        <ul class="card-body list-unstyled">
+                        {# @deprecated tag:v6.7.0 - Line items wrapper will be `<ul>` element instead of `<div>` #}
+                        {%- if feature('ACCESSIBILITY_TWEAKS') -%}
+                            <ul class="card-body list-unstyled">
+                        {%- else -%}
+                            <div class="card-body" role="list">
+                        {%- endif -%}
                             {% block page_checkout_confirm_table_header %}
                                 {% sw_include '@Storefront/storefront/component/checkout/cart-header.html.twig' with {
                                     showTaxPrice: true
@@ -150,7 +162,12 @@
                                     {% endblock %}
                                 {% endfor %}
                             {% endblock %}
-                        </ul>
+                        {# @deprecated tag:v6.7.0 - Line items wrapper will be `<ul>` element instead of `<div>` #}
+                        {%- if not feature('ACCESSIBILITY_TWEAKS') -%}
+                            </div>
+                        {%- else -%}
+                            </ul>
+                        {%- endif -%}
                     </div>
                 {% endblock %}
             </div>
@@ -180,8 +197,7 @@
                         {% block page_checkout_confirm_customer_comment_control %}
                             <div class="checkout-customer-comment-control">
                                 {% block page_checkout_confirm_customer_comment_control_textfield_label %}
-                                    <label class="form-label"
-                                           for="{{ constant('Cicada\\Core\\Checkout\\Order\\SalesChannel\\OrderService::CUSTOMER_COMMENT_KEY') }}">
+                                    <label class="form-label" for="{{ constant('Shopware\\Core\\Checkout\\Order\\SalesChannel\\OrderService::CUSTOMER_COMMENT_KEY') }}">
                                         {{ 'checkout.customerCommentLabel'|trans|sw_sanitize }}
                                     </label>
                                 {% endblock %}
@@ -189,9 +205,9 @@
                                 {% block page_checkout_confirm_customer_comment_control_textfield %}
                                     <textarea class="form-control"
                                               placeholder="{{ 'checkout.customerCommentPlaceholder'|trans|sw_sanitize }}"
-                                              id="{{ constant('Cicada\\Core\\Checkout\\Order\\SalesChannel\\OrderService::CUSTOMER_COMMENT_KEY') }}"
+                                              id="{{ constant('Shopware\\Core\\Checkout\\Order\\SalesChannel\\OrderService::CUSTOMER_COMMENT_KEY') }}"
                                               form="confirmOrderForm"
-                                              name="{{ constant('Cicada\\Core\\Checkout\\Order\\SalesChannel\\OrderService::CUSTOMER_COMMENT_KEY') }}"></textarea>
+                                              name="{{ constant('Shopware\\Core\\Checkout\\Order\\SalesChannel\\OrderService::CUSTOMER_COMMENT_KEY') }}"></textarea>
                                 {% endblock %}
                             </div>
                         {% endblock %}
@@ -222,7 +238,7 @@
               data-form-add-history-options="{{ formAddHistoryOptions|json_encode }}"
               method="post">
 
-            <input type="text" name="hash" hidden="hidden" value="{{ page.cart.getHash }}"/>
+            <input type="text" name="hash" hidden="hidden" value="{{ page.cart.getHash }}" />
 
             {% block page_checkout_confirm_form_submit %}
                 <div class="d-grid">

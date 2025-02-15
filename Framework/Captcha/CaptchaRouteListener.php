@@ -1,14 +1,14 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Captcha;
+namespace Shopware\Storefront\Framework\Captcha;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\KernelListenerPriorities;
-use Cicada\Core\PlatformRequest;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Core\System\SystemConfig\SystemConfigService;
-use Cicada\Storefront\Controller\ErrorController;
 use Psr\Container\ContainerInterface;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\KernelListenerPriorities;
+use Shopware\Core\PlatformRequest;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\System\SystemConfig\SystemConfigService;
+use Shopware\Storefront\Controller\ErrorController;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;

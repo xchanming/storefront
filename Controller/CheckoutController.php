@@ -1,38 +1,39 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Controller;
+namespace Shopware\Storefront\Controller;
 
-use Cicada\Core\Checkout\Cart\CartException;
-use Cicada\Core\Checkout\Cart\Error\ErrorCollection;
-use Cicada\Core\Checkout\Cart\Exception\InvalidCartException;
-use Cicada\Core\Checkout\Cart\SalesChannel\AbstractCartLoadRoute;
-use Cicada\Core\Checkout\Cart\SalesChannel\CartService;
-use Cicada\Core\Checkout\Customer\SalesChannel\AbstractLogoutRoute;
-use Cicada\Core\Checkout\Order\Exception\EmptyCartException;
-use Cicada\Core\Checkout\Order\OrderException;
-use Cicada\Core\Checkout\Order\SalesChannel\OrderService;
-use Cicada\Core\Checkout\Payment\PaymentException;
-use Cicada\Core\Checkout\Payment\PaymentProcessor;
-use Cicada\Core\Content\Flow\FlowException;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Validation\DataBag\RequestDataBag;
-use Cicada\Core\Framework\Validation\Exception\ConstraintViolationException;
-use Cicada\Core\Profiling\Profiler;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Core\System\StateMachine\Exception\IllegalTransitionException;
-use Cicada\Core\System\SystemConfig\SystemConfigService;
-use Cicada\Storefront\Checkout\Cart\Error\PaymentMethodChangedError;
-use Cicada\Storefront\Checkout\Cart\Error\ShippingMethodChangedError;
-use Cicada\Storefront\Framework\AffiliateTracking\AffiliateTrackingListener;
-use Cicada\Storefront\Page\Checkout\Cart\CheckoutCartPageLoadedHook;
-use Cicada\Storefront\Page\Checkout\Cart\CheckoutCartPageLoader;
-use Cicada\Storefront\Page\Checkout\Confirm\CheckoutConfirmPageLoadedHook;
-use Cicada\Storefront\Page\Checkout\Confirm\CheckoutConfirmPageLoader;
-use Cicada\Storefront\Page\Checkout\Finish\CheckoutFinishPageLoadedHook;
-use Cicada\Storefront\Page\Checkout\Finish\CheckoutFinishPageLoader;
-use Cicada\Storefront\Page\Checkout\Offcanvas\CheckoutInfoWidgetLoadedHook;
-use Cicada\Storefront\Page\Checkout\Offcanvas\CheckoutOffcanvasWidgetLoadedHook;
-use Cicada\Storefront\Page\Checkout\Offcanvas\OffcanvasCartPageLoader;
+use Shopware\Core\Checkout\Cart\CartException;
+use Shopware\Core\Checkout\Cart\Error\Error;
+use Shopware\Core\Checkout\Cart\Error\ErrorCollection;
+use Shopware\Core\Checkout\Cart\Exception\InvalidCartException;
+use Shopware\Core\Checkout\Cart\SalesChannel\AbstractCartLoadRoute;
+use Shopware\Core\Checkout\Cart\SalesChannel\CartService;
+use Shopware\Core\Checkout\Customer\SalesChannel\AbstractLogoutRoute;
+use Shopware\Core\Checkout\Order\Exception\EmptyCartException;
+use Shopware\Core\Checkout\Order\OrderException;
+use Shopware\Core\Checkout\Order\SalesChannel\OrderService;
+use Shopware\Core\Checkout\Payment\PaymentException;
+use Shopware\Core\Checkout\Payment\PaymentProcessor;
+use Shopware\Core\Content\Flow\FlowException;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
+use Shopware\Core\Framework\Validation\Exception\ConstraintViolationException;
+use Shopware\Core\Profiling\Profiler;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Core\System\StateMachine\Exception\IllegalTransitionException;
+use Shopware\Core\System\SystemConfig\SystemConfigService;
+use Shopware\Storefront\Checkout\Cart\Error\PaymentMethodChangedError;
+use Shopware\Storefront\Checkout\Cart\Error\ShippingMethodChangedError;
+use Shopware\Storefront\Framework\AffiliateTracking\AffiliateTrackingListener;
+use Shopware\Storefront\Page\Checkout\Cart\CheckoutCartPageLoadedHook;
+use Shopware\Storefront\Page\Checkout\Cart\CheckoutCartPageLoader;
+use Shopware\Storefront\Page\Checkout\Confirm\CheckoutConfirmPageLoadedHook;
+use Shopware\Storefront\Page\Checkout\Confirm\CheckoutConfirmPageLoader;
+use Shopware\Storefront\Page\Checkout\Finish\CheckoutFinishPageLoadedHook;
+use Shopware\Storefront\Page\Checkout\Finish\CheckoutFinishPageLoader;
+use Shopware\Storefront\Page\Checkout\Offcanvas\CheckoutInfoWidgetLoadedHook;
+use Shopware\Storefront\Page\Checkout\Offcanvas\CheckoutOffcanvasWidgetLoadedHook;
+use Shopware\Storefront\Page\Checkout\Offcanvas\OffcanvasCartPageLoader;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -169,14 +170,14 @@ class CheckoutController extends StorefrontController
         if (!$context->getCustomer()) {
             return $this->redirectToRoute('frontend.checkout.register.page');
         }
-        $orderId = '';
+
         try {
             $this->addAffiliateTracking($data, $request->getSession());
 
             $orderId = Profiler::trace('checkout-order', fn () => $this->orderService->createOrder($data, $context));
         } catch (ConstraintViolationException $formViolations) {
             return $this->forwardToRoute('frontend.checkout.confirm.page', ['formViolations' => $formViolations]);
-        } catch (InvalidCartException|EmptyCartException) {
+        } catch (InvalidCartException|Error|EmptyCartException) {
             $this->addCartErrors(
                 $this->cartService->getCart($context->getToken(), $context)
             );
@@ -190,13 +191,6 @@ class CheckoutController extends StorefrontController
             $this->addFlash('danger', $message);
 
             return $this->forwardToRoute('frontend.checkout.confirm.page');
-        } catch (OrderException $e) {
-            if ($e->getErrorCode() === OrderException::ORDER_DELIVERY_WITHOUT_ADDRESS) {
-                $message = $this->trans('error.' . $e->getErrorCode(), $e->getParameters());
-                $this->addFlash('danger', $message);
-
-                return $this->forwardToRoute('frontend.checkout.confirm.page');
-            }
         }
 
         try {

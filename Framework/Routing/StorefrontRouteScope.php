@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Routing;
+namespace Shopware\Storefront\Framework\Routing;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\AbstractRouteScope;
-use Cicada\Core\Framework\Routing\SalesChannelContextRouteScopeDependant;
-use Cicada\Core\SalesChannelRequest;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\AbstractRouteScope;
+use Shopware\Core\Framework\Routing\SalesChannelContextRouteScopeDependant;
+use Shopware\Core\SalesChannelRequest;
 use Symfony\Component\HttpFoundation\Request;
 
 #[Package('framework')]

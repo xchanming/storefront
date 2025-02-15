@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Framework\Media\Validator;
+namespace Shopware\Storefront\Framework\Media\Validator;
 
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Framework\Media\StorefrontMediaValidatorInterface;
-use Cicada\Storefront\Framework\StorefrontFrameworkException;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Framework\Media\StorefrontMediaValidatorInterface;
+use Shopware\Storefront\Framework\StorefrontFrameworkException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-#[Package('buyers-experience')]
+#[Package('discovery')]
 class StorefrontMediaDocumentValidator implements StorefrontMediaValidatorInterface
 {
     use MimeTypeValidationTrait;

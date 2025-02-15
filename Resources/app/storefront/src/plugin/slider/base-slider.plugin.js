@@ -131,7 +131,9 @@ export default class BaseSliderPlugin extends Plugin {
 
             this.$emitter.publish('initSlider');
 
-            this._initAccessibilityTweaks(sliderInfo, this.el);
+            if (window.Feature.isActive('ACCESSIBILITY_TWEAKS')) {
+                this._initAccessibilityTweaks(sliderInfo, this.el);
+            }
         };
 
         if (container) {

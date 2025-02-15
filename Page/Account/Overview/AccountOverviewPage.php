@@ -1,29 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Account\Overview;
+namespace Shopware\Storefront\Page\Account\Overview;
 
-use Cicada\Core\Checkout\Customer\CustomerEntity;
-use Cicada\Core\Checkout\Order\OrderEntity;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Storefront\Page\Page;
-use Cicada\Storefront\Pagelet\Newsletter\Account\NewsletterAccountPagelet;
+use Shopware\Core\Checkout\Customer\CustomerEntity;
+use Shopware\Core\Checkout\Order\OrderEntity;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Storefront\Page\Page;
+use Shopware\Storefront\Pagelet\Newsletter\Account\NewsletterAccountPagelet;
 
 #[Package('checkout')]
 class AccountOverviewPage extends Page
 {
-    /**
-     * @var OrderEntity|null
-     *
-     * @deprecated tag:v6.7.0 - Will be natively typed
-     */
-    protected $newestOrder;
+    protected ?OrderEntity $newestOrder = null;
 
-    /**
-     * @var CustomerEntity
-     *
-     * @deprecated tag:v6.7.0 - Will be natively typed
-     */
-    protected $customer;
+    protected CustomerEntity $customer;
 
     protected NewsletterAccountPagelet $newsletterAccountPagelet;
 

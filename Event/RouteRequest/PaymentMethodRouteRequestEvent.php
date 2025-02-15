@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Event\RouteRequest;
+namespace Shopware\Storefront\Event\RouteRequest;
 
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Log\Package;
 
 #[Package('checkout')]
 class PaymentMethodRouteRequestEvent extends RouteRequestEvent

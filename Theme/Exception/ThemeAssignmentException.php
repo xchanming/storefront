@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Theme\Exception;
+namespace Shopware\Storefront\Theme\Exception;
 
-use Cicada\Core\Framework\CicadaHttpException;
-use Cicada\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\ShopwareHttpException;
 use Symfony\Component\HttpFoundation\Response;
 
 #[Package('framework')]
-class ThemeAssignmentException extends CicadaHttpException
+class ThemeAssignmentException extends ShopwareHttpException
 {
     /**
      * @param array<string, array<int, string>> $themeSalesChannel

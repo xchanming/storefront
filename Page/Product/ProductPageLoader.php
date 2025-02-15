@@ -1,18 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace Cicada\Storefront\Page\Product;
+namespace Shopware\Storefront\Page\Product;
 
-use Cicada\Core\Content\Category\Exception\CategoryNotFoundException;
-use Cicada\Core\Content\Product\Aggregate\ProductMedia\ProductMediaCollection;
-use Cicada\Core\Content\Product\Exception\ProductNotFoundException;
-use Cicada\Core\Content\Product\SalesChannel\Detail\AbstractProductDetailRoute;
-use Cicada\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Criteria;
-use Cicada\Core\Framework\DataAbstractionLayer\Search\Sorting\FieldSorting;
-use Cicada\Core\Framework\Log\Package;
-use Cicada\Core\Framework\Routing\RoutingException;
-use Cicada\Core\System\SalesChannel\SalesChannelContext;
-use Cicada\Storefront\Page\GenericPageLoaderInterface;
+use Shopware\Core\Content\Category\Exception\CategoryNotFoundException;
+use Shopware\Core\Content\Product\Aggregate\ProductMedia\ProductMediaCollection;
+use Shopware\Core\Content\Product\Exception\ProductNotFoundException;
+use Shopware\Core\Content\Product\SalesChannel\Detail\AbstractProductDetailRoute;
+use Shopware\Core\Content\Property\Aggregate\PropertyGroupOption\PropertyGroupOptionCollection;
+use Shopware\Core\Content\Property\PropertyGroupCollection;
+use Shopware\Core\Framework\DataAbstractionLayer\Exception\InconsistentCriteriaIdsException;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Sorting\FieldSorting;
+use Shopware\Core\Framework\Log\Package;
+use Shopware\Core\Framework\Routing\RoutingException;
+use Shopware\Core\System\SalesChannel\SalesChannelContext;
+use Shopware\Storefront\Page\GenericPageLoaderInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -76,11 +78,14 @@ class ProductPageLoader
         $page = ProductPage::createFrom($page);
 
         $page->setProduct($product);
+        $page->setConfiguratorSettings($result->getConfigurator() ?? new PropertyGroupCollection());
         $page->setNavigationId($product->getId());
 
         if ($cmsPage = $product->getCmsPage()) {
             $page->setCmsPage($cmsPage);
         }
+
+        $this->loadOptions($page);
         $this->loadMetaData($page);
 
         $this->eventDispatcher->dispatch(
@@ -88,6 +93,32 @@ class ProductPageLoader
         );
 
         return $page;
+    }
+
+    private function loadOptions(ProductPage $page): void
+    {
+        $options = new PropertyGroupOptionCollection();
+
+        if (($optionIds = $page->getProduct()->getOptionIds()) === null) {
+            $page->setSelectedOptions($options);
+
+            return;
+        }
+
+        foreach ($page->getConfiguratorSettings() as $group) {
+            $groupOptions = $group->getOptions();
+            if ($groupOptions === null) {
+                continue;
+            }
+            foreach ($optionIds as $optionId) {
+                $groupOption = $groupOptions->get($optionId);
+                if ($groupOption !== null) {
+                    $options->add($groupOption);
+                }
+            }
+        }
+
+        $page->setSelectedOptions($options);
     }
 
     private function loadMetaData(ProductPage $page): void
@@ -111,6 +142,10 @@ class ProductPageLoader
         }
 
         $metaTitleParts = [$page->getProduct()->getTranslation('name')];
+
+        foreach ($page->getSelectedOptions() as $option) {
+            $metaTitleParts[] = $option->getTranslation('name');
+        }
 
         $metaTitleParts[] = $page->getProduct()->getProductNumber();
 

@@ -94,8 +94,8 @@ export default class AppClientService {
 
         return {
             headers: {
-                'cicada-app-token': data.token,
-                'cicada-app-shop-id': data.shopId,
+                'shopware-app-token': data.token,
+                'shopware-app-shop-id': data.shopId,
             },
             expires: data.expires,
         };

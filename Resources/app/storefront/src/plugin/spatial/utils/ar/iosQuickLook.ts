@@ -21,7 +21,7 @@ export default async function iosQuickLook(scene: Object3D) {
 }
 
 /**
- * @experimental stableVersion:v6.7.0 feature:SPATIAL_BASES
+ * @experimental stableVersion:v6.8.0 feature:SPATIAL_BASES
  */
 async function generateUSDZ(scene: Object3D) {
     // eslint-disable-next-line
