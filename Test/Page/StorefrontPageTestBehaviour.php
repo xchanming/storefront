@@ -148,7 +148,7 @@ trait StorefrontPageTestBehaviour
         $paymentMethodId = $this->getValidPaymentMethodId();
         $shippingMethodId = $this->getAvailableShippingMethod()->getId();
         $countryId = $this->getValidCountryId();
-        $snippetSetId = $this->getSnippetSetIdForLocale('en-GB');
+        $snippetSetId = $this->getSnippetSetIdForLocale('zh-CN');
         $data = [
             'typeId' => Defaults::SALES_CHANNEL_TYPE_STOREFRONT,
             'name' => 'store front',
@@ -183,7 +183,7 @@ trait StorefrontPageTestBehaviour
         $paymentMethodId = $this->getValidPaymentMethodId();
         $shippingMethodId = $this->getAvailableShippingMethod()->getId();
         $countryId = $this->getValidCountryId();
-        $snippetSetId = $this->getSnippetSetIdForLocale('en-GB');
+        $snippetSetId = $this->getSnippetSetIdForLocale('zh-CN');
         $data = [
             'typeId' => Defaults::SALES_CHANNEL_TYPE_STOREFRONT,
             'name' => 'store front',
@@ -281,8 +281,7 @@ trait StorefrontPageTestBehaviour
             'salesChannelId' => TestDefaults::SALES_CHANNEL,
             'defaultShippingAddress' => [
                 'id' => $addressId,
-                'firstName' => 'Max',
-                'lastName' => 'Mustermann',
+                'name' => 'Max',
                 'street' => 'Musterstraße 1',
                 'city' => 'Schöppingen',
                 'zipcode' => '12345',
@@ -293,8 +292,8 @@ trait StorefrontPageTestBehaviour
             'groupId' => TestDefaults::FALLBACK_CUSTOMER_GROUP,
             'email' => 'foo@bar.de',
             'password' => 'password',
-            'firstName' => 'Max',
-            'lastName' => 'Mustermann',
+            'nickname' => 'Max',
+            'name' => 'Mustermann',
             'salutationId' => $this->getValidSalutationId(),
             'customerNumber' => '12345',
         ];
