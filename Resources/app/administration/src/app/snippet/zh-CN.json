@@ -1,0 +1,17 @@
+{
+  "sales-channel-theme": {
+    "title": "主题分配",
+    "changeTheme": "更改主题",
+    "changeThemeEmpty": "分配主题",
+    "createTheme": "创建新主题",
+    "editContent": "编辑主题",
+    "defaultTitle": "未分配主题",
+    "defaultAuthor": "作者",
+    "modal": {
+      "modalTitleChange": "更改主题",
+      "textChangeTheme": "你确定要更改主题吗？这可能会影响你的商店显示效果。",
+      "buttonChange": "更改主题",
+      "buttonCancel": "取消"
+    }
+  }
+}
