@@ -136,16 +136,15 @@
 
     {% block component_address_personal_fields_name %}
         <div class="row g-2">
-            {% block component_address_personal_fields_first_name %}
                 {% if prefix != 'address' %}
                     {% set prefix = prefix != 'shippingAddress' ? 'billingAddress' : 'shippingAddress' %}
                 {% endif %}
 
                 {# New implementation, setting of "violationPath" #}
-                {% if formViolations.getViolations("/#{prefix}/firstName") is not empty %}
-                    {% set violationPath = "/#{prefix}/firstName" %}
-                {% elseif formViolations.getViolations("/firstName") is not empty and prefix === 'address' %}
-                    {% set violationPath = "/firstName" %}
+                {% if formViolations.getViolations("/#{prefix}/name") is not empty %}
+                    {% set violationPath = "/#{prefix}/name" %}
+                {% elseif formViolations.getViolations("/name") is not empty and prefix === 'address' %}
+                    {% set violationPath = "/name" %}
                 {% else %}
                     {% set requiredMessage = "error.VIOLATION::IS_BLANK_ERROR"|trans({ '%field%': "account.personalFirstNameLabel"|trans|sw_sanitize }) %}
                 {% endif %}
@@ -153,39 +152,13 @@
                 {% sw_include '@Storefront/storefront/component/form/form-input.html.twig' with {
                     label: 'account.personalFirstNameLabel'|trans|sw_sanitize,
                     id: idPrefix ~ prefix ~ '-personalFirstName',
-                    name: prefix ? prefix ~ '[firstName]' : 'firstName',
-                    value: (prefix and data.has(prefix)) ? data.get(prefix).get('firstName') : data.get('firstName'),
+                    name: prefix ? prefix ~ '[name]' : 'name',
+                    value: (prefix and data.has(prefix)) ? data.get(prefix).get('name') : data.get('name'),
                     autocomplete: 'section-personal given-name',
                     violationPath: violationPath,
                     validationRules: 'required',
                     additionalClass: 'col-sm-6',
                 } %}
-            {% endblock %}
-
-            {% block component_address_personal_fields_last_name %}
-                {% if prefix != 'address' %}
-                    {% set prefix = prefix != 'shippingAddress' ? 'billingAddress' : 'shippingAddress' %}
-                {% endif %}
-
-                {% if formViolations.getViolations("/#{prefix}/lastName") is not empty %}
-                    {% set violationPath = "/#{prefix}/lastName" %}
-                {% elseif formViolations.getViolations("/lastName") is not empty and prefix === 'address' %}
-                    {% set violationPath = "/lastName" %}
-                {% else %}
-                    {% set requiredMessage = "error.VIOLATION::IS_BLANK_ERROR"|trans({ '%field%': "account.personalLastNameLabel"|trans|sw_sanitize }) %}
-                {% endif %}
-
-                {% sw_include '@Storefront/storefront/component/form/form-input.html.twig' with {
-                    label: 'account.personalLastNameLabel'|trans|sw_sanitize,
-                    id: idPrefix ~ prefix ~ '-personalLastName',
-                    name: prefix ? prefix ~ '[lastName]' : 'lastName',
-                    value: (prefix and data.has(prefix)) ? data.get(prefix).get('lastName') : data.get('lastName'),
-                    autocomplete: 'section-personal family-name',
-                    violationPath: violationPath,
-                    validationRules: 'required',
-                    additionalClass: 'col-sm-6',
-                } %}
-            {% endblock %}
         </div>
     {% endblock %}
 
