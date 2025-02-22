@@ -146,12 +146,12 @@
                 {% elseif formViolations.getViolations("/name") is not empty and prefix === 'address' %}
                     {% set violationPath = "/name" %}
                 {% else %}
-                    {% set requiredMessage = "error.VIOLATION::IS_BLANK_ERROR"|trans({ '%field%': "account.personalFirstNameLabel"|trans|sw_sanitize }) %}
+                    {% set requiredMessage = "error.VIOLATION::IS_BLANK_ERROR"|trans({ '%field%': "account.personalNameLabel"|trans|sw_sanitize }) %}
                 {% endif %}
 
                 {% sw_include '@Storefront/storefront/component/form/form-input.html.twig' with {
-                    label: 'account.personalFirstNameLabel'|trans|sw_sanitize,
-                    id: idPrefix ~ prefix ~ '-personalFirstName',
+                    label: 'account.personalNameLabel'|trans|sw_sanitize,
+                    id: idPrefix ~ prefix ~ '-personalName',
                     name: prefix ? prefix ~ '[name]' : 'name',
                     value: (prefix and data.has(prefix)) ? data.get(prefix).get('name') : data.get('name'),
                     autocomplete: 'section-personal given-name',
