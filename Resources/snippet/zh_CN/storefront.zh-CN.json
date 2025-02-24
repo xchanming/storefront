@@ -284,6 +284,7 @@
     "noAvailableAddresses": "暂无激活的地址",
     "availableAddresses": "可用地址",
     "selectAddress": "选择地址",
+    "addressOptionsBtn": "地址选项",
     "addressCreateBtn": "添加新地址",
     "addressEditBtn": "编辑地址",
     "addressCreateWelcome": "新地址",
