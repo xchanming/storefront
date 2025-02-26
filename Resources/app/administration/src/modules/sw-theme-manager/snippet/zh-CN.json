@@ -6,7 +6,7 @@
       "descriptionTextModule": "在这里管理主题。",
       "mainMenuHeader": "你的主题",
       "captionMediaUpload": "上传图片",
-      "lockedToolTip": "通过插件安装的主题被锁定，无法删除",
+      "lockedToolTip": "通过应用安装的主题被锁定，无法删除",
       "titleError": "错误",
       "messageSaveError": "无法将主题分配给销售渠道。",
       "defaultTab": "常规"
